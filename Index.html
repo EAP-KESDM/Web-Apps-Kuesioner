@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuesioner Survei Kepuasan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .card { background: #ffffff; width: 100%; max-width: 500px; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    h2 { color: #2d3748; margin-bottom: 8px; text-align: center; font-size: 24px; }
+    p.subtitle { color: #718096; text-align: center; margin-bottom: 24px; font-size: 14px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; color: #4a5568; margin-bottom: 8px; font-size: 14px; }
+    input[type="text"], input[type="number"], textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: 0.2s; }
+    input:focus, textarea:focus { border-color: #667eea; }
+    .rating-group { display: flex; justify-content: space-between; gap: 8px; }
+    .rating-opt { flex: 1; text-align: center; }
+    .rating-opt input { display: none; }
+    .rating-opt label { display: block; padding: 12px 0; background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-weight: bold; color: #4a5568; transition: all 0.2s; }
+    .rating-opt input:checked + label { background: #667eea; color: #fff; border-color: #667eea; box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3); }
+    button { width: 100%; background: #667eea; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #5a67d8; }
+    button:disabled { background: #a0aec0; cursor: not-allowed; }
+    .status-msg { margin-top: 15px; text-align: center; font-size: 14px; font-weight: 600; }
+    .success { color: #38a169; }
+    .error { color: #e53e3e; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Survei Kepuasan</h2>
+    <p class="subtitle">Isi kuesioner di bawah ini untuk membantu layanan kami.</p>
+
+    <form id="surveyForm">
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+      </div>
+
+      <div class="form-group">
+        <label for="usia">Usia (Tahun)</label>
+        <input type="number" id="usia" name="usia" placeholder="Contoh: 25" required>
+      </div>
+
+      <div class="form-group">
+        <label>Tingkat Kepuasan Layanan</label>
+        <div class="rating-group">
+          <div class="rating-opt"><input type="radio" id="r1" name="kepuasan" value="1" required><label for="r1">1</label></div>
+          <div class="rating-opt"><input type="radio" id="r2" name="kepuasan" value="2"><label for="r2">2</label></div>
+          <div class="rating-opt"><input type="radio" id="r3" name="kepuasan" value="3"><label for="r3">3</label></div>
+          <div class="rating-opt"><input type="radio" id="r4" name="kepuasan" value="4"><label for="r4">4</label></div>
+          <div class="rating-opt"><input type="radio" id="r5" name="kepuasan" value="5"><label for="r5">5</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="saran">Saran & Masukan</label>
+        <textarea id="saran" name="saran" rows="3" placeholder="Tuliskan saran Anda..."></textarea>
+      </div>
+
+      <button type="submit" id="btnSubmit">Kirim Kuesioner</button>
+      <div id="statusMsg" class="status-msg"></div>
+    </form>
+  </div>
+
+  <script>
+    // PASTE URL YANG KAMU SALIN DARI GAMBAR DI SINI:
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzG7LXACHuxLwZhPw-dKkrXf5hg_4LQFPhIC5HBS-KuUcN4JDejt5P8BsRA6TwhFlM/exec";
+
+    const form = document.getElementById('surveyForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const statusMsg = document.getElementById('statusMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      btnSubmit.disabled = true;
+      btnSubmit.innerText = "Mengirim...";
+      statusMsg.innerText = "";
+
+      const payload = {
+        nama: document.getElementById('nama').value,
+        usia: parseInt(document.getElementById('usia').value),
+        kepuasan: parseInt(document.querySelector('input[name="kepuasan"]:checked').value),
+        saran: document.getElementById('saran').value
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        statusMsg.className = "status-msg success";
+        statusMsg.innerText = "Terima kasih! Data kuesioner berhasil terkirim.";
+        form.reset();
+      })
+      .catch(error => {
+        statusMsg.className = "status-msg error";
+        statusMsg.innerText = "Gagal mengirim data.";
+        console.error(error);
+      })
+      .finally(() => {
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = "Kirim Kuesioner";
+      });
+    });
+  </script>
+</body>
+</html>
