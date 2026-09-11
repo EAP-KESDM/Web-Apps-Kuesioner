@@ -760,28 +760,211 @@
         </div>
       </div>
 
-      <!-- ================= HALAMAN 3: BAGIAN III ================= -->
+    <!-- ================= HALAMAN 3: BAGIAN III ================= -->
       <div class="page-step" id="step-3" style="display: none;">
         <h3 class="section-title">BAGIAN III — INSTRUMEN STRES KERJA</h3>
         
+        <!-- III.A SKALA STRES YANG DIRASAKAN (PSS-10) -->
         <div class="section-box">
-          <p style="font-size:13.5px;"><strong>III.A Perceived Stress Scale (PSS-10)</strong><br><small style="color:#6B7280;">Seberapa sering dirasakan 1 bulan terakhir? (Skala: 0 = Tidak pernah s/d 4 = Sangat sering)</small></p>
+          <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">III.A Skala Stres yang Dirasakan</p>
+          <p style="font-size:12.5px; color:#475569; margin-top:0;">
+            <strong>Petunjuk:</strong> Pertanyaan berikut menanyakan perasaan dan pikiran Anda selama <span style="text-decoration:underline;">1 (Satu) bulan terakhir</span>. Nyatakan seberapa sering Anda merasakan hal berikut. Berikan tanda pada pilihan Anda:<br>
+            <small><strong>Skala:</strong> 0 = Tidak pernah | 1 = Hampir tidak pernah | 2 = Kadang-kadang | 3 = Cukup sering | 4 = Sangat sering</small>
+          </p>
           
           <div class="table-responsive">
             <table>
               <thead>
                 <tr>
+                  <th style="width: 40px;">No</th>
                   <th>Pernyataan</th>
-                  <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th>
+                  <th style="width: 30px;">0</th>
+                  <style>
+                    /* Custom styling khusus tabel PSS & HSE agar rapi */
+                    .table-responsive th { padding: 8px 4px; text-align: center; }
+                    .table-responsive td { padding: 8px 4px; text-align: center; }
+                  </style>
+                  <th style="width: 30px;">1</th>
+                  <th style="width: 30px;">2</th>
+                  <th style="width: 30px;">3</th>
+                  <th style="width: 30px;">4</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td class="text-left">1. Kesal karena sesuatu terjadi di luar dugaan?</td><td><input type="radio" name="pss1" value="0"></td><td><input type="radio" name="pss1" value="1"></td><td><input type="radio" name="pss1" value="2"></td><td><input type="radio" name="pss1" value="3"></td><td><input type="radio" name="pss1" value="4"></td></tr>
-                <tr><td class="text-left">2. Merasa tidak mampu mengendalikan hal penting?</td><td><input type="radio" name="pss2" value="0"></td><td><input type="radio" name="pss2" value="1"></td><td><input type="radio" name="pss2" value="2"></td><td><input type="radio" name="pss2" value="3"></td><td><input type="radio" name="pss2" value="4"></td></tr>
-                <tr><td class="text-left">3. Merasa gugup dan tertekan?</td><td><input type="radio" name="pss3" value="0"></td><td><input type="radio" name="pss3" value="1"></td><td><input type="radio" name="pss3" value="2"></td><td><input type="radio" name="pss3" value="3"></td><td><input type="radio" name="pss3" value="4"></td></tr>
+                <tr><td>S1</td><td class="text-left">Seberapa sering Anda merasa kesal karena sesuatu terjadi di luar dugaan Anda?</td><td><input type="radio" name="pss1" value="0"></td><td><input type="radio" name="pss1" value="1"></td><td><input type="radio" name="pss1" value="2"></td><td><input type="radio" name="pss1" value="3"></td><td><input type="radio" name="pss1" value="4"></td></tr>
+                <tr><td>S2</td><td class="text-left">Seberapa sering Anda merasa tidak mampu mengendalikan hal-hal penting dalam hidup Anda?</td><td><input type="radio" name="pss2" value="0"></td><td><input type="radio" name="pss2" value="1"></td><td><input type="radio" name="pss2" value="2"></td><td><input type="radio" name="pss2" value="3"></td><td><input type="radio" name="pss2" value="4"></td></tr>
+                <tr><td>S3</td><td class="text-left">Seberapa sering Anda merasa gugup dan "tertekan"?</td><td><input type="radio" name="pss3" value="0"></td><td><input type="radio" name="pss3" value="1"></td><td><input type="radio" name="pss3" value="2"></td><td><input type="radio" name="pss3" value="3"></td><td><input type="radio" name="pss3" value="4"></td></tr>
+                <tr><td>S4</td><td class="text-left">Seberapa sering Anda merasa yakin terhadap kemampuan Anda menghadapi masalah <span style="text-decoration:underline; color:#2563EB;">pribadi?*</span></td><td><input type="radio" name="pss4" value="0"></td><td><input type="radio" name="pss4" value="1"></td><td><input type="radio" name="pss4" value="2"></td><td><input type="radio" name="pss4" value="3"></td><td><input type="radio" name="pss4" value="4"></td></tr>
+                <tr><td>S5</td><td class="text-left">Seberapa sering Anda merasa segala sesuatu berjalan sesuai keinginan <span style="text-decoration:underline; color:#2563EB;">Anda?*</span></td><td><input type="radio" name="pss5" value="0"></td><td><input type="radio" name="pss5" value="1"></td><td><input type="radio" name="pss5" value="2"></td><td><input type="radio" name="pss5" value="3"></td><td><input type="radio" name="pss5" value="4"></td></tr>
+                <tr><td>S6</td><td class="text-left">Seberapa sering Anda merasa tidak mampu mengatasi semua hal yang harus Anda lakukan?</td><td><input type="radio" name="pss6" value="0"></td><td><input type="radio" name="pss6" value="1"></td><td><input type="radio" name="pss6" value="2"></td><td><input type="radio" name="pss6" value="3"></td><td><input type="radio" name="pss6" value="4"></td></tr>
+                <tr><td>S7</td><td class="text-left">Seberapa sering Anda mampu mengendalikan rasa jengkel dalam hidup <span style="text-decoration:underline; color:#2563EB;">Anda?*</span></td><td><input type="radio" name="pss7" value="0"></td><td><input type="radio" name="pss7" value="1"></td><td><input type="radio" name="pss7" value="2"></td><td><input type="radio" name="pss7" value="3"></td><td><input type="radio" name="pss7" value="4"></td></tr>
+                <tr><td>S8</td><td class="text-left">Seberapa sering Anda merasa berada di atas angin (mampu mengendalikan keadaan)<span style="text-decoration:underline; color:#2563EB;">?*</span></td><td><input type="radio" name="pss8" value="0"></td><td><input type="radio" name="pss8" value="1"></td><td><input type="radio" name="pss8" value="2"></td><td><input type="radio" name="pss8" value="3"></td><td><input type="radio" name="pss8" value="4"></td></tr>
+                <tr><td>S9</td><td class="text-left">Seberapa sering Anda marah karena hal-hal yang berada di luar kendali Anda?</td><td><input type="radio" name="pss9" value="0"></td><td><input type="radio" name="pss9" value="1"></td><td><input type="radio" name="pss9" value="2"></td><td><input type="radio" name="pss9" value="3"></td><td><input type="radio" name="pss9" value="4"></td></tr>
+                <tr><td>S10</td><td class="text-left">Seberapa sering Anda merasa kesulitan menumpuk begitu tinggi sehingga tidak mampu mengatasinya?</td><td><input type="radio" name="pss10" value="0"></td><td><input type="radio" name="pss10" value="1"></td><td><input type="radio" name="pss10" value="2"></td><td><input type="radio" name="pss10" value="3"></td><td><input type="radio" name="pss10" value="4"></td></tr>
               </tbody>
             </table>
           </div>
+          <p style="font-size: 11px; color: #64748B; margin-top: 8px; font-style: italic;">
+            *<span style="text-decoration:underline;">item</span> yang dibalik skornya saat penjumlahan (0&rarr;4, 1&rarr;3, 2&rarr;2 (tetap), 3&rarr;1, 4&rarr;0).
+          </p>
+        </div>
+
+        <!-- III.B SKALA STRES KERJA (HSE INDICATOR TOOL) -->
+        <div class="section-box">
+          <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">III.B Skala Stres Kerja (adaptasi HSE Management Standards Indicator Tool)</p>
+          <p style="font-size:12.5px; color:#475569; margin-top:0;">
+            <strong>Petunjuk:</strong> Nyatakan seberapa sering pernyataan berikut menggambarkan pengalaman Anda di tempat kerja selama enam bulan terakhir.<br>
+            <small><strong>Skala:</strong> 1 = Tidak pernah | 2 = Jarang | 3 = Kadang-kadang | 4 = Sering | 5 = Selalu</small>
+          </p>
+
+          <!-- 1. Tuntutan Kerja -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">1. Tuntutan Kerja</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>D1</td><td class="text-left">Saya harus bekerja sangat intensif</td><td><input type="radio" name="hse_d1" value="1"></td><td><input type="radio" name="hse_d1" value="2"></td><td><input type="radio" name="hse_d1" value="3"></td><td><input type="radio" name="hse_d1" value="4"></td><td><input type="radio" name="hse_d1" value="5"></td></tr>
+                <tr><td>D2</td><td class="text-left">Berbagai pihak menuntut hal yang sulit saya gabungkan dalam pekerjaan saya</td><td><input type="radio" name="hse_d2" value="1"></td><td><input type="radio" name="hse_d2" value="2"></td><td><input type="radio" name="hse_d2" value="3"></td><td><input type="radio" name="hse_d2" value="4"></td><td><input type="radio" name="hse_d2" value="5"></td></tr>
+                <tr><td>D3</td><td class="text-left">Saya menghadapi tuntutan emosional yang berat dalam pekerjaan (mis. menghadapi konflik, situasi berbahaya)</td><td><input type="radio" name="hse_d3" value="1"></td><td><input type="radio" name="hse_d3" value="2"></td><td><input type="radio" name="hse_d3" value="3"></td><td><input type="radio" name="hse_d3" value="4"></td><td><input type="radio" name="hse_d3" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 2. Kendali -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">2. Kendali</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>C1</td><td class="text-left">Saya dapat memilih cara saya melakukan pekerjaan</td><td><input type="radio" name="hse_c1" value="1"></td><td><input type="radio" name="hse_c1" value="2"></td><td><input type="radio" name="hse_c1" value="3"></td><td><input type="radio" name="hse_c1" value="4"></td><td><input type="radio" name="hse_c1" value="5"></td></tr>
+                <tr><td>C2</td><td class="text-left">Saya dapat memutuskan kapan saya mengambil jeda</td><td><input type="radio" name="hse_c2" value="1"></td><td><input type="radio" name="hse_c2" value="2"></td><td><input type="radio" name="hse_c2" value="3"></td><td><input type="radio" name="hse_c2" value="4"></td><td><input type="radio" name="hse_c2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 3. Dukungan Atasan -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">3. Dukungan Atasan</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>M1</td><td class="text-left">Saya mendapat umpan balik yang mendukung atas pekerjaan yang saya lakukan</td><td><input type="radio" name="hse_m1" value="1"></td><td><input type="radio" name="hse_m1" value="2"></td><td><input type="radio" name="hse_m1" value="3"></td><td><input type="radio" name="hse_m1" value="4"></td><td><input type="radio" name="hse_m1" value="5"></td></tr>
+                <tr><td>M2</td><td class="text-left">Atasan saya mendorong dan mendukung saya saat pekerjaan sulit</td><td><input type="radio" name="hse_m2" value="1"></td><td><input type="radio" name="hse_m2" value="2"></td><td><input type="radio" name="hse_m2" value="3"></td><td><input type="radio" name="hse_m2" value="4"></td><td><input type="radio" name="hse_m2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 4. Dukungan Rekan Kerja -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">4. Dukungan Rekan Kerja</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>P1</td><td class="text-left">Jika pekerjaan sulit, rekan kerja saya bersedia membantu</td><td><input type="radio" name="hse_p1" value="1"></td><td><input type="radio" name="hse_p1" value="2"></td><td><input type="radio" name="hse_p1" value="3"></td><td><input type="radio" name="hse_p1" value="4"></td><td><input type="radio" name="hse_p1" value="5"></td></tr>
+                <tr><td>P2</td><td class="text-left">Saya mendapat dukungan yang memadai dari rekan kerja</td><td><input type="radio" name="hse_p2" value="1"></td><td><input type="radio" name="hse_p2" value="2"></td><td><input type="radio" name="hse_p2" value="3"></td><td><input type="radio" name="hse_p2" value="4"></td><td><input type="radio" name="hse_p2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 5. Hubungan Kerja -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">5. Hubungan Kerja</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>R1</td><td class="text-left">Saya mengalami perlakuan tidak menyenangkan berupa kata-kata atau sikap kasar di tempat kerja*</td><td><input type="radio" name="hse_r1" value="1"></td><td><input type="radio" name="hse_r1" value="2"></td><td><input type="radio" name="hse_r1" value="3"></td><td><input type="radio" name="hse_r1" value="4"></td><td><input type="radio" name="hse_r1" value="5"></td></tr>
+                <tr><td>R2</td><td class="text-left">Hubungan di tempat kerja saya berlangsung baik dan bebas konflik</td><td><input type="radio" name="hse_r2" value="1"></td><td><input type="radio" name="hse_r2" value="2"></td><td><input type="radio" name="hse_r2" value="3"></td><td><input type="radio" name="hse_r2" value="4"></td><td><input type="radio" name="hse_r2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 11px; color: #64748B; margin-top: 4px; margin-bottom: 12px; font-style: italic;">* = item negatif, dibalik skornya.</p>
+
+          <!-- 6. Kejelasan Peran -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">6. Kejelasan Peran</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>L1</td><td class="text-left">Saya memahami dengan jelas apa yang diharapkan dari saya dalam pekerjaan</td><td><input type="radio" name="hse_l1" value="1"></td><td><input type="radio" name="hse_l1" value="2"></td><td><input type="radio" name="hse_l1" value="3"></td><td><input type="radio" name="hse_l1" value="4"></td><td><input type="radio" name="hse_l1" value="5"></td></tr>
+                <tr><td>L2</td><td class="text-left">Saya memahami bagaimana pekerjaan saya berhubungan dengan tujuan unit kerja</td><td><input type="radio" name="hse_l2" value="1"></td><td><input type="radio" name="hse_l2" value="2"></td><td><input type="radio" name="hse_l2" value="3"></td><td><input type="radio" name="hse_l2" value="4"></td><td><input type="radio" name="hse_l2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 7. Pengelolaan Perubahan -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">7. Pengelolaan Perubahan</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>G1</td><td class="text-left">Saya mendapat kesempatan memadai untuk bertanya kepada pimpinan mengenai perubahan organisasi</td><td><input type="radio" name="hse_g1" value="1"></td><td><input type="radio" name="hse_g1" value="2"></td><td><input type="radio" name="hse_g1" value="3"></td><td><input type="radio" name="hse_g1" value="4"></td><td><input type="radio" name="hse_g1" value="5"></td></tr>
+                <tr><td>G2</td><td class="text-left">Perubahan di tempat kerja dikomunikasikan dan dikelola dengan baik</td><td><input type="radio" name="hse_g2" value="1"></td><td><input type="radio" name="hse_g2" value="2"></td><td><input type="radio" name="hse_g2" value="3"></td><td><input type="radio" name="hse_g2" value="4"></td><td><input type="radio" name="hse_g2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 8. Modul Konteks ESDM (tambahan spesifik instansi) -->
+          <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">8. Modul Konteks ESDM (tambahan spesifik instansi)</p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 40px;">No</th>
+                  <th>Pernyataan</th>
+                  <th style="width: 25px;">1</th><th style="width: 25px;">2</th><th style="width: 25px;">3</th><th style="width: 25px;">4</th><th style="width: 25px;">5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>E1</td><td class="text-left">Saya merasa tenang terhadap keselamatan diri saat menjalankan penugasan lapangan</td><td><input type="radio" name="hse_e1" value="1"></td><td><input type="radio" name="hse_e1" value="2"></td><td><input type="radio" name="hse_e1" value="3"></td><td><input type="radio" name="hse_e1" value="4"></td><td><input type="radio" name="hse_e1" value="5"></td></tr>
+                <tr><td>E2</td><td class="text-left">Beban administrasi dan perjalanan dinas mengganggu pemulihan saya setelah penugasan lapangan*</td><td><input type="radio" name="hse_e2" value="1"></td><td><input type="radio" name="hse_e2" value="2"></td><td><input type="radio" name="hse_e2" value="3"></td><td><input type="radio" name="hse_e2" value="4"></td><td><input type="radio" name="hse_e2" value="5"></td></tr>
+                <tr><td>E3</td><td class="text-left">Saya merasa unit kerja saya siap menangani dampak psikologis bila terjadi insiden di lokasi kerja</td><td><input type="radio" name="hse_e3" value="1"></td><td><input type="radio" name="hse_e3" value="2"></td><td><input type="radio" name="hse_e3" value="3"></td><td><input type="radio" name="hse_e3" value="4"></td><td><input type="radio" name="hse_e3" value="5"></td></tr>
+                <tr><td>E4</td><td class="text-left">Ketidakjelasan masa depan jabatan (misal akibat rotasi/mutasi/konsolidasi/transformasi jabatan fungsional) menambah beban pikiran saya</td><td><input type="radio" name="hse_e4" value="1"></td><td><input type="radio" name="hse_e4" value="2"></td><td><input type="radio" name="hse_e4" value="3"></td><td><input type="radio" name="hse_e4" value="4"></td><td><input type="radio" name="hse_e4" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 11px; color: #64748B; margin-top: 4px; font-style: italic;">* = item negatif, dibalik skornya.</p>
         </div>
 
         <hr class="page-divider">
