@@ -997,13 +997,35 @@
     }
   </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.btn-next').forEach(btn => {
-        btn.innerHTML = 'Selanjutnya &rarr;';
-      });
-    });
-  </script>
-        
+function nextPage(currentStep) {
+  // 1. Sembunyikan semua halaman
+  document.querySelectorAll('.step-content, .page-step, [id^="step-"]').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  // 2. Tentukan halaman berikutnya
+  const nextStep = currentStep + 1;
+
+  // 3. Cari dan tampilkan halaman berikutnya
+  const nextEl = document.getElementById('step-' + nextStep) || 
+                 document.querySelector('.step-' + nextStep) ||
+                 document.querySelector('.page-' + nextStep);
+
+  if (nextEl) {
+    nextEl.style.display = 'block';
+  }
+
+  // 4. Update indikator angka di atas (1, 2, 3)
+  document.querySelectorAll('.step-dot, .dot').forEach((dot, index) => {
+    if (index + 1 === nextStep) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+
+  // 5. Penting: Otomatis scroll layar ke atas agar konten tidak sembunyi
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </body>
 </html>
