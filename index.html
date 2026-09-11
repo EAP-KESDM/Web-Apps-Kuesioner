@@ -5,21 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
-/* Update latar belakang body dengan efek bergerak lembut */
-body {
-  background: linear-gradient(-45deg, #f4f7fb, #e8f0fe, #fdf6ee, #edf2f7);
-  background-size: 400% 400%;
-  animation: gradientBG 16s ease infinite;
-  position: relative;
-  overflow-x: hidden;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* Container Partikel melayang di background */
 .bg-particles {
   position: fixed;
@@ -27,29 +12,55 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Dipastikan di belakang konten */
+  z-index: -1; /* Tetap di belakang konten */
   pointer-events: none;
+  overflow: hidden;
 }
 
 .particle {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.5;
-  filter: blur(4px);
-  animation: float 14s infinite linear;
+  bottom: -30px; /* Mulai dari bawah layar */
+  animation: floatUp 12s infinite linear;
 }
 
-/* Titik-titik partikel melayang (warna disesuaikan dengan aksen ESDM) */
-.p1 { width: 12px; height: 12px; background: #e67e22; top: 15%; left: 8%; animation-duration: 12s; }
-.p2 { width: 20px; height: 20px; background: #2980b9; top: 65%; left: 85%; animation-duration: 16s; }
-.p3 { width: 10px; height: 10px; background: #f1c40f; top: 80%; left: 15%; animation-duration: 9s; }
-.p4 { width: 16px; height: 16px; background: #d35400; top: 35%; left: 75%; animation-duration: 14s; }
-.p5 { width: 14px; height: 14px; background: #3498db; top: 45%; left: 5%; animation-duration: 11s; }
+/* 
+  Kombinasi warna yang menarik untuk background terang:
+  - Gold / Amber Warm (#f39c12, #e67e22, #d35400) -> Khas ESDM
+  - Soft Blue / Cyan (#3498db, #2980b9) -> Kontras elegan
+*/
+.p1  { left: 5%;  width: 8px;  height: 8px;  background: #e67e22; animation-duration: 9s;  animation-delay: 0s;   opacity: 0.6; }
+.p2  { left: 12%; width: 14px; height: 14px; background: #3498db; animation-duration: 13s; animation-delay: 2s;   opacity: 0.4; }
+.p3  { left: 20%; width: 6px;  height: 6px;  background: #f1c40f; animation-duration: 8s;  animation-delay: 4s;   opacity: 0.7; }
+.p4  { left: 28%; width: 12px; height: 12px; background: #d35400; animation-duration: 11s; animation-delay: 1s;   opacity: 0.5; }
+.p5  { left: 35%; width: 9px;  height: 9px;  background: #2980b9; animation-duration: 14s; animation-delay: 5s;   opacity: 0.6; }
+.p6  { left: 42%; width: 15px; height: 15px; background: #e67e22; animation-duration: 10s; animation-delay: 3s;   opacity: 0.4; }
+.p7  { left: 50%; width: 7px;  height: 7px;  background: #f39c12; animation-duration: 9s;  animation-delay: 6s;   opacity: 0.7; }
+.p8  { left: 58%; width: 11px; height: 11px; background: #3498db; animation-duration: 12s; animation-delay: 0.5s; opacity: 0.5; }
+.p9  { left: 65%; width: 13px; height: 13px; background: #d35400; animation-duration: 15s; animation-delay: 2.5s; opacity: 0.4; }
+.p10 { left: 73%; width: 8px;  height: 8px;  background: #f1c40f; animation-duration: 10s; animation-delay: 4.5s; opacity: 0.6; }
+.p11 { left: 80%; width: 16px; height: 16px; background: #2980b9; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.35; }
+.p12 { left: 87%; width: 10px; height: 10px; background: #e67e22; animation-duration: 11s; animation-delay: 3.5s; opacity: 0.55; }
+.p13 { left: 93%; width: 7px;  height: 7px;  background: #3498db; animation-duration: 8s;  animation-delay: 5.5s; opacity: 0.65; }
+.p14 { left: 15%; width: 10px; height: 10px; background: #f39c12; animation-duration: 12s; animation-delay: 7s;   opacity: 0.5; }
+.p15 { left: 78%; width: 6px;  height: 6px;  background: #d35400; animation-duration: 9s;  animation-delay: 6.5s; opacity: 0.7; }
 
-@keyframes float {
-  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.3; }
-  50% { transform: translateY(-35px) scale(1.2) rotate(180deg); opacity: 0.7; }
-  100% { transform: translateY(0) scale(1) rotate(360deg); opacity: 0.3; }
+/* Animasi bergerak mengalir lurus/bergoyang halus dari bawah ke atas */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-105vh) translateX(25px); /* Bergerak ke atas sampai keluar layar */
+    opacity: 0;
+  }
 }
 
 @keyframes gradientBG {
@@ -466,15 +477,25 @@ body {
 </head>
 <body>
 
-<!-- Cukup selipkan kode partikel ini tepat di bawah <body> -->
+<!-- Partikel Melayang Bergerak Ke Atas (Agak Ramai & Elegan) -->
 <div class="bg-particles">
   <div class="particle p1"></div>
   <div class="particle p2"></div>
   <div class="particle p3"></div>
   <div class="particle p4"></div>
   <div class="particle p5"></div>
+  <div class="particle p6"></div>
+  <div class="particle p7"></div>
+  <div class="particle p8"></div>
+  <div class="particle p9"></div>
+  <div class="particle p10"></div>
+  <div class="particle p11"></div>
+  <div class="particle p12"></div>
+  <div class="particle p13"></div>
+  <div class="particle p14"></div>
+  <div class="particle p15"></div>
 </div>
-
+  
   <!-- CANVAS UNTUK ANIMASI PARTIKEL BERGERAK -->
   <canvas id="particles-canvas"></canvas>
 
