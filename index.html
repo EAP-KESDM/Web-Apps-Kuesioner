@@ -6,747 +6,672 @@
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
     :root {
-      --primary-color: #0d6efd;
-      --bg-color: #f8f9fa;
+      --esdm-blue: #0A3663;
+      --esdm-accent: #F59E0B;
+      --esdm-light-blue: #EFF6FF;
+      --bg-gradient: linear-gradient(135deg, #0A3663 0%, #1E40AF 100%);
       --card-bg: #ffffff;
-      --text-color: #212529;
-      --border-color: #dee2e6;
+      --text-color: #1F2937;
+      --border-color: #E5E7EB;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
+      background: #F3F4F6;
       color: var(--text-color);
       margin: 0;
-      padding: 15px;
-      line-height: 1.5;
+      padding: 0;
+      line-height: 1.6;
     }
+
+    /* Top Banner / Hero Header */
+    .hero-banner {
+      background: var(--bg-gradient);
+      color: white;
+      padding: 35px 20px 50px 20px;
+      text-align: center;
+      border-bottom: 5px solid var(--esdm-accent);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .hero-banner h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .hero-banner h2 {
+      margin: 10px 0 5px 0;
+      font-size: 24px;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .hero-banner p {
+      margin-top: 8px;
+      font-size: 13px;
+      opacity: 0.85;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Main Container Card */
     .container {
       max-width: 800px;
-      margin: 0 auto;
+      margin: -30px auto 40px auto;
       background: var(--card-bg);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
     }
-    h1, h2, h3 {
-      color: #0b5ed7;
-      margin-top: 0;
-    }
-    .header-box {
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 15px;
+
+    .section-title {
+      font-size: 18px;
+      color: var(--esdm-blue);
+      border-left: 5px solid var(--esdm-accent);
+      padding-left: 12px;
       margin-bottom: 20px;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
     .section-box {
       margin-bottom: 25px;
-      padding: 15px;
+      padding: 20px;
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background-color: #fafafa;
+      border-radius: 12px;
+      background-color: #FAFAFA;
+      transition: all 0.3s ease;
     }
+    .section-box:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     label {
       display: block;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #374151;
     }
     input[type="text"], select, textarea {
       width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      padding: 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
       box-sizing: border-box;
       font-size: 14px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #FFFFFF;
     }
+    input[type="text"]:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
     .radio-group, .checkbox-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .radio-item, .checkbox-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-weight: normal;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .radio-item:hover, .checkbox-item:hover {
+      background-color: var(--esdm-light-blue);
+    }
+
+    /* Modern Table Styling */
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
       font-size: 13px;
+      background: white;
     }
     th, td {
-      border: 1px solid var(--border-color);
-      padding: 8px;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--border-color);
       text-align: center;
     }
     th {
-      background-color: #e9ecef;
+      background-color: var(--esdm-blue);
+      color: white;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #F9FAFB;
+    }
+    tbody tr:hover {
+      background-color: var(--esdm-light-blue);
     }
     td.text-left {
       text-align: left;
     }
-    
-    /* STYLING NAVIGASI MULTI-STEP */
+
+    /* Divider & Buttons */
     .page-divider {
       border: 0;
       border-top: 1px solid var(--border-color);
-      margin: 30px 0 20px 0;
+      margin: 30px 0 25px 0;
     }
     .nav-buttons {
       display: flex;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 12px;
     }
-    .nav-buttons.start {
-      justify-content: flex-start;
-    }
-    .nav-buttons.between {
-      justify-content: space-between;
-    }
-    .btn-next {
-      background-color: #10b981;
+    .nav-buttons.start { justifyContent: flex-start; }
+    .nav-buttons.between { justifyContent: space-between; }
+
+    .btn-next, .btn-submit {
+      background: var(--bg-gradient);
       color: white;
       border: none;
-      padding: 10px 24px;
+      padding: 12px 30px;
       font-size: 15px;
       font-weight: 600;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      box-shadow: 0 4px 10px rgba(10, 54, 99, 0.25);
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
     }
-    .btn-next:hover {
-      background-color: #059669;
+    .btn-next:hover, .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(10, 54, 99, 0.35);
     }
     .btn-prev {
-      background-color: #64748b;
+      background-color: #64748B;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 14px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.2s;
     }
     .btn-prev:hover {
       background-color: #475569;
     }
-    .btn-submit {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .btn-submit:disabled {
-      background-color: #6c757d;
-    }
 
     #loadingMessage, #successMessage, #errorMessage {
       display: none;
-      padding: 12px;
-      margin-top: 15px;
-      border-radius: 6px;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
       text-align: center;
-      font-weight: bold;
+      font-weight: 600;
     }
-    #loadingMessage { background-color: #cff4fc; color: #055160; }
-    #successMessage { background-color: #d1e7dd; color: #0f5132; }
-    #errorMessage { background-color: #f8d7da; color: #842029; }
+    #loadingMessage { background-color: #DBEAFE; color: #1E40AF; }
+    #successMessage { background-color: #D1FAE5; color: #065F46; }
+    #errorMessage { background-color: #FEE2E2; color: #991B1B; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header-box">
-    <h2>KUESIONER PENELITIAN</h2>
-    <h3>Kebutuhan Layanan Employee Assistance Program (EAP) dan Stres Kerja Pegawai Kementerian ESDM</h3>
-    <p><em>Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan. Mohon diisi secara jujur sesuai pengalaman Anda.</em></p>
+  <!-- HERO HEADER KEMENTERIAN ESDM -->
+  <div class="hero-banner">
+    <h1>Kementerian Energi dan Sumber Daya Mineral</h1>
+    <h2>Survei EAP & Stres Kerja Pegawai</h2>
+    <p>Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan kesejahteraan pegawai KESDM.</p>
   </div>
 
-  <form id="surveyForm">
-    
-    <!-- ================= HALAMAN 1: BAGIAN I ================= -->
-    <div class="page-step" id="step-1">
-      <div class="section-box">
-        <h3>BAGIAN I — KARAKTERISTIK RESPONDEN</h3>
+  <div class="container">
+    <form id="surveyForm">
+      
+      <!-- ================= HALAMAN 1: BAGIAN I ================= -->
+      <div class="page-step" id="step-1">
+        <h3 class="section-title">BAGIAN I — KARAKTERISTIK RESPONDEN</h3>
         
-        <div class="form-group">
-          <label>1. Unit Kerja Eselon I</label>
-          <select name="eselon" required>
-            <option value="">-- Pilih Eselon I --</option>
-            <option value="Sekretariat Jenderal">Sekretariat Jenderal</option>
-            <option value="Ditjen Migas">Ditjen Migas</option>
-            <option value="Ditjen Ketenagalistrikan">Ditjen Ketenagalistrikan</option>
-            <option value="Ditjen Minerba">Ditjen Minerba</option>
-            <option value="Ditjen EBTKE">Ditjen EBTKE</option>
-            <option value="Ditjen Penegakan Hukum">Ditjen Penegakan Hukum</option>
-            <option value="Inspektorat Jenderal">Inspektorat Jenderal</option>
-            <option value="Badan Geologi">Badan Geologi</option>
-            <option value="BPSDM ESDM">BPSDM ESDM</option>
-            <option value="BPH Migas">BPH Migas</option>
-            <option value="Setjen DEN">Setjen DEN</option>
-            <option value="Lainnya">Lainnya</option>
-          </select>
-        </div>
+        <div class="section-box">
+          <div class="form-group">
+            <label>1. Unit Kerja Eselon I</label>
+            <select name="eselon" required>
+              <option value="">-- Pilih Eselon I --</option>
+              <option value="Sekretariat Jenderal">Sekretariat Jenderal</option>
+              <option value="Ditjen Migas">Ditjen Migas</option>
+              <option value="Ditjen Ketenagalistrikan">Ditjen Ketenagalistrikan</option>
+              <option value="Ditjen Minerba">Ditjen Minerba</option>
+              <option value="Ditjen EBTKE">Ditjen EBTKE</option>
+              <option value="Ditjen Penegakan Hukum">Ditjen Penegakan Hukum</option>
+              <option value="Inspektorat Jenderal">Inspektorat Jenderal</option>
+              <option value="Badan Geologi">Badan Geologi</option>
+              <option value="BPSDM ESDM">BPSDM ESDM</option>
+              <option value="BPH Migas">BPH Migas</option>
+              <option value="Setjen DEN">Setjen DEN</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label>2. Kelompok Jabatan</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Struktural" required> Struktural</label>
-            <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Fungsional"> Fungsional</label>
-            <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Pelaksana"> Pelaksana</label>
+          <div class="form-group">
+            <label>2. Kelompok Jabatan</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Struktural" required> Struktural</label>
+              <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Fungsional"> Fungsional</label>
+              <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Pelaksana"> Pelaksana</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>3. Jabatan Spesifik</label>
+            <input type="text" name="jabatan" placeholder="Tuliskan nama jabatan Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label>4. Jenis Kelamin</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="jenisKelamin" value="Laki-laki" required> Laki-laki</label>
+              <label class="radio-item"><input type="radio" name="jenisKelamin" value="Perempuan"> Perempuan</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>5. Usia</label>
+            <select name="usia" required>
+              <option value="">-- Pilih Kelompok Usia --</option>
+              <option value="18 - 25 Tahun">18 – 25 Tahun</option>
+              <option value="26 - 35 Tahun">26 – 35 Tahun</option>
+              <option value="36 - 45 Tahun">36 – 45 Tahun</option>
+              <option value="46 - 55 Tahun">46 – 55 Tahun</option>
+              <option value="> 55 Tahun">> 55 Tahun</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>6. Masa Kerja Total</label>
+            <select name="masaKerja" required>
+              <option value="">-- Pilih Masa Kerja --</option>
+              <option value="0 - 10 Tahun">0 – 10 Tahun</option>
+              <option value="11 - 20 Tahun">11 – 20 Tahun</option>
+              <option value="> 20 Tahun">> 20 Tahun</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>7. Pendidikan Terakhir</label>
+            <select name="pendidikan" required>
+              <option value="">-- Pilih Pendidikan --</option>
+              <option value="SMA">SMA</option>
+              <option value="Diploma 3">Diploma 3</option>
+              <option value="S1 / Diploma 4">S1 / Diploma 4</option>
+              <option value="S2">S2</option>
+              <option value="S3">S3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>8. Lokasi Penugasan Dominan (1 Tahun Terakhir)</label>
+            <select name="lokasi" required>
+              <option value="">-- Pilih Lokasi Penugasan --</option>
+              <option value="Unit Kantor Setjen/Ditjen/Itjen/Badan">Unit Kantor Setjen/Ditjen/Itjen/Badan</option>
+              <option value="Unit Pelaksana Teknis/Kantor Wilayah">Unit Pelaksana Teknis/Kantor Wilayah</option>
+              <option value="Lapangan">Lapangan (tambang, pembangkit, migas, pos gunungapi, dll)</option>
+              <option value="Kombinasi Kantor dan Lapangan">Kombinasi Kantor dan Lapangan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>9. Frekuensi Penugasan Lapangan</label>
+            <select name="frekuensi" required>
+              <option value="">-- Pilih Frekuensi --</option>
+              <option value="Tidak pernah">Tidak pernah</option>
+              <option value="1-5 kali/tahun">1–5 kali/tahun</option>
+              <option value="6-12 kali/tahun">6–12 kali/tahun</option>
+              <option value=">12 kali/tahun">>12 kali/tahun</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>10. Riwayat Insiden Berisiko Tinggi</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="insiden" value="Pernah" required> Pernah</label>
+              <label class="radio-item"><input type="radio" name="insiden" value="Tidak pernah"> Tidak pernah</label>
+            </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label>3. Jabatan Spesifik</label>
-          <input type="text" name="jabatan" placeholder="Tuliskan nama jabatan Anda" required>
-        </div>
-
-        <div class="form-group">
-          <label>4. Jenis Kelamin</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="jenisKelamin" value="Laki-laki" required> Laki-laki</label>
-            <label class="radio-item"><input type="radio" name="jenisKelamin" value="Perempuan"> Perempuan</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>5. Usia</label>
-          <select name="usia" required>
-            <option value="">-- Pilih Kelompok Usia --</option>
-            <option value="18 - 25 Tahun">18 – 25 Tahun</option>
-            <option value="26 - 35 Tahun">26 – 35 Tahun</option>
-            <option value="36 - 45 Tahun">36 – 45 Tahun</option>
-            <option value="46 - 55 Tahun">46 – 55 Tahun</option>
-            <option value="> 55 Tahun">> 55 Tahun</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>6. Masa Kerja Total</label>
-          <select name="masaKerja" required>
-            <option value="">-- Pilih Masa Kerja --</option>
-            <option value="0 - 10 Tahun">0 – 10 Tahun</option>
-            <option value="11 - 20 Tahun">11 – 20 Tahun</option>
-            <option value="> 20 Tahun">> 20 Tahun</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>7. Pendidikan Terakhir</label>
-          <select name="pendidikan" required>
-            <option value="">-- Pilih Pendidikan --</option>
-            <option value="SMA">SMA</option>
-            <option value="Diploma 3">Diploma 3</option>
-            <option value="S1 / Diploma 4">S1 / Diploma 4</option>
-            <option value="S2">S2</option>
-            <option value="S3">S3</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>8. Lokasi Penugasan Dominan (1 Tahun Terakhir)</label>
-          <select name="lokasi" required>
-            <option value="">-- Pilih Lokasi Penugasan --</option>
-            <option value="Unit Kantor Setjen/Ditjen/Itjen/Badan">Unit Kantor Setjen/Ditjen/Itjen/Badan</option>
-            <option value="Unit Pelaksana Teknis/Kantor Wilayah">Unit Pelaksana Teknis/Kantor Wilayah</option>
-            <option value="Lapangan">Lapangan (tambang, pembangkit, migas, pos gunungapi, dll)</option>
-            <option value="Kombinasi Kantor dan Lapangan">Kombinasi Kantor dan Lapangan</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>9. Frekuensi Penugasan Lapangan</label>
-          <select name="frekuensi" required>
-            <option value="">-- Pilih Frekuensi --</option>
-            <option value="Tidak pernah">Tidak pernah</option>
-            <option value="1-5 kali/tahun">1–5 kali/tahun</option>
-            <option value="6-12 kali/tahun">6–12 kali/tahun</option>
-            <option value=">12 kali/tahun">>12 kali/tahun</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>10. Riwayat Insiden Berisiko Tinggi</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="insiden" value="Pernah" required> Pernah</label>
-            <label class="radio-item"><input type="radio" name="insiden" value="Tidak pernah"> Tidak pernah</label>
-          </div>
+        <hr class="page-divider">
+        <div class="nav-buttons start">
+          <button type="button" class="btn-next" onclick="nextPage(1)">Lanjut ke Bagian II &rarr;</button>
         </div>
       </div>
 
-      <hr class="page-divider">
-      <div class="nav-buttons start">
-        <button type="button" class="btn-next" onclick="nextPage(1)">Next Page &rarr;</button>
-      </div>
-    </div>
-
-    <!-- ================= HALAMAN 2: BAGIAN II ================= -->
-    <div class="page-step" id="step-2" style="display: none;">
-      <!-- II.1 -->
-      <div class="section-box">
-        <h3>BAGIAN II — KEBUTUHAN LAYANAN EAP</h3>
-        <p><strong>II.1 Tingkat Kebutuhan Layanan</strong><br>Skala: 1 = Tidak membutuhkan sama sekali; 2 = Kurang membutuhkan; 3 = Cukup membutuhkan; 4 = Membutuhkan; 5 = Sangat membutuhkan</p>
+      <!-- ================= HALAMAN 2: BAGIAN II ================= -->
+      <div class="page-step" id="step-2" style="display: none;">
+        <h3 class="section-title">BAGIAN II — KEBUTUHAN LAYANAN EAP</h3>
         
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Jenis Layanan</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td class="text-left">Konseling individual psikologis/emosional</td>
-                <td><input type="radio" name="eap1" value="1" required></td>
-                <td><input type="radio" name="eap1" value="2"></td>
-                <td><input type="radio" name="eap1" value="3"></td>
-                <td><input type="radio" name="eap1" value="4"></td>
-                <td><input type="radio" name="eap1" value="5"></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="text-left">Konseling keluarga, pernikahan, pengasuhan</td>
-                <td><input type="radio" name="eap2" value="1" required></td>
-                <td><input type="radio" name="eap2" value="2"></td>
-                <td><input type="radio" name="eap2" value="3"></td>
-                <td><input type="radio" name="eap2" value="4"></td>
-                <td><input type="radio" name="eap2" value="5"></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="text-left">Pendampingan masalah keuangan & utang</td>
-                <td><input type="radio" name="eap3" value="1" required></td>
-                <td><input type="radio" name="eap3" value="2"></td>
-                <td><input type="radio" name="eap3" value="3"></td>
-                <td><input type="radio" name="eap3" value="4"></td>
-                <td><input type="radio" name="eap3" value="5"></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="text-left">Konsultasi hukum (sengketa/aset/waris)</td>
-                <td><input type="radio" name="eap4" value="1" required></td>
-                <td><input type="radio" name="eap4" value="2"></td>
-                <td><input type="radio" name="eap4" value="3"></td>
-                <td><input type="radio" name="eap4" value="4"></td>
-                <td><input type="radio" name="eap4" value="5"></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td class="text-left">Pendampingan masalah adiksi</td>
-                <td><input type="radio" name="eap5" value="1" required></td>
-                <td><input type="radio" name="eap5" value="2"></td>
-                <td><input type="radio" name="eap5" value="3"></td>
-                <td><input type="radio" name="eap5" value="4"></td>
-                <td><input type="radio" name="eap5" value="5"></td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td class="text-left">Pelatihan manajemen stres & relaksasi</td>
-                <td><input type="radio" name="eap6" value="1" required></td>
-                <td><input type="radio" name="eap6" value="2"></td>
-                <td><input type="radio" name="eap6" value="3"></td>
-                <td><input type="radio" name="eap6" value="4"></td>
-                <td><input type="radio" name="eap6" value="5"></td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td class="text-left">Dukungan psikologis pasca-insiden kritis</td>
-                <td><input type="radio" name="eap7" value="1" required></td>
-                <td><input type="radio" name="eap7" value="2"></td>
-                <td><input type="radio" name="eap7" value="3"></td>
-                <td><input type="radio" name="eap7" value="4"></td>
-                <td><input type="radio" name="eap7" value="5"></td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td class="text-left">Dukungan psikologis khusus penugasan lapangan berisiko</td>
-                <td><input type="radio" name="eap8" value="1" required></td>
-                <td><input type="radio" name="eap8" value="2"></td>
-                <td><input type="radio" name="eap8" value="3"></td>
-                <td><input type="radio" name="eap8" value="4"></td>
-                <td><input type="radio" name="eap8" value="5"></td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td class="text-left">Layanan pencegahan & psikoedukasi kesehatan mental</td>
-                <td><input type="radio" name="eap9" value="1" required></td>
-                <td><input type="radio" name="eap9" value="2"></td>
-                <td><input type="radio" name="eap9" value="3"></td>
-                <td><input type="radio" name="eap9" value="4"></td>
-                <td><input type="radio" name="eap9" value="5"></td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td class="text-left">Program wellness umum (fisik/gizi/tidur)</td>
-                <td><input type="radio" name="eap10" value="1" required></td>
-                <td><input type="radio" name="eap10" value="2"></td>
-                <td><input type="radio" name="eap10" value="3"></td>
-                <td><input type="radio" name="eap10" value="4"></td>
-                <td><input type="radio" name="eap10" value="5"></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="section-box">
+          <p><strong>II.1 Tingkat Kebutuhan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak membutuhkan sama sekali s/d 5 = Sangat membutuhkan</small></p>
+          
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Jenis Layanan</th>
+                  <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td class="text-left">Konseling individual psikologis/emosional</td><td><input type="radio" name="eap1" value="1" required></td><td><input type="radio" name="eap1" value="2"></td><td><input type="radio" name="eap1" value="3"></td><td><input type="radio" name="eap1" value="4"></td><td><input type="radio" name="eap1" value="5"></td></tr>
+                <tr><td>2</td><td class="text-left">Konseling keluarga, pernikahan, pengasuhan</td><td><input type="radio" name="eap2" value="1" required></td><td><input type="radio" name="eap2" value="2"></td><td><input type="radio" name="eap2" value="3"></td><td><input type="radio" name="eap2" value="4"></td><td><input type="radio" name="eap2" value="5"></td></tr>
+                <tr><td>3</td><td class="text-left">Pendampingan masalah keuangan & utang</td><td><input type="radio" name="eap3" value="1" required></td><td><input type="radio" name="eap3" value="2"></td><td><input type="radio" name="eap3" value="3"></td><td><input type="radio" name="eap3" value="4"></td><td><input type="radio" name="eap3" value="5"></td></tr>
+                <tr><td>4</td><td class="text-left">Konsultasi hukum (sengketa/aset/waris)</td><td><input type="radio" name="eap4" value="1" required></td><td><input type="radio" name="eap4" value="2"></td><td><input type="radio" name="eap4" value="3"></td><td><input type="radio" name="eap4" value="4"></td><td><input type="radio" name="eap4" value="5"></td></tr>
+                <tr><td>5</td><td class="text-left">Pendampingan masalah adiksi</td><td><input type="radio" name="eap5" value="1" required></td><td><input type="radio" name="eap5" value="2"></td><td><input type="radio" name="eap5" value="3"></td><td><input type="radio" name="eap5" value="4"></td><td><input type="radio" name="eap5" value="5"></td></tr>
+                <tr><td>6</td><td class="text-left">Pelatihan manajemen stres & relaksasi</td><td><input type="radio" name="eap6" value="1" required></td><td><input type="radio" name="eap6" value="2"></td><td><input type="radio" name="eap6" value="3"></td><td><input type="radio" name="eap6" value="4"></td><td><input type="radio" name="eap6" value="5"></td></tr>
+                <tr><td>7</td><td class="text-left">Dukungan psikologis pasca-insiden kritis</td><td><input type="radio" name="eap7" value="1" required></td><td><input type="radio" name="eap7" value="2"></td><td><input type="radio" name="eap7" value="3"></td><td><input type="radio" name="eap7" value="4"></td><td><input type="radio" name="eap7" value="5"></td></tr>
+                <tr><td>8</td><td class="text-left">Dukungan psikologis khusus penugasan lapangan berisiko</td><td><input type="radio" name="eap8" value="1" required></td><td><input type="radio" name="eap8" value="2"></td><td><input type="radio" name="eap8" value="3"></td><td><input type="radio" name="eap8" value="4"></td><td><input type="radio" name="eap8" value="5"></td></tr>
+                <tr><td>9</td><td class="text-left">Layanan pencegahan & psikoedukasi kesehatan mental</td><td><input type="radio" name="eap9" value="1" required></td><td><input type="radio" name="eap9" value="2"></td><td><input type="radio" name="eap9" value="3"></td><td><input type="radio" name="eap9" value="4"></td><td><input type="radio" name="eap9" value="5"></td></tr>
+                <tr><td>10</td><td class="text-left">Program wellness umum (fisik/gizi/tidur)</td><td><input type="radio" name="eap10" value="1" required></td><td><input type="radio" name="eap10" value="2"></td><td><input type="radio" name="eap10" value="3"></td><td><input type="radio" name="eap10" value="4"></td><td><input type="radio" name="eap10" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group" style="margin-top:15px;">
+            <label>Layanan Lain yang Dibutuhkan (Opsional):</label>
+            <input type="text" name="eapLainnya" placeholder="Tuliskan jika ada kebutuhan layanan lain...">
+          </div>
         </div>
 
-        <div class="form-group" style="margin-top:15px;">
-          <label>Layanan Lain yang Dibutuhkan (Opsional):</label>
-          <input type="text" name="eapLainnya" placeholder="Tuliskan jika ada kebutuhan layanan lain...">
+        <div class="section-box">
+          <div class="form-group">
+            <label>11. Kesadaran Layanan Dukungan Psikologis Instansi</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="tahuLayanan" value="Mengetahui dan detail" required> Mengetahui dan detail</label>
+              <label class="radio-item"><input type="radio" name="tahuLayanan" value="Hanya mengetahui sekilas"> Hanya mengetahui sekilas</label>
+              <label class="radio-item"><input type="radio" name="tahuLayanan" value="Tidak mengetahui"> Tidak mengetahui</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>12. Penggunaan Layanan Sebelumnya</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari instansi" required> Ya, dari instansi</label>
+              <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari pihak eksternal"> Ya, dari pihak eksternal</label>
+              <label class="radio-item"><input type="radio" name="pernahPakai" value="Belum pernah"> Belum pernah</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>13. Bentuk Layanan yang Dipilih (Boleh pilih lebih dari 1):</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling tatap muka individual"> Konseling tatap muka individual</label>
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via telepon"> Konseling via telepon</label>
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via video call/online"> Konseling via video call/online</label>
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via chat tertulis"> Konseling via chat tertulis</label>
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Kegiatan kelompok/edukasi"> Kegiatan kelompok/edukasi</label>
+              <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Aplikasi/gawai mandiri"> Aplikasi/gawai mandiri</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>14. Lokasi Layanan yang Diharapkan</label>
+            <select name="lokasiHarap" required>
+              <option value="">-- Pilih Lokasi --</option>
+              <option value="Di dalam kantor (penyedia internal KESDM)">Di dalam kantor (penyedia internal KESDM)</option>
+              <option value="Di luar kantor (penyedia eksternal)">Di luar kantor (penyedia eksternal)</option>
+              <option value="Online/dari mana saja">Online/dari mana saja</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>15. Waktu Layanan yang Diharapkan</label>
+            <select name="waktuHarap" required>
+              <option value="">-- Pilih Waktu --</option>
+              <option value="Jam kerja">Jam kerja</option>
+              <option value="Di luar jam kerja">Di luar jam kerja</option>
+              <option value="Tersedia 24 jam">Tersedia 24 jam</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>16. Kesediaan Layanan Bagi Anggota Keluarga</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Perlu, untuk keluarga juga" required> Perlu, untuk keluarga juga</label>
+              <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Cukup untuk pegawai"> Cukup untuk pegawai</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <p><strong>II.4 Hambatan Penggunaan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Sangat tidak setuju s/d 5 = Sangat setuju</small></p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pernyataan Hambatan</th>
+                  <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="text-left">Khawatir diketahui atasan/kepegawaian</td><td><input type="radio" name="hambatan1" value="1" required></td><td><input type="radio" name="hambatan1" value="2"></td><td><input type="radio" name="hambatan1" value="3"></td><td><input type="radio" name="hambatan1" value="4"></td><td><input type="radio" name="hambatan1" value="5"></td></tr>
+                <tr><td class="text-left">Khawatir berdampak pada karier</td><td><input type="radio" name="hambatan2" value="1" required></td><td><input type="radio" name="hambatan2" value="2"></td><td><input type="radio" name="hambatan2" value="3"></td><td><input type="radio" name="hambatan2" value="4"></td><td><input type="radio" name="hambatan2" value="5"></td></tr>
+                <tr><td class="text-left">Khawatir dicap bermasalah oleh rekan</td><td><input type="radio" name="hambatan3" value="1" required></td><td><input type="radio" name="hambatan3" value="2"></td><td><input type="radio" name="hambatan3" value="3"></td><td><input type="radio" name="hambatan3" value="4"></td><td><input type="radio" name="hambatan3" value="5"></td></tr>
+                <tr><td class="text-left">Tidak tahu cara mengakses layanan</td><td><input type="radio" name="hambatan4" value="1" required></td><td><input type="radio" name="hambatan4" value="2"></td><td><input type="radio" name="hambatan4" value="3"></td><td><input type="radio" name="hambatan4" value="4"></td><td><input type="radio" name="hambatan4" value="5"></td></tr>
+                <tr><td class="text-left">Lokasi/waktu layanan sulit dijangkau saat lapangan</td><td><input type="radio" name="hambatan5" value="1" required></td><td><input type="radio" name="hambatan5" value="2"></td><td><input type="radio" name="hambatan5" value="3"></td><td><input type="radio" name="hambatan5" value="4"></td><td><input type="radio" name="hambatan5" value="5"></td></tr>
+                <tr><td class="text-left">Merasa masalah tidak cukup berat</td><td><input type="radio" name="hambatan6" value="1" required></td><td><input type="radio" name="hambatan6" value="2"></td><td><input type="radio" name="hambatan6" value="3"></td><td><input type="radio" name="hambatan6" value="4"></td><td><input type="radio" name="hambatan6" value="5"></td></tr>
+                <tr><td class="text-left">Khawatir biaya dibebankan secara pribadi</td><td><input type="radio" name="hambatan7" value="1" required></td><td><input type="radio" name="hambatan7" value="2"></td><td><input type="radio" name="hambatan7" value="3"></td><td><input type="radio" name="hambatan7" value="4"></td><td><input type="radio" name="hambatan7" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group" style="margin-top:20px;">
+            <label>23. Kemungkinan Menggunakan EAP Jika Kerahasiaan Dijamin</label>
+            <select name="kesiapan" required>
+              <option value="">-- Pilih --</option>
+              <option value="Sangat mungkin">Sangat mungkin</option>
+              <option value="Mungkin">Mungkin</option>
+              <option value="Ragu-ragu">Ragu-ragu</option>
+              <option value="Tidak mungkin">Tidak mungkin</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>24. Rekomendasi Kepada Rekan Kerja</label>
+            <select name="rekomendasi" required>
+              <option value="">-- Pilih --</option>
+              <option value="Ya">Ya</option>
+              <option value="Mungkin">Mungkin</option>
+              <option value="Tidak">Tidak</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>25. Saran Skema Pembayaran</label>
+            <select name="skema" required>
+              <option value="">-- Pilih Skema --</option>
+              <option value="Pembiayaan Anggaran KESDM">Pembiayaan penuh dari Anggaran KESDM</option>
+              <option value="Pembiayaan Pribadi">Pembiayaan Pribadi untuk layanan eksternal</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>26. Tiga Kebutuhan Prioritas Utama (Masukkan nomor layanan 1–10)</label>
+            <div style="display:flex; gap:10px;">
+              <input type="text" name="prio1" placeholder="Prioritas 1 (mis. 1)" required>
+              <input type="text" name="prio2" placeholder="Prioritas 2 (mis. 6)" required>
+              <input type="text" name="prio3" placeholder="Prioritas 3 (mis. 8)" required>
+            </div>
+          </div>
+        </div>
+
+        <hr class="page-divider">
+        <div class="nav-buttons between">
+          <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
+          <button type="button" class="btn-next" onclick="nextPage(2)">Lanjut ke Bagian III &rarr;</button>
         </div>
       </div>
 
-      <!-- II.2 & II.3 -->
-      <div class="section-box">
-        <div class="form-group">
-          <label>11. Kesadaran Layanan Dukungan Psikologis Instansi</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="tahuLayanan" value="Mengetahui dan detail" required> Mengetahui dan detail</label>
-            <label class="radio-item"><input type="radio" name="tahuLayanan" value="Hanya mengetahui sekilas"> Hanya mengetahui sekilas</label>
-            <label class="radio-item"><input type="radio" name="tahuLayanan" value="Tidak mengetahui"> Tidak mengetahui</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>12. Penggunaan Layanan Sebelumnya</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari instansi" required> Ya, dari instansi</label>
-            <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari pihak eksternal"> Ya, dari pihak eksternal</label>
-            <label class="radio-item"><input type="radio" name="pernahPakai" value="Belum pernah"> Belum pernah</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>13. Bentuk Layanan yang Dipilih (Boleh pilih lebih dari 1):</label>
-          <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling tatap muka individual"> Konseling tatap muka individual</label>
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via telepon"> Konseling via telepon</label>
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via video call/online"> Konseling via video call/online</label>
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via chat tertulis"> Konseling via chat tertulis</label>
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Kegiatan kelompok/edukasi"> Kegiatan kelompok/edukasi</label>
-            <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Aplikasi/gawai mandiri"> Aplikasi/gawai mandiri</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>14. Lokasi Layanan yang Diharapkan</label>
-          <select name="lokasiHarap" required>
-            <option value="">-- Pilih Lokasi --</option>
-            <option value="Di dalam kantor (penyedia internal KESDM)">Di dalam kantor (penyedia internal KESDM)</option>
-            <option value="Di luar kantor (penyedia eksternal)">Di luar kantor (penyedia eksternal)</option>
-            <option value="Online/dari mana saja">Online/dari mana saja</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>15. Waktu Layanan yang Diharapkan</label>
-          <select name="waktuHarap" required>
-            <option value="">-- Pilih Waktu --</option>
-            <option value="Jam kerja">Jam kerja</option>
-            <option value="Di luar jam kerja">Di luar jam kerja</option>
-            <option value="Tersedia 24 jam">Tersedia 24 jam</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>16. Kesediaan Layanan Bagi Anggota Keluarga</label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Perlu, untuk keluarga juga" required> Perlu, untuk keluarga juga</label>
-            <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Cukup untuk pegawai"> Cukup untuk pegawai</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- II.4 & II.5 -->
-      <div class="section-box">
-        <p><strong>II.4 Hambatan Penggunaan Layanan</strong><br>Skala: 1 = Sangat tidak setuju s/d 5 = Sangat setuju</p>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>Pernyataan Hambatan</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left">Khawatir diketahui atasan/kepegawaian</td>
-                <td><input type="radio" name="hambatan1" value="1" required></td>
-                <td><input type="radio" name="hambatan1" value="2"></td>
-                <td><input type="radio" name="hambatan1" value="3"></td>
-                <td><input type="radio" name="hambatan1" value="4"></td>
-                <td><input type="radio" name="hambatan1" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Khawatir berdampak pada karier</td>
-                <td><input type="radio" name="hambatan2" value="1" required></td>
-                <td><input type="radio" name="hambatan2" value="2"></td>
-                <td><input type="radio" name="hambatan2" value="3"></td>
-                <td><input type="radio" name="hambatan2" value="4"></td>
-                <td><input type="radio" name="hambatan2" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Khawatir dicap bermasalah oleh rekan</td>
-                <td><input type="radio" name="hambatan3" value="1" required></td>
-                <td><input type="radio" name="hambatan3" value="2"></td>
-                <td><input type="radio" name="hambatan3" value="3"></td>
-                <td><input type="radio" name="hambatan3" value="4"></td>
-                <td><input type="radio" name="hambatan3" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Tidak tahu cara mengakses layanan</td>
-                <td><input type="radio" name="hambatan4" value="1" required></td>
-                <td><input type="radio" name="hambatan4" value="2"></td>
-                <td><input type="radio" name="hambatan4" value="3"></td>
-                <td><input type="radio" name="hambatan4" value="4"></td>
-                <td><input type="radio" name="hambatan4" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Lokasi/waktu layanan sulit dijangkau saat lapangan</td>
-                <td><input type="radio" name="hambatan5" value="1" required></td>
-                <td><input type="radio" name="hambatan5" value="2"></td>
-                <td><input type="radio" name="hambatan5" value="3"></td>
-                <td><input type="radio" name="hambatan5" value="4"></td>
-                <td><input type="radio" name="hambatan5" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Merasa masalah tidak cukup berat</td>
-                <td><input type="radio" name="hambatan6" value="1" required></td>
-                <td><input type="radio" name="hambatan6" value="2"></td>
-                <td><input type="radio" name="hambatan6" value="3"></td>
-                <td><input type="radio" name="hambatan6" value="4"></td>
-                <td><input type="radio" name="hambatan6" value="5"></td>
-              </tr>
-              <tr>
-                <td class="text-left">Khawatir biaya dibebankan secara pribadi</td>
-                <td><input type="radio" name="hambatan7" value="1" required></td>
-                <td><input type="radio" name="hambatan7" value="2"></td>
-                <td><input type="radio" name="hambatan7" value="3"></td>
-                <td><input type="radio" name="hambatan7" value="4"></td>
-                <td><input type="radio" name="hambatan7" value="5"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="form-group" style="margin-top:20px;">
-          <label>23. Kemungkinan Menggunakan EAP Jika Kerahasiaan Dijamin</label>
-          <select name="kesiapan" required>
-            <option value="">-- Pilih --</option>
-            <option value="Sangat mungkin">Sangat mungkin</option>
-            <option value="Mungkin">Mungkin</option>
-            <option value="Ragu-ragu">Ragu-ragu</option>
-            <option value="Tidak mungkin">Tidak mungkin</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>24. Rekomendasi Kepada Rekan Kerja</label>
-          <select name="rekomendasi" required>
-            <option value="">-- Pilih --</option>
-            <option value="Ya">Ya</option>
-            <option value="Mungkin">Mungkin</option>
-            <option value="Tidak">Tidak</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>25. Saran Skema Pembayaran</label>
-          <select name="skema" required>
-            <option value="">-- Pilih Skema --</option>
-            <option value="Pembiayaan Anggaran KESDM">Pembiayaan penuh dari Anggaran KESDM</option>
-            <option value="Pembiayaan Pribadi">Pembiayaan Pribadi untuk layanan eksternal</option>
-            <option value="Lainnya">Lainnya</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>26. Tiga Kebutuhan Prioritas Utama (Masukkan nomor layanan 1–10)</label>
-          <div style="display:flex; gap:10px;">
-            <input type="text" name="prio1" placeholder="Prioritas 1 (mis. 1)" required>
-            <input type="text" name="prio2" placeholder="Prioritas 2 (mis. 6)" required>
-            <input type="text" name="prio3" placeholder="Prioritas 3 (mis. 8)" required>
-          </div>
-        </div>
-      </div>
-
-      <hr class="page-divider">
-      <div class="nav-buttons between">
-        <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
-        <button type="button" class="btn-next" onclick="nextPage(2)">Next Page &rarr;</button>
-      </div>
-    </div>
-
-    <!-- ================= HALAMAN 3: BAGIAN III ================= -->
-    <div class="page-step" id="step-3" style="display: none;">
-      <!-- III.A PSS-10 -->
-      <div class="section-box">
-        <h3>BAGIAN III — INSTRUMEN STRES KERJA</h3>
-        <p><strong>III.A Perceived Stress Scale (PSS-10)</strong><br>Seberapa sering Anda merasakan hal berikut selama 1 bulan terakhir?<br>Skala: 0 = Tidak pernah; 1 = Hampir tidak pernah; 2 = Kadang-kadang; 3 = Cukup sering; 4 = Sangat sering</p>
+      <!-- ================= HALAMAN 3: BAGIAN III ================= -->
+      <div class="page-step" id="step-3" style="display: none;">
+        <h3 class="section-title">BAGIAN III — INSTRUMEN STRES KERJA</h3>
         
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>Pernyataan</th>
-                <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="text-left">1. Kesal karena sesuatu terjadi di luar dugaan?</td><td><input type="radio" name="pss1" value="0" required></td><td><input type="radio" name="pss1" value="1"></td><td><input type="radio" name="pss1" value="2"></td><td><input type="radio" name="pss1" value="3"></td><td><input type="radio" name="pss1" value="4"></td></tr>
-              <tr><td class="text-left">2. Merasa tidak mampu mengendalikan hal penting?</td><td><input type="radio" name="pss2" value="0" required></td><td><input type="radio" name="pss2" value="1"></td><td><input type="radio" name="pss2" value="2"></td><td><input type="radio" name="pss2" value="3"></td><td><input type="radio" name="pss2" value="4"></td></tr>
-              <tr><td class="text-left">3. Merasa gugup dan tertekan?</td><td><input type="radio" name="pss3" value="0" required></td><td><input type="radio" name="pss3" value="1"></td><td><input type="radio" name="pss3" value="2"></td><td><input type="radio" name="pss3" value="3"></td><td><input type="radio" name="pss3" value="4"></td></tr>
-              <tr><td class="text-left">4. Yakin terhadap kemampuan menghadapi masalah?</td><td><input type="radio" name="pss4" value="0" required></td><td><input type="radio" name="pss4" value="1"></td><td><input type="radio" name="pss4" value="2"></td><td><input type="radio" name="pss4" value="3"></td><td><input type="radio" name="pss4" value="4"></td></tr>
-              <tr><td class="text-left">5. Merasa berjalan sesuai keinginan?</td><td><input type="radio" name="pss5" value="0" required></td><td><input type="radio" name="pss5" value="1"></td><td><input type="radio" name="pss5" value="2"></td><td><input type="radio" name="pss5" value="3"></td><td><input type="radio" name="pss5" value="4"></td></tr>
-              <tr><td class="text-left">6. Tidak mampu mengatasi semua hal yang harus dilakukan?</td><td><input type="radio" name="pss6" value="0" required></td><td><input type="radio" name="pss6" value="1"></td><td><input type="radio" name="pss6" value="2"></td><td><input type="radio" name="pss6" value="3"></td><td><input type="radio" name="pss6" value="4"></td></tr>
-              <tr><td class="text-left">7. Mampu mengendalikan rasa jengkel?</td><td><input type="radio" name="pss7" value="0" required></td><td><input type="radio" name="pss7" value="1"></td><td><input type="radio" name="pss7" value="2"></td><td><input type="radio" name="pss7" value="3"></td><td><input type="radio" name="pss7" value="4"></td></tr>
-              <tr><td class="text-left">8. Merasa mampu mengendalikan keadaan?</td><td><input type="radio" name="pss8" value="0" required></td><td><input type="radio" name="pss8" value="1"></td><td><input type="radio" name="pss8" value="2"></td><td><input type="radio" name="pss8" value="3"></td><td><input type="radio" name="pss8" value="4"></td></tr>
-              <tr><td class="text-left">9. Marah karena hal di luar kendali?</td><td><input type="radio" name="pss9" value="0" required></td><td><input type="radio" name="pss9" value="1"></td><td><input type="radio" name="pss9" value="2"></td><td><input type="radio" name="pss9" value="3"></td><td><input type="radio" name="pss9" value="4"></td></tr>
-              <tr><td class="text-left">10. Kesulitan menumpuk tinggi hingga tak teratasi?</td><td><input type="radio" name="pss10" value="0" required></td><td><input type="radio" name="pss10" value="1"></td><td><input type="radio" name="pss10" value="2"></td><td><input type="radio" name="pss10" value="3"></td><td><input type="radio" name="pss10" value="4"></td></tr>
-            </tbody>
-          </table>
+        <div class="section-box">
+          <p><strong>III.A Perceived Stress Scale (PSS-10)</strong><br><small style="color:#6B7280;">Seberapa sering Anda merasakan hal berikut selama 1 bulan terakhir?<br>Skala: 0 = Tidak pernah s/d 4 = Sangat sering</small></p>
+          
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pernyataan</th>
+                  <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="text-left">1. Kesal karena sesuatu terjadi di luar dugaan?</td><td><input type="radio" name="pss1" value="0" required></td><td><input type="radio" name="pss1" value="1"></td><td><input type="radio" name="pss1" value="2"></td><td><input type="radio" name="pss1" value="3"></td><td><input type="radio" name="pss1" value="4"></td></tr>
+                <tr><td class="text-left">2. Merasa tidak mampu mengendalikan hal penting?</td><td><input type="radio" name="pss2" value="0" required></td><td><input type="radio" name="pss2" value="1"></td><td><input type="radio" name="pss2" value="2"></td><td><input type="radio" name="pss2" value="3"></td><td><input type="radio" name="pss2" value="4"></td></tr>
+                <tr><td class="text-left">3. Merasa gugup dan tertekan?</td><td><input type="radio" name="pss3" value="0" required></td><td><input type="radio" name="pss3" value="1"></td><td><input type="radio" name="pss3" value="2"></td><td><input type="radio" name="pss3" value="3"></td><td><input type="radio" name="pss3" value="4"></td></tr>
+                <tr><td class="text-left">4. Yakin terhadap kemampuan menghadapi masalah?</td><td><input type="radio" name="pss4" value="0" required></td><td><input type="radio" name="pss4" value="1"></td><td><input type="radio" name="pss4" value="2"></td><td><input type="radio" name="pss4" value="3"></td><td><input type="radio" name="pss4" value="4"></td></tr>
+                <tr><td class="text-left">5. Merasa berjalan sesuai keinginan?</td><td><input type="radio" name="pss5" value="0" required></td><td><input type="radio" name="pss5" value="1"></td><td><input type="radio" name="pss5" value="2"></td><td><input type="radio" name="pss5" value="3"></td><td><input type="radio" name="pss5" value="4"></td></tr>
+                <tr><td class="text-left">6. Tidak mampu mengatasi semua hal yang harus dilakukan?</td><td><input type="radio" name="pss6" value="0" required></td><td><input type="radio" name="pss6" value="1"></td><td><input type="radio" name="pss6" value="2"></td><td><input type="radio" name="pss6" value="3"></td><td><input type="radio" name="pss6" value="4"></td></tr>
+                <tr><td class="text-left">7. Mampu mengendalikan rasa jengkel?</td><td><input type="radio" name="pss7" value="0" required></td><td><input type="radio" name="pss7" value="1"></td><td><input type="radio" name="pss7" value="2"></td><td><input type="radio" name="pss7" value="3"></td><td><input type="radio" name="pss7" value="4"></td></tr>
+                <tr><td class="text-left">8. Merasa mampu mengendalikan keadaan?</td><td><input type="radio" name="pss8" value="0" required></td><td><input type="radio" name="pss8" value="1"></td><td><input type="radio" name="pss8" value="2"></td><td><input type="radio" name="pss8" value="3"></td><td><input type="radio" name="pss8" value="4"></td></tr>
+                <tr><td class="text-left">9. Marah karena hal di luar kendali?</td><td><input type="radio" name="pss9" value="0" required></td><td><input type="radio" name="pss9" value="1"></td><td><input type="radio" name="pss9" value="2"></td><td><input type="radio" name="pss9" value="3"></td><td><input type="radio" name="pss9" value="4"></td></tr>
+                <tr><td class="text-left">10. Kesulitan menumpuk tinggi hingga tak teratasi?</td><td><input type="radio" name="pss10" value="0" required></td><td><input type="radio" name="pss10" value="1"></td><td><input type="radio" name="pss10" value="2"></td><td><input type="radio" name="pss10" value="3"></td><td><input type="radio" name="pss10" value="4"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <p><strong>III.B Skala Stres Kerja (Adaptasi HSE) & Modul KESDM</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak pernah s/d 5 = Selalu</small></p>
+          
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pernyataan</th>
+                  <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="text-left">D1. Harus bekerja sangat intensif</td><td><input type="radio" name="hse_d1" value="1" required></td><td><input type="radio" name="hse_d1" value="2"></td><td><input type="radio" name="hse_d1" value="3"></td><td><input type="radio" name="hse_d1" value="4"></td><td><input type="radio" name="hse_d1" value="5"></td></tr>
+                <tr><td class="text-left">D2. Berbagai pihak menuntut hal yang sulit digabungkan</td><td><input type="radio" name="hse_d2" value="1" required></td><td><input type="radio" name="hse_d2" value="2"></td><td><input type="radio" name="hse_d2" value="3"></td><td><input type="radio" name="hse_d2" value="4"></td><td><input type="radio" name="hse_d2" value="5"></td></tr>
+                <tr><td class="text-left">D3. Tuntutan emosional berat/situasi berbahaya</td><td><input type="radio" name="hse_d3" value="1" required></td><td><input type="radio" name="hse_d3" value="2"></td><td><input type="radio" name="hse_d3" value="3"></td><td><input type="radio" name="hse_d3" value="4"></td><td><input type="radio" name="hse_d3" value="5"></td></tr>
+                <tr><td class="text-left">C1. Dapat memilih cara melakukan pekerjaan</td><td><input type="radio" name="hse_c1" value="1" required></td><td><input type="radio" name="hse_c1" value="2"></td><td><input type="radio" name="hse_c1" value="3"></td><td><input type="radio" name="hse_c1" value="4"></td><td><input type="radio" name="hse_c1" value="5"></td></tr>
+                <tr><td class="text-left">C2. Dapat memutuskan kapan mengambil jeda</td><td><input type="radio" name="hse_c2" value="1" required></td><td><input type="radio" name="hse_c2" value="2"></td><td><input type="radio" name="hse_c2" value="3"></td><td><input type="radio" name="hse_c2" value="4"></td><td><input type="radio" name="hse_c2" value="5"></td></tr>
+                <tr><td class="text-left">M1. Mendapat umpan balik mendukung dari atasan</td><td><input type="radio" name="hse_m1" value="1" required></td><td><input type="radio" name="hse_m1" value="2"></td><td><input type="radio" name="hse_m1" value="3"></td><td><input type="radio" name="hse_m1" value="4"></td><td><input type="radio" name="hse_m1" value="5"></td></tr>
+                <tr><td class="text-left">M2. Atasan mendorong saat pekerjaan sulit</td><td><input type="radio" name="hse_m2" value="1" required></td><td><input type="radio" name="hse_m2" value="2"></td><td><input type="radio" name="hse_m2" value="3"></td><td><input type="radio" name="hse_m2" value="4"></td><td><input type="radio" name="hse_m2" value="5"></td></tr>
+                <tr><td class="text-left">P1. Rekan kerja bersedia membantu saat sulit</td><td><input type="radio" name="hse_p1" value="1" required></td><td><input type="radio" name="hse_p1" value="2"></td><td><input type="radio" name="hse_p1" value="3"></td><td><input type="radio" name="hse_p1" value="4"></td><td><input type="radio" name="hse_p1" value="5"></td></tr>
+                <tr><td class="text-left">P2. Mendapat dukungan memadai dari rekan kerja</td><td><input type="radio" name="hse_p2" value="1" required></td><td><input type="radio" name="hse_p2" value="2"></td><td><input type="radio" name="hse_p2" value="3"></td><td><input type="radio" name="hse_p2" value="4"></td><td><input type="radio" name="hse_p2" value="5"></td></tr>
+                <tr><td class="text-left">R1. Mengalami perlakuan tidak menyenangkan/kasar</td><td><input type="radio" name="hse_r1" value="1" required></td><td><input type="radio" name="hse_r1" value="2"></td><td><input type="radio" name="hse_r1" value="3"></td><td><input type="radio" name="hse_r1" value="4"></td><td><input type="radio" name="hse_r1" value="5"></td></tr>
+                <tr><td class="text-left">R2. Hubungan kerja baik dan bebas konflik</td><td><input type="radio" name="hse_r2" value="1" required></td><td><input type="radio" name="hse_r2" value="2"></td><td><input type="radio" name="hse_r2" value="3"></td><td><input type="radio" name="hse_r2" value="4"></td><td><input type="radio" name="hse_r2" value="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr class="page-divider">
+        <div class="nav-buttons between">
+          <button type="button" class="btn-prev" onclick="prevPage(3)">&larr; Kembali</button>
+          <button type="submit" id="submitBtn" class="btn-submit">Kirim Kuesioner</button>
         </div>
       </div>
 
-      <!-- III.B HSE -->
-      <div class="section-box">
-        <p><strong>III.B Skala Stres Kerja (Adaptasi HSE) & Modul KESDM</strong><br>Skala: 1 = Tidak pernah s/d 5 = Selalu</p>
-        
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>Pernyataan</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Tuntutan -->
-              <tr><td class="text-left">D1. Harus bekerja sangat intensif</td><td><input type="radio" name="hse_d1" value="1" required></td><td><input type="radio" name="hse_d1" value="2"></td><td><input type="radio" name="hse_d1" value="3"></td><td><input type="radio" name="hse_d1" value="4"></td><td><input type="radio" name="hse_d1" value="5"></td></tr>
-              <tr><td class="text-left">D2. Berbagai pihak menuntut hal yang sulit digabungkan</td><td><input type="radio" name="hse_d2" value="1" required></td><td><input type="radio" name="hse_d2" value="2"></td><td><input type="radio" name="hse_d2" value="3"></td><td><input type="radio" name="hse_d2" value="4"></td><td><input type="radio" name="hse_d2" value="5"></td></tr>
-              <tr><td class="text-left">D3. Tuntutan emosional berat/situasi berbahaya</td><td><input type="radio" name="hse_d3" value="1" required></td><td><input type="radio" name="hse_d3" value="2"></td><td><input type="radio" name="hse_d3" value="3"></td><td><input type="radio" name="hse_d3" value="4"></td><td><input type="radio" name="hse_d3" value="5"></td></tr>
-              <!-- Kendali -->
-              <tr><td class="text-left">C1. Dapat memilih cara melakukan pekerjaan</td><td><input type="radio" name="hse_c1" value="1" required></td><td><input type="radio" name="hse_c1" value="2"></td><td><input type="radio" name="hse_c1" value="3"></td><td><input type="radio" name="hse_c1" value="4"></td><td><input type="radio" name="hse_c1" value="5"></td></tr>
-              <tr><td class="text-left">C2. Dapat memutuskan kapan mengambil jeda</td><td><input type="radio" name="hse_c2" value="1" required></td><td><input type="radio" name="hse_c2" value="2"></td><td><input type="radio" name="hse_c2" value="3"></td><td><input type="radio" name="hse_c2" value="4"></td><td><input type="radio" name="hse_c2" value="5"></td></tr>
-              <!-- Dukungan Atasan -->
-              <tr><td class="text-left">M1. Mendapat umpan balik mendukung dari atasan</td><td><input type="radio" name="hse_m1" value="1" required></td><td><input type="radio" name="hse_m1" value="2"></td><td><input type="radio" name="hse_m1" value="3"></td><td><input type="radio" name="hse_m1" value="4"></td><td><input type="radio" name="hse_m1" value="5"></td></tr>
-              <tr><td class="text-left">M2. Atasan mendorong saat pekerjaan sulit</td><td><input type="radio" name="hse_m2" value="1" required></td><td><input type="radio" name="hse_m2" value="2"></td><td><input type="radio" name="hse_m2" value="3"></td><td><input type="radio" name="hse_m2" value="4"></td><td><input type="radio" name="hse_m2" value="5"></td></tr>
-              <!-- Dukungan Rekan -->
-              <tr><td class="text-left">P1. Rekan kerja bersedia membantu saat sulit</td><td><input type="radio" name="hse_p1" value="1" required></td><td><input type="radio" name="hse_p1" value="2"></td><td><input type="radio" name="hse_p1" value="3"></td><td><input type="radio" name="hse_p1" value="4"></td><td><input type="radio" name="hse_p1" value="5"></td></tr>
-              <tr><td class="text-left">P2. Mendapat dukungan memadai dari rekan kerja</td><td><input type="radio" name="hse_p2" value="1" required></td><td><input type="radio" name="hse_p2" value="2"></td><td><input type="radio" name="hse_p2" value="3"></td><td><input type="radio" name="hse_p2" value="4"></td><td><input type="radio" name="hse_p2" value="5"></td></tr>
-              <!-- Hubungan -->
-              <tr><td class="text-left">R1. Mengalami perlakuan tidak menyenangkan/kasar</td><td><input type="radio" name="hse_r1" value="1" required></td><td><input type="radio" name="hse_r1" value="2"></td><td><input type="radio" name="hse_r1" value="3"></td><td><input type="radio" name="hse_r1" value="4"></td><td><input type="radio" name="hse_r1" value="5"></td></tr>
-              <tr><td class="text-left">R2. Hubungan kerja baik dan bebas konflik</td><td><input type="radio" name="hse_r2" value="1" required></td><td><input type="radio" name="hse_r2" value="2"></td><td><input type="radio" name="hse_r2" value="3"></td><td><input type="radio" name="hse_r2" value="4"></td><td><input type="radio" name="hse_r2" value="5"></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    </form>
 
-      <hr class="page-divider">
-      <div class="nav-buttons between">
-        <button type="button" class="btn-prev" onclick="prevPage(3)">&larr; Kembali</button>
-        <button type="submit" id="submitBtn" class="btn-submit">Kirim Kuesioner</button>
-      </div>
-    </div>
+    <div id="loadingMessage">Sedang mengirim data, mohon tunggu...</div>
+    <div id="successMessage">Terima kasih! Jawaban Anda telah berhasil tersimpan.</div>
+    <div id="errorMessage">Gagal mengirim data. Silakan coba lagi.</div>
+  </div>
 
-  </form>
+  <script>
+    // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXX/exec";
 
-  <div id="loadingMessage">Sedang mengirim data, mohon tunggu...</div>
-  <div id="successMessage">Terima kasih! Jawaban Anda telah berhasil tersimpan.</div>
-  <div id="errorMessage">Gagal mengirim data. Silakan coba lagi.</div>
-</div>
+    function nextPage(currentStep) {
+      const currentPageEl = document.getElementById(`step-${currentStep}`);
+      const inputs = currentPageEl.querySelectorAll("input[required], select[required], textarea[required]");
+      let isValid = true;
 
-<script>
-  // GANTI URL DI BAWAH DENGAN URL GOOGLE APPS SCRIPT WEB APP ANDA
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXX/exec";
-
-  // NAVIGASI MULTI-STEP HAKAMAN
-  function nextPage(currentStep) {
-    const currentPageEl = document.getElementById(`step-${currentStep}`);
-    const inputs = currentPageEl.querySelectorAll("input[required], select[required], textarea[required]");
-    let isValid = true;
-
-    // Pengecekan validasi pada halaman yang aktif
-    for (let input of inputs) {
-      if (!input.checkValidity()) {
-        input.reportValidity();
-        isValid = false;
-        break;
+      for (let input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          isValid = false;
+          break;
+        }
       }
-    }
 
-    if (!isValid) return;
+      if (!isValid) return;
 
-    // Pindah ke halaman berikutnya
-    currentPageEl.style.display = "none";
-    const nextStepEl = document.getElementById(`step-${currentStep + 1}`);
-    if (nextStepEl) {
-      nextStepEl.style.display = "block";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  function prevPage(currentStep) {
-    document.getElementById(`step-${currentStep}`).style.display = "none";
-    const prevStepEl = document.getElementById(`step-${currentStep - 1}`);
-    if (prevStepEl) {
-      prevStepEl.style.display = "block";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  // PENGIRIMAN DATA FORMULIR KE GOOGLE SHEETS
-  const form = document.getElementById('surveyForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const loadingMsg = document.getElementById('loadingMessage');
-  const successMsg = document.getElementById('successMessage');
-  const errorMsg = document.getElementById('errorMessage');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    submitBtn.disabled = true;
-    loadingMsg.style.display = 'block';
-    successMsg.style.display = 'none';
-    errorMsg.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      loadingMsg.style.display = 'none';
-      if (response.ok) {
-        successMsg.style.display = 'block';
-        form.reset();
-        // Kembali ke halaman 1 setelah berhasil submit
-        document.getElementById('step-3').style.display = 'none';
-        document.getElementById('step-1').style.display = 'block';
+      currentPageEl.style.display = "none";
+      const nextStepEl = document.getElementById(`step-${currentStep + 1}`);
+      if (nextStepEl) {
+        nextStepEl.style.display = "block";
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        errorMsg.style.display = 'block';
       }
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      loadingMsg.style.display = 'none';
-      errorMsg.style.display = 'block';
-    })
-    .finally(() => {
-      submitBtn.disabled = false;
+    }
+
+    function prevPage(currentStep) {
+      document.getElementById(`step-${currentStep}`).style.display = "none";
+      const prevStepEl = document.getElementById(`step-${currentStep - 1}`);
+      if (prevStepEl) {
+        prevStepEl.style.display = "block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    const form = document.getElementById('surveyForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loadingMsg = document.getElementById('loadingMessage');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      loadingMsg.style.display = 'block';
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        loadingMsg.style.display = 'none';
+        if (response.ok) {
+          successMsg.style.display = 'block';
+          form.reset();
+          document.getElementById('step-3').style.display = 'none';
+          document.getElementById('step-1').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          errorMsg.style.display = 'block';
+        }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        loadingMsg.style.display = 'none';
+        errorMsg.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
