@@ -997,14 +997,13 @@
     }
   </script>
 
- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Hanya mengubah teks semua tombol "btn-next" jadi "Selanjutnya →"
-    document.querySelectorAll('.btn-next').forEach(btn => {
-      btn.innerHTML = 'Selanjutnya &rarr;';
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.btn-next').forEach(btn => {
+        btn.innerHTML = 'Selanjutnya &rarr;';
+      });
     });
-  });
-</script>
+  </script>
         
 </body>
 </html>
