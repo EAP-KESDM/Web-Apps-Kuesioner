@@ -734,9 +734,8 @@
 
         <hr class="page-divider">
         <div class="nav-buttons start">
-          <button type="button" class="btn-next" onclick="nextPage(1)">Lanjut ke Bagian II &rarr;</button>
-        </div>
-      </div>
+  <button type="button" class="btn-next" onclick="nextPage(1)">Selanjutnya &rarr;</button>
+</div>
 
       <!-- ================= HALAMAN 2: BAGIAN II ================= -->
       <div class="page-step" id="step-2" style="display: none;">
@@ -899,11 +898,10 @@
         </div>
 
         <hr class="page-divider">
-        <div class="nav-buttons between">
-          <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
-          <button type="button" class="btn-next" onclick="nextPage(2)">Lanjut ke Bagian III &rarr;</button>
-        </div>
-      </div>
+      <div class="nav-buttons between">
+  <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
+  <button type="button" class="btn-next" onclick="nextPage(2)">Selanjutnya &rarr;</button>
+</div>
 
       <!-- ================= HALAMAN 3: BAGIAN III ================= -->
       <div class="page-step" id="step-3" style="display: none;">
@@ -976,5 +974,47 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+
+        <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Otomatis ubah teks semua tombol "btn-next" jadi "Selanjutnya →"
+    document.querySelectorAll('.btn-next').forEach(btn => {
+      btn.innerHTML = 'Selanjutnya &rarr;';
+    });
+
+    // 2. Simpan fungsi pindah halaman asli kamu
+    const fungsiLanjutAsli = window.nextPage;
+
+    // 3. Pasang satpam pembatas sebelum pindah halaman
+    window.nextPage = function(step) {
+      // Cari area halaman yang sedang tampil
+      const halamanAktif = document.querySelector('.page-' + step) || 
+                           document.querySelector('#page-' + step) || 
+                           document.querySelectorAll('.container')[step - 1];
+
+      if (halamanAktif) {
+        // Cek apakah ada input required yang masih kosong di halaman ini
+        const belumDiisi = Array.from(halamanAktif.querySelectorAll('[required]')).some(input => {
+          if (input.type === 'radio') {
+            return !halamanAktif.querySelector(`input[name="${input.name}"]:checked`);
+          }
+          return !input.value.trim();
+        });
+
+        // Jika ada yang belum diisi, stop & beri peringatan
+        if (belumDiisi) {
+          alert('Mohon lengkapi semua pertanyaan di halaman ini sebelum melanjutkan!');
+          return false;
+        }
+      }
+
+      // Jika sudah lengkap semua, jalankan fungsi pindah halaman asli
+      if (typeof fungsiLanjutAsli === 'function') {
+        fungsiLanjutAsli(step);
+      }
+    };
+  });
+</script>
+        
 </body>
 </html>
