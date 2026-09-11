@@ -2,145 +2,253 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
     :root {
       --esdm-blue: #0A3663;
+      --esdm-gradient: linear-gradient(135deg, #0A3663 0%, #1E40AF 50%, #2563EB 100%);
       --esdm-accent: #F59E0B;
-      --esdm-light-blue: #EFF6FF;
-      --bg-gradient: linear-gradient(135deg, #0A3663 0%, #1E40AF 100%);
-      --card-bg: #ffffff;
-      --text-color: #1F2937;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #1F2937;
       --border-color: #E5E7EB;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #F3F4F6;
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Top Banner / Hero Header */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      background: #0f172a;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ANIMASI BACKGROUND BERGERAK (BUBBLE/ORBS EFFECT) */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: #1E40AF;
+      top: -50px;
+      left: -50px;
+    }
+    .orb-2 {
+      width: 250px;
+      height: 250px;
+      background: #F59E0B;
+      bottom: 50px;
+      right: -50px;
+      animation-delay: -4s;
+    }
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+      background: #3B82F6;
+      top: 40%;
+      left: 30%;
+      animation-delay: -7s;
+    }
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 50px) scale(1.15); }
+    }
+
+    /* HEADER HERO BANNER */
     .hero-banner {
-      background: var(--bg-gradient);
+      background: var(--esdm-gradient);
       color: white;
-      padding: 35px 20px 50px 20px;
+      padding: 30px 20px 45px 20px;
       text-align: center;
-      border-bottom: 5px solid var(--esdm-accent);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      border-bottom: 4px solid var(--esdm-accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .logo-esdm {
+      width: 80px;
+      height: auto;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
     .hero-banner h1 {
       margin: 0;
-      font-size: 22px;
-      letter-spacing: 1px;
+      font-size: 15px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      opacity: 0.9;
+      opacity: 0.95;
+      font-weight: 600;
     }
     .hero-banner h2 {
-      margin: 10px 0 5px 0;
-      font-size: 24px;
+      margin: 8px 0 6px 0;
+      font-size: 20px;
       color: #FFFFFF;
       font-weight: 700;
     }
     .hero-banner p {
-      margin-top: 8px;
-      font-size: 13px;
+      margin: 6px auto 0 auto;
+      font-size: 12px;
       opacity: 0.85;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 600px;
     }
 
-    /* Main Container Card */
+    /* CONTAINER UTAMA & PROGRESS BAR */
     .container {
-      max-width: 800px;
-      margin: -30px auto 40px auto;
+      max-width: 750px;
+      margin: -25px auto 40px auto;
       background: var(--card-bg);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 20px 18px;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    @media (min-width: 640px) {
+      .container { padding: 30px; }
+      .hero-banner h2 { font-size: 24px; }
+      .hero-banner h1 { font-size: 18px; }
+    }
+
+    /* PROGRESS STEPPER */
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
       position: relative;
+    }
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border-color);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+    .step-item {
+      position: relative;
+      z-index: 2;
+      background: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 13px;
+      border: 2px solid var(--border-color);
+      color: #6B7280;
+      transition: all 0.3s;
+    }
+    .step-item.active {
+      border-color: #2563EB;
+      background: #2563EB;
+      color: white;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
     }
 
     .section-title {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--esdm-blue);
-      border-left: 5px solid var(--esdm-accent);
-      padding-left: 12px;
-      margin-bottom: 20px;
-      margin-top: 0;
+      border-left: 4px solid var(--esdm-accent);
+      padding-left: 10px;
+      margin: 0 0 15px 0;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      font-weight: 700;
     }
 
     .section-box {
-      margin-bottom: 25px;
-      padding: 20px;
+      margin-bottom: 20px;
+      padding: 16px;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      background-color: #FAFAFA;
-      transition: all 0.3s ease;
-    }
-    .section-box:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      background: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    label {
+    label.form-label {
       display: block;
       font-weight: 600;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #374151;
     }
+
     input[type="text"], select, textarea {
       width: 100%;
       padding: 12px;
       border: 1.5px solid var(--border-color);
-      border-radius: 8px;
-      box-sizing: border-box;
+      border-radius: 10px;
       font-size: 14px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      background: #FFFFFF;
+      transition: all 0.2s;
+      background: #F9FAFB;
     }
     input[type="text"]:focus, select:focus, textarea:focus {
       outline: none;
       border-color: #2563EB;
+      background: #FFF;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
+    /* CARD-STYLE RADIOS & CHECKBOXES UNTUK HP */
     .radio-group, .checkbox-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .radio-item, .checkbox-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: normal;
-      font-size: 14px;
-      cursor: pointer;
-      padding: 8px 12px;
-      background: white;
+      gap: 12px;
+      padding: 11px 14px;
+      background: #F9FAFB;
       border: 1px solid var(--border-color);
-      border-radius: 6px;
-      transition: background 0.2s;
+      border-radius: 10px;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+    .radio-item:active, .checkbox-item:active,
     .radio-item:hover, .checkbox-item:hover {
-      background-color: var(--esdm-light-blue);
+      background: #EFF6FF;
+      border-color: #93C5FD;
+    }
+    .radio-item input, .checkbox-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: #2563EB;
     }
 
-    /* Modern Table Styling */
+    /* RESPONSIVE TABLE STYLING */
     .table-responsive {
       overflow-x: auto;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--border-color);
     }
     table {
@@ -150,7 +258,7 @@
       background: white;
     }
     th, td {
-      padding: 12px 10px;
+      padding: 10px 8px;
       border-bottom: 1px solid var(--border-color);
       text-align: center;
     }
@@ -159,66 +267,62 @@
       color: white;
       font-weight: 600;
     }
-    tbody tr:nth-child(even) {
-      background-color: #F9FAFB;
-    }
-    tbody tr:hover {
-      background-color: var(--esdm-light-blue);
-    }
-    td.text-left {
-      text-align: left;
+    td.text-left { text-align: left; }
+    td input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #2563EB;
+      cursor: pointer;
     }
 
-    /* Divider & Buttons */
+    /* NAVIGATION BUTTONS */
     .page-divider {
       border: 0;
       border-top: 1px solid var(--border-color);
-      margin: 30px 0 25px 0;
+      margin: 25px 0 20px 0;
     }
     .nav-buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
     }
     .nav-buttons.start { justifyContent: flex-start; }
     .nav-buttons.between { justifyContent: space-between; }
 
     .btn-next, .btn-submit {
-      background: var(--bg-gradient);
+      background: var(--esdm-gradient);
       color: white;
       border: none;
-      padding: 12px 30px;
-      font-size: 15px;
+      padding: 13px 26px;
+      font-size: 14.5px;
       font-weight: 600;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(10, 54, 99, 0.25);
-      transition: transform 0.1s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s;
+      flex: 1;
+      max-width: 220px;
     }
-    .btn-next:hover, .btn-submit:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(10, 54, 99, 0.35);
+    .btn-next:active, .btn-submit:active {
+      transform: scale(0.98);
     }
     .btn-prev {
       background-color: #64748B;
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 13px 20px;
       font-size: 14px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-prev:hover {
-      background-color: #475569;
     }
 
     #loadingMessage, #successMessage, #errorMessage {
       display: none;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 8px;
+      padding: 14px;
+      margin-top: 15px;
+      border-radius: 10px;
       text-align: center;
       font-weight: 600;
+      font-size: 14px;
     }
     #loadingMessage { background-color: #DBEAFE; color: #1E40AF; }
     #successMessage { background-color: #D1FAE5; color: #065F46; }
@@ -227,14 +331,30 @@
 </head>
 <body>
 
-  <!-- HERO HEADER KEMENTERIAN ESDM -->
+  <!-- BACKGROUND BERGERAK (INTERAKTIF & MODERN) -->
+  <div class="bg-animation">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- HERO BANNER KESDM WITH LOGO -->
   <div class="hero-banner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Logo_Kementerian_Energi_dan_Sumber_Daya_Mineral_%28ESDM%29.png" alt="Logo ESDM" class="logo-esdm">
     <h1>Kementerian Energi dan Sumber Daya Mineral</h1>
     <h2>Survei EAP & Stres Kerja Pegawai</h2>
-    <p>Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan kesejahteraan pegawai KESDM.</p>
+    <p>Seluruh jawaban bersifat anonim & rahasia; data digunakan untuk perancangan kebijakan kesejahteraan pegawai KESDM.</p>
   </div>
 
   <div class="container">
+    
+    <!-- INDIKATOR STEP (1 - 2 - 3) -->
+    <div class="stepper">
+      <div class="step-item active" id="dot-1">1</div>
+      <div class="step-item" id="dot-2">2</div>
+      <div class="step-item" id="dot-3">3</div>
+    </div>
+
     <form id="surveyForm">
       
       <!-- ================= HALAMAN 1: BAGIAN I ================= -->
@@ -243,7 +363,7 @@
         
         <div class="section-box">
           <div class="form-group">
-            <label>1. Unit Kerja Eselon I</label>
+            <label class="form-label">1. Unit Kerja Eselon I</label>
             <select name="eselon" required>
               <option value="">-- Pilih Eselon I --</option>
               <option value="Sekretariat Jenderal">Sekretariat Jenderal</option>
@@ -262,7 +382,7 @@
           </div>
 
           <div class="form-group">
-            <label>2. Kelompok Jabatan</label>
+            <label class="form-label">2. Kelompok Jabatan</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Struktural" required> Struktural</label>
               <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Fungsional"> Fungsional</label>
@@ -271,12 +391,12 @@
           </div>
 
           <div class="form-group">
-            <label>3. Jabatan Spesifik</label>
+            <label class="form-label">3. Jabatan Spesifik</label>
             <input type="text" name="jabatan" placeholder="Tuliskan nama jabatan Anda" required>
           </div>
 
           <div class="form-group">
-            <label>4. Jenis Kelamin</label>
+            <label class="form-label">4. Jenis Kelamin</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="jenisKelamin" value="Laki-laki" required> Laki-laki</label>
               <label class="radio-item"><input type="radio" name="jenisKelamin" value="Perempuan"> Perempuan</label>
@@ -284,7 +404,7 @@
           </div>
 
           <div class="form-group">
-            <label>5. Usia</label>
+            <label class="form-label">5. Usia</label>
             <select name="usia" required>
               <option value="">-- Pilih Kelompok Usia --</option>
               <option value="18 - 25 Tahun">18 – 25 Tahun</option>
@@ -296,7 +416,7 @@
           </div>
 
           <div class="form-group">
-            <label>6. Masa Kerja Total</label>
+            <label class="form-label">6. Masa Kerja Total</label>
             <select name="masaKerja" required>
               <option value="">-- Pilih Masa Kerja --</option>
               <option value="0 - 10 Tahun">0 – 10 Tahun</option>
@@ -306,7 +426,7 @@
           </div>
 
           <div class="form-group">
-            <label>7. Pendidikan Terakhir</label>
+            <label class="form-label">7. Pendidikan Terakhir</label>
             <select name="pendidikan" required>
               <option value="">-- Pilih Pendidikan --</option>
               <option value="SMA">SMA</option>
@@ -318,7 +438,7 @@
           </div>
 
           <div class="form-group">
-            <label>8. Lokasi Penugasan Dominan (1 Tahun Terakhir)</label>
+            <label class="form-label">8. Lokasi Penugasan Dominan (1 Tahun Terakhir)</label>
             <select name="lokasi" required>
               <option value="">-- Pilih Lokasi Penugasan --</option>
               <option value="Unit Kantor Setjen/Ditjen/Itjen/Badan">Unit Kantor Setjen/Ditjen/Itjen/Badan</option>
@@ -329,7 +449,7 @@
           </div>
 
           <div class="form-group">
-            <label>9. Frekuensi Penugasan Lapangan</label>
+            <label class="form-label">9. Frekuensi Penugasan Lapangan</label>
             <select name="frekuensi" required>
               <option value="">-- Pilih Frekuensi --</option>
               <option value="Tidak pernah">Tidak pernah</option>
@@ -340,7 +460,7 @@
           </div>
 
           <div class="form-group">
-            <label>10. Riwayat Insiden Berisiko Tinggi</label>
+            <label class="form-label">10. Riwayat Insiden Berisiko Tinggi</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="insiden" value="Pernah" required> Pernah</label>
               <label class="radio-item"><input type="radio" name="insiden" value="Tidak pernah"> Tidak pernah</label>
@@ -359,7 +479,7 @@
         <h3 class="section-title">BAGIAN II — KEBUTUHAN LAYANAN EAP</h3>
         
         <div class="section-box">
-          <p><strong>II.1 Tingkat Kebutuhan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak membutuhkan sama sekali s/d 5 = Sangat membutuhkan</small></p>
+          <p style="font-size:13.5px;"><strong>II.1 Tingkat Kebutuhan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak butuh s/d 5 = Sangat butuh</small></p>
           
           <div class="table-responsive">
             <table>
@@ -386,14 +506,14 @@
           </div>
 
           <div class="form-group" style="margin-top:15px;">
-            <label>Layanan Lain yang Dibutuhkan (Opsional):</label>
+            <label class="form-label">Layanan Lain yang Dibutuhkan (Opsional):</label>
             <input type="text" name="eapLainnya" placeholder="Tuliskan jika ada kebutuhan layanan lain...">
           </div>
         </div>
 
         <div class="section-box">
           <div class="form-group">
-            <label>11. Kesadaran Layanan Dukungan Psikologis Instansi</label>
+            <label class="form-label">11. Kesadaran Layanan Dukungan Psikologis Instansi</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="tahuLayanan" value="Mengetahui dan detail" required> Mengetahui dan detail</label>
               <label class="radio-item"><input type="radio" name="tahuLayanan" value="Hanya mengetahui sekilas"> Hanya mengetahui sekilas</label>
@@ -402,7 +522,7 @@
           </div>
 
           <div class="form-group">
-            <label>12. Penggunaan Layanan Sebelumnya</label>
+            <label class="form-label">12. Penggunaan Layanan Sebelumnya</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari instansi" required> Ya, dari instansi</label>
               <label class="radio-item"><input type="radio" name="pernahPakai" value="Ya, dari pihak eksternal"> Ya, dari pihak eksternal</label>
@@ -411,7 +531,7 @@
           </div>
 
           <div class="form-group">
-            <label>13. Bentuk Layanan yang Dipilih (Boleh pilih lebih dari 1):</label>
+            <label class="form-label">13. Bentuk Layanan yang Dipilih (Boleh pilih >1):</label>
             <div class="checkbox-group">
               <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling tatap muka individual"> Konseling tatap muka individual</label>
               <label class="checkbox-item"><input type="checkbox" name="preferensiBentuk" value="Konseling via telepon"> Konseling via telepon</label>
@@ -423,7 +543,7 @@
           </div>
 
           <div class="form-group">
-            <label>14. Lokasi Layanan yang Diharapkan</label>
+            <label class="form-label">14. Lokasi Layanan yang Diharapkan</label>
             <select name="lokasiHarap" required>
               <option value="">-- Pilih Lokasi --</option>
               <option value="Di dalam kantor (penyedia internal KESDM)">Di dalam kantor (penyedia internal KESDM)</option>
@@ -433,7 +553,7 @@
           </div>
 
           <div class="form-group">
-            <label>15. Waktu Layanan yang Diharapkan</label>
+            <label class="form-label">15. Waktu Layanan yang Diharapkan</label>
             <select name="waktuHarap" required>
               <option value="">-- Pilih Waktu --</option>
               <option value="Jam kerja">Jam kerja</option>
@@ -443,7 +563,7 @@
           </div>
 
           <div class="form-group">
-            <label>16. Kesediaan Layanan Bagi Anggota Keluarga</label>
+            <label class="form-label">16. Kesediaan Layanan Bagi Anggota Keluarga</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Perlu, untuk keluarga juga" required> Perlu, untuk keluarga juga</label>
               <label class="radio-item"><input type="radio" name="aksesKeluarga" value="Cukup untuk pegawai"> Cukup untuk pegawai</label>
@@ -452,7 +572,7 @@
         </div>
 
         <div class="section-box">
-          <p><strong>II.4 Hambatan Penggunaan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Sangat tidak setuju s/d 5 = Sangat setuju</small></p>
+          <p style="font-size:13.5px;"><strong>II.4 Hambatan Penggunaan Layanan</strong><br><small style="color:#6B7280;">Skala: 1 = Sangat tidak setuju s/d 5 = Sangat setuju</small></p>
           <div class="table-responsive">
             <table>
               <thead>
@@ -474,7 +594,7 @@
           </div>
 
           <div class="form-group" style="margin-top:20px;">
-            <label>23. Kemungkinan Menggunakan EAP Jika Kerahasiaan Dijamin</label>
+            <label class="form-label">23. Kemungkinan Menggunakan EAP Jika Kerahasiaan Dijamin</label>
             <select name="kesiapan" required>
               <option value="">-- Pilih --</option>
               <option value="Sangat mungkin">Sangat mungkin</option>
@@ -485,7 +605,7 @@
           </div>
 
           <div class="form-group">
-            <label>24. Rekomendasi Kepada Rekan Kerja</label>
+            <label class="form-label">24. Rekomendasi Kepada Rekan Kerja</label>
             <select name="rekomendasi" required>
               <option value="">-- Pilih --</option>
               <option value="Ya">Ya</option>
@@ -495,7 +615,7 @@
           </div>
 
           <div class="form-group">
-            <label>25. Saran Skema Pembayaran</label>
+            <label class="form-label">25. Saran Skema Pembayaran</label>
             <select name="skema" required>
               <option value="">-- Pilih Skema --</option>
               <option value="Pembiayaan Anggaran KESDM">Pembiayaan penuh dari Anggaran KESDM</option>
@@ -505,11 +625,11 @@
           </div>
 
           <div class="form-group">
-            <label>26. Tiga Kebutuhan Prioritas Utama (Masukkan nomor layanan 1–10)</label>
+            <label class="form-label">26. Tiga Kebutuhan Prioritas Utama (Masukkan nomor layanan 1–10)</label>
             <div style="display:flex; gap:10px;">
-              <input type="text" name="prio1" placeholder="Prioritas 1 (mis. 1)" required>
-              <input type="text" name="prio2" placeholder="Prioritas 2 (mis. 6)" required>
-              <input type="text" name="prio3" placeholder="Prioritas 3 (mis. 8)" required>
+              <input type="text" name="prio1" placeholder="Prio 1 (mis. 1)" required>
+              <input type="text" name="prio2" placeholder="Prio 2 (mis. 6)" required>
+              <input type="text" name="prio3" placeholder="Prio 3 (mis. 8)" required>
             </div>
           </div>
         </div>
@@ -526,7 +646,7 @@
         <h3 class="section-title">BAGIAN III — INSTRUMEN STRES KERJA</h3>
         
         <div class="section-box">
-          <p><strong>III.A Perceived Stress Scale (PSS-10)</strong><br><small style="color:#6B7280;">Seberapa sering Anda merasakan hal berikut selama 1 bulan terakhir?<br>Skala: 0 = Tidak pernah s/d 4 = Sangat sering</small></p>
+          <p style="font-size:13.5px;"><strong>III.A Perceived Stress Scale (PSS-10)</strong><br><small style="color:#6B7280;">Seberapa sering dirasakan 1 bulan terakhir? (Skala: 0 = Tidak pernah s/d 4 = Sangat sering)</small></p>
           
           <div class="table-responsive">
             <table>
@@ -553,7 +673,7 @@
         </div>
 
         <div class="section-box">
-          <p><strong>III.B Skala Stres Kerja (Adaptasi HSE) & Modul KESDM</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak pernah s/d 5 = Selalu</small></p>
+          <p style="font-size:13.5px;"><strong>III.B Skala Stres Kerja (Adaptasi HSE) & Modul KESDM</strong><br><small style="color:#6B7280;">Skala: 1 = Tidak pernah s/d 5 = Selalu</small></p>
           
           <div class="table-responsive">
             <table>
@@ -598,6 +718,16 @@
     // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXX/exec";
 
+    function updateDots(step) {
+      document.querySelectorAll('.step-item').forEach((dot, index) => {
+        if (index + 1 <= step) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
     function nextPage(currentStep) {
       const currentPageEl = document.getElementById(`step-${currentStep}`);
       const inputs = currentPageEl.querySelectorAll("input[required], select[required], textarea[required]");
@@ -614,18 +744,22 @@
       if (!isValid) return;
 
       currentPageEl.style.display = "none";
-      const nextStepEl = document.getElementById(`step-${currentStep + 1}`);
+      const nextStep = currentStep + 1;
+      const nextStepEl = document.getElementById(`step-${nextStep}`);
       if (nextStepEl) {
         nextStepEl.style.display = "block";
+        updateDots(nextStep);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
     function prevPage(currentStep) {
       document.getElementById(`step-${currentStep}`).style.display = "none";
-      const prevStepEl = document.getElementById(`step-${currentStep - 1}`);
+      const prevStep = currentStep - 1;
+      const prevStepEl = document.getElementById(`step-${prevStep}`);
       if (prevStepEl) {
         prevStepEl.style.display = "block";
+        updateDots(prevStep);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
@@ -657,6 +791,7 @@
           form.reset();
           document.getElementById('step-3').style.display = 'none';
           document.getElementById('step-1').style.display = 'block';
+          updateDots(1);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           errorMsg.style.display = 'block';
