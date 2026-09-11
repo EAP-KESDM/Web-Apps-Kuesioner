@@ -5,14 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
-
-    /* Background utama dengan gradien yang bergerak lembut */
+/* Update latar belakang body dengan efek bergerak lembut */
 body {
-    background: linear-gradient(-45deg, #f0f4f9, #e6effd, #f9f0ec, #f0f4f9);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    position: relative;
-    overflow-x: hidden;
+  background: linear-gradient(-45deg, #f4f7fb, #e8f0fe, #fdf6ee, #edf2f7);
+  background-size: 400% 400%;
+  animation: gradientBG 16s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container Partikel melayang di background */
+.bg-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Dipastikan di belakang konten */
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(4px);
+  animation: float 14s infinite linear;
+}
+
+/* Titik-titik partikel melayang (warna disesuaikan dengan aksen ESDM) */
+.p1 { width: 12px; height: 12px; background: #e67e22; top: 15%; left: 8%; animation-duration: 12s; }
+.p2 { width: 20px; height: 20px; background: #2980b9; top: 65%; left: 85%; animation-duration: 16s; }
+.p3 { width: 10px; height: 10px; background: #f1c40f; top: 80%; left: 15%; animation-duration: 9s; }
+.p4 { width: 16px; height: 16px; background: #d35400; top: 35%; left: 75%; animation-duration: 14s; }
+.p5 { width: 14px; height: 14px; background: #3498db; top: 45%; left: 5%; animation-duration: 11s; }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-35px) scale(1.2) rotate(180deg); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1) rotate(360deg); opacity: 0.3; }
 }
 
 @keyframes gradientBG {
@@ -429,12 +466,13 @@ body {
 </head>
 <body>
 
-  <!-- Container untuk partikel animasi background -->
-<div class="bg-animation">
-    <div class="circle c1"></div>
-    <div class="circle c2"></div>
-    <div class="circle c3"></div>
-    <div class="circle c4"></div>
+<!-- Cukup selipkan kode partikel ini tepat di bawah <body> -->
+<div class="bg-particles">
+  <div class="particle p1"></div>
+  <div class="particle p2"></div>
+  <div class="particle p3"></div>
+  <div class="particle p4"></div>
+  <div class="particle p5"></div>
 </div>
 
   <!-- CANVAS UNTUK ANIMASI PARTIKEL BERGERAK -->
