@@ -691,14 +691,19 @@
 
           <div class="form-group">
             <label class="form-label">7. Pendidikan Terakhir</label>
-            <select name="pendidikan" required>
-              <option value="">-- Pilih Pendidikan --</option>
-              <option value="SMA">SMA</option>
-              <option value="Diploma 3">Diploma 3</option>
-              <option value="S1 / Diploma 4">S1 / Diploma 4</option>
-              <option value="S2">S2</option>
-              <option value="S3">S3</option>
-            </select>
+                    <select name="pendidikan" id="pendidikan" required>
+                    <option value="" disabled selected>-- Pilih Pendidikan --</option>
+                    <option value="SD">SD Sederajat</option>
+                    <option value="SMP">SMP Sederajat</option>
+                    <option value="SMA">SMA Sederajat</option>
+                    <option value="D1">Diploma 1 (D1)</option>
+                    <option value="D2">Diploma 2 (D2)</option>
+                    <option value="D3">Diploma 3 (D3)</option>
+                    <option value="D4">Diploma 4 (D4)</option>
+                    <option value="S1"> (S1)</option>
+                    <option value="S2"> (S2)</option>
+                    <option value="S3"> (S3)</option>
+                  </select>
           </div>
 
           <div class="form-group">
@@ -713,7 +718,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">9. Frekuensi Penugasan Lapangan</label>
+            <label class="form-label">9.Rata-rata Frekuensi Penugasan Lapangan</label>
             <select name="frekuensi" required>
               <option value="">-- Pilih Frekuensi --</option>
               <option value="Tidak pernah">Tidak pernah</option>
@@ -724,7 +729,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">10. Riwayat Insiden Berisiko Tinggi</label>
+            <label class="form-label">10. Pernah mengalami atau menyaksikan insiden berisiko tinggi dalam pekerjaan (kecelakaan, gangguan keselamatan, bencana geologi,lokasi terpencil dll.)</label>
             <div class="radio-group">
               <label class="radio-item"><input type="radio" name="insiden" value="Pernah" required> Pernah</label>
               <label class="radio-item"><input type="radio" name="insiden" value="Tidak pernah"> Tidak pernah</label>
