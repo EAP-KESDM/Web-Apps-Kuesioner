@@ -6,6 +6,7 @@
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
     :root {
+      --esdm-yellow: #FFEC00;
       --esdm-blue: #0A3663;
       --esdm-gradient: linear-gradient(135deg, #0A3663 0%, #1E40AF 50%, #2563EB 100%);
       --esdm-accent: #F59E0B;
@@ -31,7 +32,96 @@
       overflow-x: hidden;
     }
 
-    /* ANIMASI BACKGROUND BERGERAK (BUBBLE/ORBS EFFECT) */
+    /* BAR KUNING ATAS PORTAL KESDM */
+    .top-bar-yellow {
+      background-color: var(--esdm-yellow);
+      padding: 6px 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .top-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .call-badge {
+      background-color: #0066CC;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+    }
+
+    /* NAVBAR PUTIH DENGAN LOGO & JUDUL */
+    .site-header {
+      background: #FFFFFF;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--esdm-blue);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-esdm {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+    .header-title {
+      border-left: 2px solid #E5E7EB;
+      padding-left: 12px;
+    }
+    .header-title h1 {
+      margin: 0;
+      font-size: 14px;
+      color: var(--esdm-blue);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .header-title p {
+      margin: 0;
+      font-size: 12px;
+      color: #4B5563;
+      font-weight: 600;
+    }
+
+    /* HERO BANNER SUB-HEADER */
+    .hero-banner {
+      background: var(--esdm-gradient);
+      color: white;
+      padding: 25px 20px 45px 20px;
+      text-align: center;
+    }
+    .hero-banner h2 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .hero-banner p {
+      margin: 0 auto;
+      font-size: 12.5px;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    /* ANIMASI BACKGROUND BERGERAK */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -76,46 +166,7 @@
       100% { transform: translate(40px, 50px) scale(1.15); }
     }
 
-    /* HEADER HERO BANNER */
-    .hero-banner {
-      background: var(--esdm-gradient);
-      color: white;
-      padding: 30px 20px 45px 20px;
-      text-align: center;
-      border-bottom: 4px solid var(--esdm-accent);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-   .logo-esdm {
-      width: 140px;
-      height: auto;
-      margin-bottom: 16px;
-      background-color: white;
-      padding: 6px 14px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    .hero-banner h1 {
-      margin: 0;
-      font-size: 15px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      opacity: 0.95;
-      font-weight: 600;
-    }
-    .hero-banner h2 {
-      margin: 8px 0 6px 0;
-      font-size: 20px;
-      color: #FFFFFF;
-      font-weight: 700;
-    }
-    .hero-banner p {
-      margin: 6px auto 0 auto;
-      font-size: 12px;
-      opacity: 0.85;
-      max-width: 600px;
-    }
-
-    /* CONTAINER UTAMA & PROGRESS BAR */
+    /* CONTAINER UTAMA & FORM */
     .container {
       max-width: 750px;
       margin: -25px auto 40px auto;
@@ -128,7 +179,7 @@
     @media (min-width: 640px) {
       .container { padding: 30px; }
       .hero-banner h2 { font-size: 24px; }
-      .hero-banner h1 { font-size: 18px; }
+      .header-title h1 { font-size: 16px; }
     }
 
     /* PROGRESS STEPPER */
@@ -334,17 +385,33 @@
 </head>
 <body>
 
-  <!-- BACKGROUND BERGERAK (INTERAKTIF & MODERN) -->
+  <!-- BAR KUNING ATAS PORTAL KESDM -->
+  <div class="top-bar-yellow">
+    <div class="top-bar-item">🔍</div>
+    <div class="top-bar-item">ID | EN</div>
+    <a href="tel:136" class="call-badge">📞 Call 136</a>
+  </div>
+
+  <!-- HEADER PUTIH LOGO & NAMA KEMENTERIAN -->
+  <header class="site-header">
+    <div class="header-left">
+      <img src="logo-esdm.png" alt="Logo ESDM" class="logo-esdm">
+      <div class="header-title">
+        <h1>Kementerian ESDM</h1>
+        <p>Republik Indonesia</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- BACKGROUND ANIMASI BERGERAK -->
   <div class="bg-animation">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- HERO BANNER KESDM WITH LOGO -->
+  <!-- HERO SUB-HEADER -->
   <div class="hero-banner">
-    <img src="Logo-esdm.png" alt="Logo ESDM" class="logo-esdm">
-    <h1>Kementerian Energi dan Sumber Daya Mineral</h1>
     <h2>Survei EAP & Stres Kerja Pegawai</h2>
     <p>Seluruh jawaban bersifat anonim & rahasia; data digunakan untuk perancangan kebijakan kesejahteraan pegawai KESDM.</p>
   </div>
