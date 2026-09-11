@@ -7,12 +7,12 @@
   <style>
     :root {
       --esdm-yellow: #FFEC00;
-      --esdm-blue: #0A3663;
-      --esdm-gradient: linear-gradient(135deg, #0A3663 0%, #1E40AF 50%, #2563EB 100%);
-      --esdm-accent: #F59E0B;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --text-main: #1F2937;
-      --border-color: #E5E7EB;
+      --esdm-dark-blue: #0F172A;
+      /* Gradasi Header Baru: Kombinasi Warm Gold / Energetic Amber & Slate */
+      --hero-gradient: linear-gradient(135deg, #1E293B 0%, #334155 40%, #D97706 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --text-main: #1E293B;
+      --border-color: #E2E8F0;
     }
 
     * {
@@ -26,7 +26,8 @@
       margin: 0;
       padding: 0;
       line-height: 1.5;
-      background: #0f172a;
+      /* Background Terang & Elegan */
+      background-color: #F1F5F9;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
@@ -44,6 +45,8 @@
       font-weight: 700;
       color: #000;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
     }
     .top-bar-item {
       display: flex;
@@ -62,15 +65,17 @@
       text-decoration: none;
     }
 
-    /* NAVBAR PUTIH DENGAN LOGO & JUDUL */
+    /* NAVBAR PUTIH LOGO & NAMA INSTANSI */
     .site-header {
       background: #FFFFFF;
       padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 3px solid var(--esdm-blue);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-bottom: 3px solid #D97706;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 10;
     }
     .header-left {
       display: flex;
@@ -78,18 +83,18 @@
       gap: 12px;
     }
     .logo-esdm {
-      height: 48px;
+      height: 44px;
       width: auto;
       object-fit: contain;
     }
     .header-title {
-      border-left: 2px solid #E5E7EB;
+      border-left: 2px solid #E2E8F0;
       padding-left: 12px;
     }
     .header-title h1 {
       margin: 0;
       font-size: 14px;
-      color: var(--esdm-blue);
+      color: #0F172A;
       text-transform: uppercase;
       font-weight: 800;
       letter-spacing: 0.5px;
@@ -97,88 +102,62 @@
     .header-title p {
       margin: 0;
       font-size: 12px;
-      color: #4B5563;
+      color: #64748B;
       font-weight: 600;
     }
 
-    /* HERO BANNER SUB-HEADER */
+    /* HERO BANNER SUB-HEADER (TIDAK BIRU LAGI) */
     .hero-banner {
-      background: var(--esdm-gradient);
+      background: var(--hero-gradient);
       color: white;
-      padding: 25px 20px 45px 20px;
+      padding: 30px 20px 50px 20px;
       text-align: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: inset 0 -10px 20px rgba(0,0,0,0.15);
     }
     .hero-banner h2 {
       margin: 0 0 8px 0;
       font-size: 22px;
       color: #FFFFFF;
       font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     .hero-banner p {
       margin: 0 auto;
-      font-size: 12.5px;
-      opacity: 0.9;
+      font-size: 13px;
+      opacity: 0.95;
       max-width: 600px;
+      color: #F1F5F9;
     }
 
-    /* ANIMASI BACKGROUND BERGERAK */
-    .bg-animation {
+    /* CANVAS ANIMASI PARTIKEL BERGERAK (FLOATING DOTS) */
+    #particles-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.5;
-      animation: float 12s infinite alternate ease-in-out;
-    }
-    .orb-1 {
-      width: 300px;
-      height: 300px;
-      background: #1E40AF;
-      top: -50px;
-      left: -50px;
-    }
-    .orb-2 {
-      width: 250px;
-      height: 250px;
-      background: #F59E0B;
-      bottom: 50px;
-      right: -50px;
-      animation-delay: -4s;
-    }
-    .orb-3 {
-      width: 200px;
-      height: 200px;
-      background: #3B82F6;
-      top: 40%;
-      left: 30%;
-      animation-delay: -7s;
-    }
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 50px) scale(1.15); }
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* CONTAINER UTAMA & FORM */
     .container {
       max-width: 750px;
-      margin: -25px auto 40px auto;
+      margin: -30px auto 40px auto;
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 20px 18px;
+      backdrop-filter: blur(8px);
+      padding: 24px 20px;
       border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+      position: relative;
+      z-index: 5;
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
     @media (min-width: 640px) {
-      .container { padding: 30px; }
-      .hero-banner h2 { font-size: 24px; }
+      .container { padding: 35px; }
+      .hero-banner h2 { font-size: 25px; }
       .header-title h1 { font-size: 16px; }
     }
 
@@ -204,8 +183,8 @@
       position: relative;
       z-index: 2;
       background: white;
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -213,20 +192,20 @@
       font-weight: bold;
       font-size: 13px;
       border: 2px solid var(--border-color);
-      color: #6B7280;
+      color: #64748B;
       transition: all 0.3s;
     }
     .step-item.active {
-      border-color: #2563EB;
-      background: #2563EB;
+      border-color: #D97706;
+      background: #D97706;
       color: white;
-      box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 0 12px rgba(217, 119, 6, 0.4);
     }
 
     .section-title {
       font-size: 16px;
-      color: var(--esdm-blue);
-      border-left: 4px solid var(--esdm-accent);
+      color: #0F172A;
+      border-left: 4px solid #D97706;
       padding-left: 10px;
       margin: 0 0 15px 0;
       text-transform: uppercase;
@@ -236,11 +215,11 @@
 
     .section-box {
       margin-bottom: 20px;
-      padding: 16px;
+      padding: 18px;
       border: 1px solid var(--border-color);
       border-radius: 12px;
       background: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 
     .form-group {
@@ -251,7 +230,7 @@
       font-weight: 600;
       margin-bottom: 8px;
       font-size: 13.5px;
-      color: #374151;
+      color: #334155;
     }
 
     input[type="text"], select, textarea {
@@ -261,16 +240,16 @@
       border-radius: 10px;
       font-size: 14px;
       transition: all 0.2s;
-      background: #F9FAFB;
+      background: #F8FAFC;
     }
     input[type="text"]:focus, select:focus, textarea:focus {
       outline: none;
-      border-color: #2563EB;
+      border-color: #D97706;
       background: #FFF;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
     }
 
-    /* CARD-STYLE RADIOS & CHECKBOXES UNTUK HP */
+    /* CARD-STYLE RADIOS & CHECKBOXES */
     .radio-group, .checkbox-group {
       display: flex;
       flex-direction: column;
@@ -281,25 +260,24 @@
       align-items: center;
       gap: 12px;
       padding: 11px 14px;
-      background: #F9FAFB;
+      background: #F8FAFC;
       border: 1px solid var(--border-color);
       border-radius: 10px;
       font-size: 13.5px;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .radio-item:active, .checkbox-item:active,
     .radio-item:hover, .checkbox-item:hover {
-      background: #EFF6FF;
-      border-color: #93C5FD;
+      background: #FEF3C7;
+      border-color: #FCD34D;
     }
     .radio-item input, .checkbox-item input {
       width: 18px;
       height: 18px;
-      accent-color: #2563EB;
+      accent-color: #D97706;
     }
 
-    /* RESPONSIVE TABLE STYLING */
+    /* TABLE STYLING */
     .table-responsive {
       overflow-x: auto;
       border-radius: 10px;
@@ -317,7 +295,7 @@
       text-align: center;
     }
     th {
-      background-color: var(--esdm-blue);
+      background-color: #1E293B;
       color: white;
       font-weight: 600;
     }
@@ -325,7 +303,7 @@
     td input[type="radio"] {
       width: 18px;
       height: 18px;
-      accent-color: #2563EB;
+      accent-color: #D97706;
       cursor: pointer;
     }
 
@@ -343,7 +321,7 @@
     .nav-buttons.between { justifyContent: space-between; }
 
     .btn-next, .btn-submit {
-      background: var(--esdm-gradient);
+      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
       color: white;
       border: none;
       padding: 13px 26px;
@@ -351,7 +329,7 @@
       font-weight: 600;
       border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
       transition: all 0.2s;
       flex: 1;
       max-width: 220px;
@@ -378,12 +356,15 @@
       font-weight: 600;
       font-size: 14px;
     }
-    #loadingMessage { background-color: #DBEAFE; color: #1E40AF; }
+    #loadingMessage { background-color: #FEF3C7; color: #92400E; }
     #successMessage { background-color: #D1FAE5; color: #065F46; }
     #errorMessage { background-color: #FEE2E2; color: #991B1B; }
   </style>
 </head>
 <body>
+
+  <!-- CANVAS UNTUK ANIMASI PARTIKEL BERGERAK -->
+  <canvas id="particles-canvas"></canvas>
 
   <!-- BAR KUNING ATAS PORTAL KESDM -->
   <div class="top-bar-yellow">
@@ -395,7 +376,7 @@
   <!-- HEADER PUTIH LOGO & NAMA KEMENTERIAN -->
   <header class="site-header">
     <div class="header-left">
-      <img src="logo-esdm.png" alt="Logo ESDM" class="logo-esdm">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Kementerian_Energi_dan_Sumber_Daya_Mineral.png" alt="Logo ESDM" class="logo-esdm">
       <div class="header-title">
         <h1>Kementerian ESDM</h1>
         <p>Republik Indonesia</p>
@@ -403,14 +384,7 @@
     </div>
   </header>
 
-  <!-- BACKGROUND ANIMASI BERGERAK -->
-  <div class="bg-animation">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-
-  <!-- HERO SUB-HEADER -->
+  <!-- HERO BANNER SUB-HEADER (WARNA GOLD/AMBER ELEGAN) -->
   <div class="hero-banner">
     <h2>Survei EAP & Stres Kerja Pegawai</h2>
     <p>Seluruh jawaban bersifat anonim & rahasia; data digunakan untuk perancangan kebijakan kesejahteraan pegawai KESDM.</p>
@@ -785,7 +759,74 @@
   </div>
 
   <script>
-    // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
+    // SCRIPT ANIMASI PARTIKEL MELAYANG (FLOATING DOTS) SEPERTI GAMBAR DUA
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const particles = [];
+    const particleCount = 35; // Jumlah bintik bercahaya melayang
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1.5;
+        this.speedY = Math.random() * -0.4 - 0.1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        this.fadeSpeed = Math.random() * 0.005 + 0.002;
+        this.color = Math.random() > 0.5 ? '#D97706' : '#F59E0B'; // Warna partikel amber/gold
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        
+        if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
+          this.reset();
+          this.y = canvas.height + 10;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // SCRIPT MULTI-STEP FORM & SUBMIT
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXX/exec";
 
     function updateDots(step) {
