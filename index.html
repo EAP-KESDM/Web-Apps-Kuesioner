@@ -997,44 +997,12 @@
     }
   </script>
 
-        <script>
+ <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // 1. Otomatis ubah teks semua tombol "btn-next" jadi "Selanjutnya →"
+    // Hanya mengubah teks semua tombol "btn-next" jadi "Selanjutnya →"
     document.querySelectorAll('.btn-next').forEach(btn => {
       btn.innerHTML = 'Selanjutnya &rarr;';
     });
-
-    // 2. Simpan fungsi pindah halaman asli kamu
-    const fungsiLanjutAsli = window.nextPage;
-
-    // 3. Pasang satpam pembatas sebelum pindah halaman
-    window.nextPage = function(step) {
-      // Cari area halaman yang sedang tampil
-      const halamanAktif = document.querySelector('.page-' + step) || 
-                           document.querySelector('#page-' + step) || 
-                           document.querySelectorAll('.container')[step - 1];
-
-      if (halamanAktif) {
-        // Cek apakah ada input required yang masih kosong di halaman ini
-        const belumDiisi = Array.from(halamanAktif.querySelectorAll('[required]')).some(input => {
-          if (input.type === 'radio') {
-            return !halamanAktif.querySelector(`input[name="${input.name}"]:checked`);
-          }
-          return !input.value.trim();
-        });
-
-        // Jika ada yang belum diisi, stop & beri peringatan
-        if (belumDiisi) {
-          alert('Mohon lengkapi semua pertanyaan di halaman ini sebelum melanjutkan!');
-          return false;
-        }
-      }
-
-      // Jika sudah lengkap semua, jalankan fungsi pindah halaman asli
-      if (typeof fungsiLanjutAsli === 'function') {
-        fungsiLanjutAsli(step);
-      }
-    };
   });
 </script>
         
