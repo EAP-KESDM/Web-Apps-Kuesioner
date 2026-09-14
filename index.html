@@ -259,6 +259,7 @@
       width: 18px;
       height: 18px;
       accent-color: #D97706;
+      flex-shrink: 0;
     }
 
     .table-responsive {
@@ -283,12 +284,10 @@
       font-weight: 600;
     }
     
-    /* Memaksa teks di kolom pertanyaan tabel menjadi Rata Kiri */
     td.text-left, th.text-left { 
       text-align: left !important; 
     }
     
-    /* Memaksa sel nomor urut agar tetap di tengah */
     td:first-child, th:first-child {
       text-align: center !important;
     }
@@ -785,9 +784,9 @@
                   <td>23</td>
                   <td class="text-left">Jika layanan EAP tersedia dengan jaminan kerahasiaan, seberapa besar kemungkinan Anda menggunakannya?</td>
                   <td class="text-left">
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q23_kesiapan" value="sangat_mungkin"> Sangat mungkin</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q23_kesiapan" value="mungkin"> Mungkin</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q23_kesiapan" value="ragu_ragu"> Ragu-ragu</label>
+                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="q23_kesiapan" value="sangat_mungkin"> Sangat mungkin</label>
+                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="q23_kesiapan" value="mungkin"> Mungkin</label>
+                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="q23_kesiapan" value="ragu_ragu"> Ragu-ragu</label>
                     <label style="display:block;"><input type="radio" name="q23_kesiapan" value="tidak_mungkin"> Tidak mungkin</label>
                   </td>
                 </tr>
@@ -795,8 +794,8 @@
                   <td>24</td>
                   <td class="text-left">Jika layanan EAP tersedia, apakah Anda bersedia merekomendasikannya kepada rekan kerja?</td>
                   <td class="text-left">
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q24" value="ya"> Ya</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q24" value="mungkin"> Mungkin</label>
+                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="q24" value="ya"> Ya</label>
+                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="q24" value="mungkin"> Mungkin</label>
                     <label style="display:block;"><input type="radio" name="q24" value="tidak"> Tidak</label>
                   </td>
                 </tr>
@@ -804,11 +803,22 @@
                   <td>25</td>
                   <td class="text-left">Jika layanan EAP tersedia, skema pembayaran seperti apa yang disarankan?</td>
                   <td class="text-left">
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q25" value="pembiayaan_kesdm"> Pembiayaan dari Anggaran KESDM untuk layanan konseling internal /Online</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q25" value="pembiayaan_pribadi"> Pembiayaan Pribadi untuk layanan eksternal/ Online</label>
-                    <div style="margin-top:6px;">
-                      <label style="display:inline-block;"><input type="radio" name="q25" value="lainnya"> <span style="text-decoration:underline; color:#2563EB;">Lainnya</span> :</label>
-                      <input type="text" name="q25_lainnya" placeholder=".........." style="border:none; border-bottom:1px solid #94a3b8; outline:none; font-size:12px; width:60%;">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                      <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="q25" value="pembiayaan_kesdm" style="margin-top: 2px; flex-shrink: 0;">
+                        <span>Pembiayaan dari Anggaran KESDM untuk layanan konseling internal / Online</span>
+                      </label>
+                      <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="q25" value="pembiayaan_pribadi" style="margin-top: 2px; flex-shrink: 0;">
+                        <span>Pembiayaan Pribadi untuk layanan eksternal / Online</span>
+                      </label>
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                          <input type="radio" name="q25" value="lainnya" style="flex-shrink: 0;">
+                          <span style="text-decoration: underline; color: #2563EB; font-weight: 500;">Lainnya</span>:
+                        </label>
+                        <input type="text" name="q25_lainnya" placeholder="Tuliskan lainnya..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; flex: 1; min-width: 150px; background: #fff;">
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -816,9 +826,20 @@
                   <td>26</td>
                   <td class="text-left">Tiga kebutuhan layanan yang menurut Anda paling prioritas untuk pegawai Kementerian ESDM (tuliskan nomor layanan dari butir 1–10):</td>
                   <td class="text-left">
-                    <div style="margin-bottom:4px;">1. <input type="text" name="q26_1" placeholder="......" style="border:none; border-bottom:1px solid #94a3b8; outline:none; font-size:12px; width:70%;"></div>
-                    <div style="margin-bottom:4px;">2. <input type="text" name="q26_2" placeholder="......" style="border:none; border-bottom:1px solid #94a3b8; outline:none; font-size:12px; width:70%;"></div>
-                    <div>3. <input type="text" name="q26_3" placeholder="......" style="border:none; border-bottom:1px solid #94a3b8; outline:none; font-size:12px; width:70%;"></div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 600; min-width: 18px;">1.</span>
+                        <input type="text" name="q26_1" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 600; min-width: 18px;">2.</span>
+                        <input type="text" name="q26_2" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 600; min-width: 18px;">3.</span>
+                        <input type="text" name="q26_3" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -1088,7 +1109,7 @@
 
     // 3. Fungsi Kembali ke Halaman Sebelumnya
     function prevPage(currentStep) {
-      // Sembunyikan halaman saat ini
+      // Sembunyikan halaman saat this
       const currentEl = document.getElementById('step-' + currentStep);
       if (currentEl) currentEl.style.display = 'none';
 
