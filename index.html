@@ -1197,6 +1197,34 @@
         });
       });
     }
+    
+    //  Kode Penghubung ke Google Sheets (Taruh di bagian paling bawah dalam tag script)
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzdIP-Y53osNLdtSF07fR-2jcOB4PJISm5ivjcFvsgGT0xhyUbAhRZvfOl5jF7fZR1Eww/exec';
+const form = document.getElementById('surveyForm');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  
+  // Ubah tombol jadi status mengirim agar user tahu
+  const submitBtn = form.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Mengirim...';
+
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+      alert('Terima kasih! Jawaban kuesioner berhasil dikirim.');
+      form.reset();
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      alert('Gagal mengirim jawaban, silakan coba lagi.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Kirim Jawaban';
+    });
+});
+    
+    
   </script>
 </body>
 </html>
