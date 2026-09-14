@@ -282,8 +282,16 @@
       color: white;
       font-weight: 600;
     }
-    td.text-left { text-align: left; }
-    th.text-left { text-align: left; }
+    
+    /* Memaksa teks di kolom pertanyaan tabel menjadi Rata Kiri */
+    td.text-left, th.text-left { 
+      text-align: left !important; 
+    }
+    
+    /* Memaksa sel nomor urut agar tetap di tengah */
+    td:first-child, th:first-child {
+      text-align: center !important;
+    }
     
     td input[type="radio"] {
       width: 18px;
@@ -603,7 +611,7 @@
         <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">II.1 Tingkat Kebutuhan Layanan</p>
           <p style="font-size:12.5px; color:#475569; margin-top:0;">
-            Sejauh mana Anda merasa membutuhkan layanan berikut untuk mendukung kesejahteraan psikologis, kehidupan pribadi, dan kinerja kerja Anda? Berikan Berilah tanda (&check;) atau isi sesuai kondisi Anda:<br>
+            Sejauh mana Anda merasa membutuhkan layanan berikut untuk mendukung kesejahteraan psikologis, kehidupan pribadi, dan kinerja kerja Anda? Berikan tanda (&check;) atau isi sesuai kondisi Anda:<br>
             <small><strong>Skala:</strong> 1 = Tidak membutuhkan sama sekali | 2 = Kurang membutuhkan | 3 = Cukup membutuhkan | 4 = Membutuhkan | 5 = Sangat membutuhkan</small>
           </p>
           
@@ -734,7 +742,7 @@
         <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">II.4 Hambatan Penggunaan Layanan</p>
           <p style="font-size:12.5px; color:#475569; margin-top:0;">
-            Sejauh mana Anda setuju dengan pernyataan berikut sebagai hambatan bagi pegawai untuk menggunakan layanan dukungan psikologis? Berikan Berilah tanda (&check;) atau isi sesuai kondisi Anda:<br>
+            Sejauh mana Anda setuju dengan pernyataan berikut sebagai hambatan bagi pegawai untuk menggunakan layanan dukungan psikologis? Berikan tanda (&check;) atau isi sesuai kondisi Anda:<br>
             <small><strong>Skala:</strong> 1 = Sangat tidak setuju | 2 = Tidak setuju | 3 = Netral | 4 = Setuju | 5 = Sangat setuju</small>
           </p>
           
