@@ -283,27 +283,6 @@
       font-weight: 600;
     }
     td.text-left { text-align: left; }
-
-    /* Perapihan khusus Bagian II.1 */
-    .eap-intro {
-      text-align: justify;
-      text-justify: inter-word;
-      line-height: 1.6;
-      margin-left: 0;
-      margin-right: 0;
-      width: 100%;
-    }
-    .eap-intro small {
-      display: block;
-      text-align: justify;
-      line-height: 1.6;
-    }
-
-    /* Semua teks pada kolom layanan dibuat rata kiri */
-    .eap-service-table td.text-left {
-      text-align: left !important;
-      vertical-align: middle;
-    }
     td input[type="radio"] {
       width: 18px;
       height: 18px;
@@ -412,103 +391,10 @@
       font-weight: 400;
     }
 
-
-    /* Perapihan Bagian II.2 s.d. II.5 (pertanyaan 11–26) */
-    .eap-align-left table {
-      table-layout: fixed;
-      width: 100%;
-    }
-
-    .eap-align-left th,
-    .eap-align-left td {
-      vertical-align: top;
-    }
-
-    .eap-align-left th:nth-child(1),
-    .eap-align-left td:nth-child(1) {
-      width: 42px;
-      text-align: center;
-    }
-
-    .eap-align-left th:nth-child(2),
-    .eap-align-left td:nth-child(2) {
-      text-align: left;
-    }
-
-    /* Kolom pilihan jawaban pada tabel pertanyaan 11–16 dan 23–26 */
-    .eap-align-left table td:nth-child(3) {
-      text-align: left;
-      padding-left: 14px;
-      padding-right: 14px;
-    }
-
-    .eap-align-left table td:nth-child(3) label {
-      display: block;
-      text-align: left;
-      line-height: 1.45;
-    }
-
-    /* Pertanyaan 17–22: kolom skala tetap rapi dan terpusat */
-    .eap-align-left table td:nth-child(n+3),
-    .eap-align-left table th:nth-child(n+3) {
-      text-align: center;
-    }
-
-    /* Khusus tabel pertanyaan pilihan jawaban (3 kolom), kembalikan kolom ketiga ke kiri */
-    .eap-align-left table tr td:nth-child(3):has(label),
-    .eap-align-left table tr td:nth-child(3):has(input[type="text"]) {
-      text-align: left;
-    }
-
-    @media (max-width: 640px) {
-      .eap-align-left table {
-        min-width: 620px;
-      }
-    }
-
-    /* Perapihan khusus BAGIAN III: kolom pernyataan rata kiri */
-    #step-3 .table-responsive th:nth-child(2),
-    #step-3 .table-responsive td.text-left {
-      text-align: left !important;
-    }
-
-    #step-3 .table-responsive th:first-child,
-    #step-3 .table-responsive td:first-child,
-    #step-3 .table-responsive th:nth-child(n+3),
-    #step-3 .table-responsive td:nth-child(n+3) {
-      text-align: center;
-    }
-
     .question-label {
       display: flex !important;
       align-items: flex-start;
       gap: 8px;
-    }
-
-    /* Perapihan tabel Bagian II: pertanyaan & pilihan jawaban rata kiri dan sejajar */
-    #step-2 .table-responsive table th:nth-child(2),
-    #step-2 .table-responsive table td:nth-child(2),
-    #step-2 .table-responsive table th:nth-child(3),
-    #step-2 .table-responsive table td:nth-child(3) {
-      text-align: left !important;
-      vertical-align: top;
-    }
-
-    #step-2 .table-responsive table td:nth-child(1),
-    #step-2 .table-responsive table th:nth-child(1) {
-      vertical-align: top;
-    }
-
-    #step-2 .table-responsive table td:nth-child(3) label {
-      display: block;
-      text-align: left !important;
-      line-height: 1.5;
-      margin-bottom: 6px;
-    }
-
-    #step-2 .table-responsive table td:nth-child(3) input[type="radio"] {
-      vertical-align: middle;
-      margin-right: 4px;
     }
 
     .q-number {
@@ -712,9 +598,9 @@
         <h3 class="section-title">BAGIAN II — KUESIONER KEBUTUHAN LAYANAN EAP</h3>
         
         <!-- II.1 TINGKAT KEBUTUHAN LAYANAN -->
-        <div class="section-box eap-service-table">
+        <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">II.1 Tingkat Kebutuhan Layanan</p>
-          <p class="eap-intro" style="font-size:12.5px; color:#475569; margin-top:0;">
+          <p style="font-size:12.5px; color:#475569; margin-top:0;">
             Sejauh mana Anda merasa membutuhkan layanan berikut untuk mendukung kesejahteraan psikologis, kehidupan pribadi, dan kinerja kerja Anda? Berikan Berilah tanda (&check;) atau isi sesuai kondisi Anda:<br>
             <small><strong>Skala:</strong> 1 = Tidak membutuhkan sama sekali | 2 = Kurang membutuhkan | 3 = Cukup membutuhkan | 4 = Membutuhkan | 5 = Sangat membutuhkan</small>
           </p>
@@ -751,7 +637,7 @@
 
                              <!-- II.2 KESADARAN DAN PENGGUNAAN LAYANAN YANG ADA -->
         
-        <div class="section-box eap-align-left">
+        <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:12px;">II.2 Kesadaran dan Penggunaan Layanan yang Ada</p>
           <div class="table-responsive">
             <table>
@@ -787,7 +673,7 @@
         </div>
 
         <!-- II.3 PREFERENSI BENTUK DAN AKSES LAYANAN -->
-        <div class="section-box eap-align-left">
+        <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:12px;">II.3 Preferensi Bentuk dan Akses Layanan</p>
           <div class="table-responsive">
             <table>
@@ -844,7 +730,7 @@
         </div>
 
         <!-- II.4 HAMBATAN PENGGUNAAN LAYANAN -->
-        <div class="section-box eap-align-left">
+        <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">II.4 Hambatan Penggunaan Layanan</p>
           <p style="font-size:12.5px; color:#475569; margin-top:0;">
             Sejauh mana Anda setuju dengan pernyataan berikut sebagai hambatan bagi pegawai untuk menggunakan layanan dukungan psikologis? Berikan Berilah tanda (&check;) atau isi sesuai kondisi Anda:<br>
