@@ -824,20 +824,56 @@
                 </tr>
                 <tr>
                   <td>26</td>
-                  <td class="text-left">Tiga kebutuhan layanan yang menurut Anda paling prioritas untuk pegawai Kementerian ESDM (tuliskan nomor layanan dari butir 1–10):</td>
+                  <td class="text-left">Tiga kebutuhan layanan yang menurut Anda paling prioritas untuk pegawai Kementerian ESDM (pilih dari butir 1–10):</td>
                   <td class="text-left">
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
                       <div style="display: flex; align-items: center; gap: 8px;">
                         <span style="font-weight: 600; min-width: 18px;">1.</span>
-                        <input type="text" name="q26_1" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                        <select name="q26_1" id="priority-1" class="priority-select" onchange="updatePriorityOptions()" style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font-size: 13px; width: 100%; background: #fff;">
+                          <option value="">-- Pilih Prioritas 1 --</option>
+                          <option value="1">1. Konseling individual untuk masalah psikologis/emosional</option>
+                          <option value="2">2. Konseling untuk masalah keluarga, pernikahan, dan pengasuhan anak</option>
+                          <option value="3">3. Konseling/pendampingan masalah keuangan dan hutang</option>
+                          <option value="4">4. Konsultasi hukum (sengketa keluarga, aset, waris, dsb.)</option>
+                          <option value="5">5. Pendampingan masalah adiksi (alkohol, merokok, penggunaan zat, dll)</option>
+                          <option value="6">6. Pelatihan manajemen stres dan teknik relaksasi</option>
+                          <option value="7">7. Dukungan psikologis pasca-insiden kritis</option>
+                          <option value="8">8. Dukungan psikologis khusus penugasan lapangan berisiko tinggi</option>
+                          <option value="9">9. Layanan pencegahan dan psikoedukasi kesehatan mental</option>
+                          <option value="10">10. Program wellness umum (aktivitas fisik, gizi, tidur, dll)</option>
+                        </select>
                       </div>
                       <div style="display: flex; align-items: center; gap: 8px;">
                         <span style="font-weight: 600; min-width: 18px;">2.</span>
-                        <input type="text" name="q26_2" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                        <select name="q26_2" id="priority-2" class="priority-select" onchange="updatePriorityOptions()" style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font-size: 13px; width: 100%; background: #fff;">
+                          <option value="">-- Pilih Prioritas 2 --</option>
+                          <option value="1">1. Konseling individual untuk masalah psikologis/emosional</option>
+                          <option value="2">2. Konseling untuk masalah keluarga, pernikahan, dan pengasuhan anak</option>
+                          <option value="3">3. Konseling/pendampingan masalah keuangan dan hutang</option>
+                          <option value="4">4. Konsultasi hukum (sengketa keluarga, aset, waris, dsb.)</option>
+                          <option value="5">5. Pendampingan masalah adiksi (alkohol, merokok, penggunaan zat, dll)</option>
+                          <option value="6">6. Pelatihan manajemen stres dan teknik relaksasi</option>
+                          <option value="7">7. Dukungan psikologis pasca-insiden kritis</option>
+                          <option value="8">8. Dukungan psikologis khusus penugasan lapangan berisiko tinggi</option>
+                          <option value="9">9. Layanan pencegahan dan psikoedukasi kesehatan mental</option>
+                          <option value="10">10. Program wellness umum (aktivitas fisik, gizi, tidur, dll)</option>
+                        </select>
                       </div>
                       <div style="display: flex; align-items: center; gap: 8px;">
                         <span style="font-weight: 600; min-width: 18px;">3.</span>
-                        <input type="text" name="q26_3" placeholder="Nomor layanan..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; width: 100%; background: #fff;">
+                        <select name="q26_3" id="priority-3" class="priority-select" onchange="updatePriorityOptions()" style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font-size: 13px; width: 100%; background: #fff;">
+                          <option value="">-- Pilih Prioritas 3 --</option>
+                          <option value="1">1. Konseling individual untuk masalah psikologis/emosional</option>
+                          <option value="2">2. Konseling untuk masalah keluarga, pernikahan, dan pengasuhan anak</option>
+                          <option value="3">3. Konseling/pendampingan masalah keuangan dan hutang</option>
+                          <option value="4">4. Konsultasi hukum (sengketa keluarga, aset, waris, dsb.)</option>
+                          <option value="5">5. Pendampingan masalah adiksi (alkohol, merokok, penggunaan zat, dll)</option>
+                          <option value="6">6. Pelatihan manajemen stres dan teknik relaksasi</option>
+                          <option value="7">7. Dukungan psikologis pasca-insiden kritis</option>
+                          <option value="8">8. Dukungan psikologis khusus penugasan lapangan berisiko tinggi</option>
+                          <option value="9">9. Layanan pencegahan dan psikoedukasi kesehatan mental</option>
+                          <option value="10">10. Program wellness umum (aktivitas fisik, gizi, tidur, dll)</option>
+                        </select>
                       </div>
                     </div>
                   </td>
@@ -994,12 +1030,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>R1</td><td class="text-left">Saya mengalami perlakuan tidak menyenangkan berupa kata-kata atau sikap kasar di tempat kerja*</td><td><input type="radio" name="hse_r1" value="1"></td><td><input type="radio" name="hse_r1" value="2"></td><td><input type="radio" name="hse_r1" value="3"></td><td><input type="radio" name="hse_r1" value="4"></td><td><input type="radio" name="hse_r1" value="5"></td></tr>
+                <tr><td>R1</td><td class="text-left">Saya mengalami perlakuan tidak menyenangkan berupa kata-kata atau sikap kasar di tempat kerja</td><td><input type="radio" name="hse_r1" value="1"></td><td><input type="radio" name="hse_r1" value="2"></td><td><input type="radio" name="hse_r1" value="3"></td><td><input type="radio" name="hse_r1" value="4"></td><td><input type="radio" name="hse_r1" value="5"></td></tr>
                 <tr><td>R2</td><td class="text-left">Hubungan di tempat kerja saya berlangsung baik dan bebas konflik</td><td><input type="radio" name="hse_r2" value="1"></td><td><input type="radio" name="hse_r2" value="2"></td><td><input type="radio" name="hse_r2" value="3"></td><td><input type="radio" name="hse_r2" value="4"></td><td><input type="radio" name="hse_r2" value="5"></td></tr>
               </tbody>
             </table>
           </div>
-  
 
           <!-- 6. Kejelasan Peran -->
           <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">6. Kejelasan Peran</p>
@@ -1050,7 +1085,7 @@
               </thead>
               <tbody>
                 <tr><td>E1</td><td class="text-left">Saya merasa tenang terhadap keselamatan diri saat menjalankan penugasan lapangan</td><td><input type="radio" name="hse_e1" value="1"></td><td><input type="radio" name="hse_e1" value="2"></td><td><input type="radio" name="hse_e1" value="3"></td><td><input type="radio" name="hse_e1" value="4"></td><td><input type="radio" name="hse_e1" value="5"></td></tr>
-                <tr><td>E2</td><td class="text-left">Beban administrasi dan perjalanan dinas mengganggu pemulihan saya setelah penugasan lapangan*</td><td><input type="radio" name="hse_e2" value="1"></td><td><input type="radio" name="hse_e2" value="2"></td><td><input type="radio" name="hse_e2" value="3"></td><td><input type="radio" name="hse_e2" value="4"></td><td><input type="radio" name="hse_e2" value="5"></td></tr>
+                <tr><td>E2</td><td class="text-left">Beban administrasi dan perjalanan dinas mengganggu pemulihan saya setelah penugasan lapangan</td><td><input type="radio" name="hse_e2" value="1"></td><td><input type="radio" name="hse_e2" value="2"></td><td><input type="radio" name="hse_e2" value="3"></td><td><input type="radio" name="hse_e2" value="4"></td><td><input type="radio" name="hse_e2" value="5"></td></tr>
                 <tr><td>E3</td><td class="text-left">Saya merasa unit kerja saya siap menangani dampak psikologis bila terjadi insiden di lokasi kerja</td><td><input type="radio" name="hse_e3" value="1"></td><td><input type="radio" name="hse_e3" value="2"></td><td><input type="radio" name="hse_e3" value="3"></td><td><input type="radio" name="hse_e3" value="4"></td><td><input type="radio" name="hse_e3" value="5"></td></tr>
                 <tr><td>E4</td><td class="text-left">Ketidakjelasan masa depan jabatan (misal akibat rotasi/mutasi/konsolidasi/transformasi jabatan fungsional) menambah beban pikiran saya</td><td><input type="radio" name="hse_e4" value="1"></td><td><input type="radio" name="hse_e4" value="2"></td><td><input type="radio" name="hse_e4" value="3"></td><td><input type="radio" name="hse_e4" value="4"></td><td><input type="radio" name="hse_e4" value="5"></td></tr>
               </tbody>
@@ -1105,7 +1140,7 @@
 
     // 3. Fungsi Kembali ke Halaman Sebelumnya
     function prevPage(currentStep) {
-      // Sembunyikan halaman saat this
+      // Sembunyikan halaman saat ini
       const currentEl = document.getElementById('step-' + currentStep);
       if (currentEl) currentEl.style.display = 'none';
 
@@ -1122,6 +1157,45 @@
 
       // Automatic Scroll Layar ke atas
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 4. Fungsi Sinkronisasi Dropdown Prioritas (Otomatis menghilangkan opsi yang sudah dipilih di nomor lain)
+    const serviceList = [
+      { id: "1", text: "1. Konseling individual untuk masalah psikologis/emosional" },
+      { id: "2", text: "2. Konseling untuk masalah keluarga, pernikahan, dan pengasuhan anak" },
+      { id: "3", text: "3. Konseling/pendampingan masalah keuangan dan hutang" },
+      { id: "4", text: "4. Konsultasi hukum (sengketa keluarga, aset, waris, dsb.)" },
+      { id: "5", text: "5. Pendampingan masalah adiksi (alkohol, merokok, penggunaan zat, dll)" },
+      { id: "6", text: "6. Pelatihan manajemen stres dan teknik relaksasi" },
+      { id: "7", text: "7. Dukungan psikologis pasca-insiden kritis" },
+      { id: "8", text: "8. Dukungan psikologis khusus penugasan lapangan berisiko tinggi" },
+      { id: "9", text: "9. Layanan pencegahan dan psikoedukasi kesehatan mental" },
+      { id: "10", text: "10. Program wellness umum (aktivitas fisik, gizi, tidur, dll)" }
+    ];
+
+    function updatePriorityOptions() {
+      const selects = document.querySelectorAll('.priority-select');
+      const selectedValues = Array.from(selects).map(s => s.value);
+
+      selects.forEach((select, index) => {
+        const currentValue = select.value;
+        
+        // Kosongkan opsi kecuali placeholder awal
+        select.innerHTML = `<option value="">-- Pilih Prioritas ${index + 1} --</option>`;
+
+        serviceList.forEach(service => {
+          // Masukkan opsi jika belum dipilih di dropdown lain, atau jika itu adalah nilai yang sedang dipilih dropdown ini sendiri
+          if (!selectedValues.includes(service.id) || service.id === currentValue) {
+            const option = document.createElement('option');
+            option.value = service.id;
+            option.textContent = service.text;
+            if (service.id === currentValue) {
+              option.selected = true;
+            }
+            select.appendChild(option);
+          }
+        });
+      });
     }
   </script>
 </body>
