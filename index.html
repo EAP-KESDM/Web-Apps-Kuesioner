@@ -1199,30 +1199,39 @@
     }
     
     //  Kode Penghubung ke Google Sheets (Taruh di bagian paling bawah dalam tag script)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbz_yCZy-mLNZY1nCj09cGWeqcHxoKuM8-O7zXSpyr1qWqv25ss5XnlcuIjbT6am9eICRA/exec';
-const form = document.getElementById('surveyForm');
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9dCQUTfF4GhqblpGKN2IfEAvkhbpQ4gQjHvADgwaL3kUWGqCXw/exec';
+    const form = document.getElementById('surveyForm');
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  
-  // Ubah tombol jadi status mengirim agar user tahu
-  const submitBtn = form.querySelector('.btn-submit');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Mengirim...';
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('.btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Mengirim...';
 
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
-      alert('Terima kasih! Jawaban kuesioner berhasil dikirim.');
-      form.reset();
-      location.reload();
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      alert('Gagal mengirim jawaban, silakan coba lagi.');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Kirim Jawaban';
+      // Buat FormData dari form
+      const formData = new FormData(form);
+
+      // Ambil semua checkbox q13[] yang dicentang user dan gabungkan dengan koma
+      const q13Checked = form.querySelectorAll('input[name="q13[]"]:checked');
+      const q13Values = Array.from(q13Checked).map(cb => cb.value);
+      
+      // Masukkan ke formData sebagai 'q13' (tanpa kurung siku)
+      formData.set('q13', q13Values.join(', '));
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          alert('Terima kasih! Jawaban kuesioner berhasil dikirim.');
+          form.reset();
+          location.reload();
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert('Gagal mengirim jawaban, silakan coba lagi.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Kirim Jawaban';
+        });
     });
-});
     
     
   </script>
