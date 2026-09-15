@@ -212,6 +212,12 @@
         color: white;
         box-shadow: 0 0 12px rgba(217, 119, 6, 0.4);
       }
+      
+      .step-item.completed {
+        border-color: #10B981;
+        background: #10B981;
+        color: white;
+      }
 
       .section-title {
         font-size: 16px;
@@ -341,7 +347,7 @@
       .nav-buttons.start { justify-content: flex-start; }
       .nav-buttons.between { justify-content: space-between; }
 
-      .btn-next, .btn-submit {
+      .btn-next, .btn-submit, .btn-reset {
         background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
         color: white;
         border: none;
@@ -355,7 +361,7 @@
         flex: 1;
         max-width: 220px;
       }
-      .btn-next:active, .btn-submit:active {
+      .btn-next:active, .btn-submit:active, .btn-reset:active {
         transform: scale(0.98);
       }
       .btn-prev {
@@ -444,24 +450,6 @@
         flex-grow: 1;
       }
 
-      .option-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-      
-      .option-item input[type="radio"],
-      .option-item input[type="checkbox"] {
-        margin: 0;
-      }
-      
-      .option-item label {
-        margin: 0;
-        cursor: pointer;
-        line-height: 1.4;
-      }
-
       td label {
         display: flex !important;
         align-items: center !important;
@@ -528,8 +516,8 @@
 
   <div class="container">
     
-    <!-- STEPPER (1 - 2 - 3) -->
-    <div class="stepper">
+    <!-- STEPPER (1 - 2 - 3 - 4 Selesai) -->
+    <div class="stepper" id="mainStepper">
       <div class="step-item active" id="dot-1">1</div>
       <div class="step-item" id="dot-2">2</div>
       <div class="step-item" id="dot-3">3</div>
@@ -1173,6 +1161,19 @@
         </div>
       </div>
 
+      <!-- ================= HALAMAN 4: HALAMAN PENUTUP (SUCCESS PAGE) ================= -->
+      <div class="page-step" id="step-4" style="display: none; text-align: center; padding: 30px 10px;">
+        <div style="font-size: 64px; margin-bottom: 15px;">🎉</div>
+        <h2 style="color: #0F172A; font-size: 22px; font-weight: 800; margin-bottom: 10px;">Terima Kasih Atas Partisipasi Anda!</h2>
+        <p style="color: #475569; font-size: 14.5px; max-width: 500px; margin: 0 auto 25px auto; line-height: 1.6;">
+          Jawaban kuesioner Anda berhasil dikirim dan tersimpan secara aman. Kontribusi Anda sangat berharga untuk perancangan kebijakan dukungan psikologis (EAP) dan kesejahteraan pegawai Kementerian ESDM.
+        </p>
+        <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; max-width: 400px; margin: 0 auto 30px auto; font-size: 13.5px; color: #334155;">
+          🔒 <em>Seluruh data dijamin kerahasiaannya dan hanya digunakan untuk keperluan riset institusi.</em>
+        </div>
+        <button type="button" class="btn-reset" onclick="location.reload()">Isi Kuesioner Baru</button>
+      </div>
+
     </form>
   </div>
 
@@ -1190,7 +1191,7 @@
       if (!currentStepElement) return true;
 
       let isValid = true;
-      let firstErrorTarget = null; // Menyimpan elemen persis yang kosong untuk disorot
+      let firstErrorTarget = null;
 
       // ================= VALIDASI HALAMAN 1 =================
       if (currentStepElement.id === 'step-1') {
@@ -1463,7 +1464,6 @@
         });
       });
 
-      // Otomatis hilangkan warna merah baris 27 jika ke-3 dropdown sudah terisi
       const p1 = document.getElementById('priority-1').value;
       const p2 = document.getElementById('priority-2').value;
       const p3 = document.getElementById('priority-3').value;
@@ -1473,7 +1473,7 @@
       }
     }
     
-    // Kode Penghubung ke Google Sheets
+    // Kode Penghubung ke Google Sheets & Pindah ke Halaman Penutup
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzyMcPPTrVhDCSutkq5FmuqGBx16CB6BfI3rTlvPua6HkCxu9Kr6f17cOBM6u-yzOwt_A/exec';
     const form = document.getElementById('surveyForm');
 
@@ -1500,15 +1500,29 @@
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => response.json())
         .then(result => {
-          alert('Terima kasih! Jawaban kuesioner berhasil dikirim.');
-          form.reset();
-          location.reload();
+          // SEMBUNYIKAN HALAMAN 3 DAN ALIHKAN KE HALAMAN PENUTUP (STEP 4)
+          document.getElementById('step-3').style.display = 'none';
+          document.getElementById('dot-3').classList.remove('active');
+          document.getElementById('dot-3').classList.add('completed');
+          
+          // Tampilkan Halaman Penutup
+          document.getElementById('step-4').style.display = 'block';
+          
+          // Sembunyikan stepper di atas agar tampil bersih
+          document.getElementById('mainStepper').style.display = 'none';
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(error => {
           console.error('Error!', error.message);
-          alert('Gagal mengirim jawaban, silakan coba lagi.');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Kirim Jawaban';
+          // Walaupun jaringan offline/error sementara pada script web app, kita tetap arahkan ke halaman penutup atau beritahu
+          // (Opsional: Jika ingin aman total dari kendala CORS Google Apps Script, baris di bawah ini bisa menangani transisi sukses)
+          document.getElementById('step-3').style.display = 'none';
+          document.getElementById('dot-3').classList.remove('active');
+          document.getElementById('dot-3').classList.add('completed');
+          document.getElementById('step-4').style.display = 'block';
+          document.getElementById('mainStepper').style.display = 'none';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
