@@ -410,45 +410,14 @@
         margin-bottom: 25px;
       }
 
-      /* Styling Kotak Kutipan & Pengantar */
       .intro-card {
-        margin-bottom: 20px;
+        margin: 0;
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 12px;
         padding: 20px 25px;
         text-align: left;
-      }
-
-      .quote-box {
-        margin: 0;
-        background: rgba(217, 119, 6, 0.15);
-        backdrop-filter: blur(8px);
-        border-left: 4px solid #ffb74d;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        border-right: 1px solid rgba(255, 255, 255, 0.15);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 0 12px 12px 0;
-        padding: 18px 22px;
-        text-align: left;
-        margin-bottom: 20px;
-      }
-      
-      .quote-text {
-        font-size: 0.95rem;
-        font-style: italic;
-        color: #fff;
-        line-height: 1.6;
-        margin-bottom: 8px;
-      }
-
-      .quote-author {
-        font-size: 0.85rem;
-        color: #ffb74d;
-        font-weight: 600;
-        text-align: right;
-        margin: 0;
       }
 
       .intro-title {
@@ -529,29 +498,18 @@
     </div>
   </header>
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER (KEMBALI BERSIH SEPERTI GAMBAR 2) -->
   <div class="header-banner">
     <span class="badge-tag">KUESIONER PENELITIAN</span>
     <h1 class="main-title">Kebutuhan Layanan Employee Assistance Program dan Stres Kerja Pegawai</h1>
     <h2 class="sub-title">Kementerian Energi dan Sumber Daya Mineral</h2>
 
-    <!-- KOTAK KUTIPAN MOTIVASI -->
-    <div class="quote-box">
-      <p class="quote-text">
-        &ldquo;Sebagian besar hal penting di dunia ini dicapai oleh orang-orang yang terus berusaha ketika tampaknya tidak ada harapan sama sekali.&rdquo;
-      </p>
-      <p class="quote-author">— Dale Carnegie</p>
-    </div>
-
     <div class="intro-card">
       <div class="intro-header">
         <h3 class="intro-title">📋 Lembar Pengantar dan Persetujuan</h3>
       </div>
-      <p class="intro-text" style="margin-bottom: 12px;">
-        Di balik setiap tugas dan tantangan pekerjaan, ketangguhan Bapak/Ibu adalah kekuatan utama instansi ini. Suara Anda hari ini sangat berarti untuk perbaikan layanan dukungan psikologis (EAP) ke depan.
-      </p>
       <p class="intro-text">
-        Kuesioner ini disusun untuk mengidentifikasi kebutuhan layanan dukungan psikologis (<em>Employee Assistance Program/EAP</em>) dan tingkat stres kerja pegawai Kementerian ESDM. Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan. Dengan mengisi kuesioner ini, Bapak/Ibu menyatakan persetujuan untuk berpartisipasi secara sukarela. Teruslah melangkah, dan salam sehat selalu.
+        Kuesioner ini disusun untuk mengidentifikasi kebutuhan layanan dukungan psikologis (<em>Employee Assistance Program/EAP</em>) dan tingkat stres kerja pegawai Kementerian ESDM. Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan. Dengan mengisi kuesioner ini, Bapak/Ibu menyatakan persetujuan untuk berpartisipasi secara sukarela. Tidak ada jawaban benar atau salah. Mohon diisi secara jujur sesuai pengalaman.
       </p>
     </div>
   </div>
@@ -1203,16 +1161,29 @@
         </div>
       </div>
 
-      <!-- ================= HALAMAN 4: HALAMAN PENUTUP (SUCCESS PAGE) ================= -->
-      <div class="page-step" id="step-4" style="display: none; text-align: center; padding: 30px 10px;">
-        <div style="font-size: 64px; margin-bottom: 15px;">🎉</div>
+      <!-- ================= HALAMAN 4: HALAMAN PENUTUP (SUCCESS PAGE DENGAN KUTIPAN) ================= -->
+      <div class="page-step" id="step-4" style="display: none; text-align: center; padding: 20px 10px;">
+        <div style="font-size: 54px; margin-bottom: 10px;">🎉</div>
         <h2 style="color: #0F172A; font-size: 22px; font-weight: 800; margin-bottom: 10px;">Terima Kasih Atas Partisipasi Anda!</h2>
-        <p style="color: #475569; font-size: 14.5px; max-width: 500px; margin: 0 auto 25px auto; line-height: 1.6;">
+        
+        <p style="color: #475569; font-size: 14px; max-width: 520px; margin: 0 auto 20px auto; line-height: 1.6;">
           Jawaban kuesioner Anda berhasil dikirim dan tersimpan secara aman. Kontribusi Anda sangat berharga untuk perancangan kebijakan dukungan psikologis (EAP) dan kesejahteraan pegawai Kementerian ESDM.
         </p>
-        <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 16px; border-radius: 12px; max-width: 400px; margin: 0 auto 30px auto; font-size: 13.5px; color: #334155;">
+
+        <!-- KOTAK KUTIPAN DI HALAMAN PENUTUP -->
+        <div style="background: #F8FAFC; border-left: 4px solid #D97706; border: 1px solid var(--border-color); border-left-width: 4px; padding: 16px 20px; border-radius: 10px; max-width: 520px; margin: 0 auto 20px auto; text-align: left;">
+          <p style="font-size: 13.5px; font-style: italic; color: #334155; line-height: 1.5; margin: 0 0 8px 0;">
+            &ldquo;Sebagian besar hal penting di dunia ini dicapai oleh orang-orang yang terus berusaha ketika tampaknya tidak ada harapan sama sekali. Di balik setiap tugas dan tantangan pekerjaan, ketangguhan Bapak/Ibu adalah kekuatan utama instansi ini. Suara Anda hari ini sangat berarti, teruslah melangkah, dan salam sehat selalu.&rdquo;
+          </p>
+          <p style="font-size: 12.5px; color: #D97706; font-weight: 700; text-align: right; margin: 0;">
+            — Dale Carnegie & Tim Riset
+          </p>
+        </div>
+
+        <div style="background: #F1F5F9; border: 1px solid var(--border-color); padding: 12px; border-radius: 10px; max-width: 400px; margin: 0 auto 25px auto; font-size: 13px; color: #475569;">
           🔒 <em>Seluruh data dijamin kerahasiaannya dan hanya digunakan untuk keperluan riset institusi.</em>
         </div>
+
         <button type="button" class="btn-reset" onclick="location.reload()">Isi Kuesioner Baru</button>
       </div>
 
