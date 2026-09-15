@@ -1122,6 +1122,7 @@
   <!-- SCRIPT NAVIGASI & VALIDASI -->
   <script>
     // Fungsi Validasi Otomatis Per Halaman & Tanda Merah
+
 function validatePage() {
   let currentStepElement = null;
   if (document.getElementById('step-1').style.display !== 'none') {
@@ -1137,8 +1138,8 @@ function validatePage() {
   let isValid = true;
   let firstErrorElement = null;
 
-  // 1. Cek input teks dan select BIASA (Kecuali input teks "Lainnya" khusus q25_lainnya)
-  const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="q25_lainnya"]), select');
+  // 1. Cek input teks dan select BIASA (Kecuali eap_terbuka dan q25_lainnya yang bersifat opsional)
+  const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="eap_terbuka"]):not([name="q25_lainnya"]), select');
   requiredFields.forEach(field => {
     field.classList.remove('error-input');
     if (!field.value.trim()) {
@@ -1199,7 +1200,7 @@ function validatePage() {
 
   return true;
 }
-
+    
     
     // Efek Scroll Bar Kuning Header
     window.addEventListener('scroll', function() {
