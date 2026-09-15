@@ -5,66 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
+    /* Styling untuk menandai elemen yang error/belum diisi */
+    .error-input {
+      border: 2px solid #ef4444 !important;
+      background-color: #fef2f2 !important;
+    }
 
-/* Styling untuk menandai elemen yang error/belum diisi */
-.error-input {
-  border: 2px solid #ef4444 !important;
-  background-color: #fef2f2 !important;
-}
-
-.error-label {
-  color: #ef4444;
-  font-weight: bold;
-}
+    .error-label {
+      color: #ef4444;
+      font-weight: bold;
+    }
     
     .section-box p:not(:first-child) {
-     text-align: left !important;
-    margin-top: 4px;
-    margin-bottom: 12px;
-    line-height: 1.5;
-}
+      text-align: left !important;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
     
-/* Container Partikel melayang di background */
-.bg-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
+    /* Container Partikel melayang di background */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  bottom: -30px;
-  animation: floatUp 12s infinite linear;
-}
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      bottom: -30px;
+      animation: floatUp 12s infinite linear;
+    }
 
-.p1  { left: 5%;  width: 8px;  height: 8px;  background: #e67e22; animation-duration: 9s;  animation-delay: 0s;   opacity: 0.6; }
-.p2  { left: 12%; width: 14px; height: 14px; background: #3498db; animation-duration: 13s; animation-delay: 2s;   opacity: 0.4; }
-.p3  { left: 20%; width: 6px;  height: 6px;  background: #f1c40f; animation-duration: 8s;  animation-delay: 4s;   opacity: 0.7; }
-.p4  { left: 28%; width: 12px; height: 12px; background: #d35400; animation-duration: 11s; animation-delay: 1s;   opacity: 0.5; }
-.p5  { left: 35%; width: 9px;  height: 9px;  background: #2980b9; animation-duration: 14s; animation-delay: 5s;   opacity: 0.6; }
-.p6  { left: 42%; width: 15px; height: 15px; background: #e67e22; animation-duration: 10s; animation-delay: 3s;   opacity: 0.4; }
-.p7  { left: 50%; width: 7px;  height: 7px;  background: #f39c12; animation-duration: 9s;  animation-delay: 6s;   opacity: 0.7; }
-.p8  { left: 58%; width: 11px; height: 11px; background: #3498db; animation-duration: 12s; animation-delay: 0.5s; opacity: 0.5; }
-.p9  { left: 65%; width: 13px; height: 13px; background: #d35400; animation-duration: 15s; animation-delay: 2.5s; opacity: 0.4; }
-.p10 { left: 73%; width: 8px;  height: 8px;  background: #f1c40f; animation-duration: 10s; animation-delay: 4.5s; opacity: 0.6; }
-.p11 { left: 80%; width: 16px; height: 16px; background: #2980b9; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.35; }
-.p12 { left: 87%; width: 10px; height: 10px; background: #e67e22; animation-duration: 11s; animation-delay: 3.5s; opacity: 0.55; }
-.p13 { left: 93%; width: 7px;  height: 7px;  background: #3498db; animation-duration: 8s;  animation-delay: 5.5s; opacity: 0.65; }
-.p14 { left: 15%; width: 10px; height: 10px; background: #f39c12; animation-duration: 12s; animation-delay: 7s;   opacity: 0.5; }
-.p15 { left: 78%; width: 6px;  height: 6px;  background: #d35400; animation-duration: 9s;  animation-delay: 6.5s; opacity: 0.7; }
+    .p1  { left: 5%;  width: 8px;  height: 8px;  background: #e67e22; animation-duration: 9s;  animation-delay: 0s;   opacity: 0.6; }
+    .p2  { left: 12%; width: 14px; height: 14px; background: #3498db; animation-duration: 13s; animation-delay: 2s;   opacity: 0.4; }
+    .p3  { left: 20%; width: 6px;  height: 6px;  background: #f1c40f; animation-duration: 8s;  animation-delay: 4s;   opacity: 0.7; }
+    .p4  { left: 28%; width: 12px; height: 12px; background: #d35400; animation-duration: 11s; animation-delay: 1s;   opacity: 0.5; }
+    .p5  { left: 35%; width: 9px;  height: 9px;  background: #2980b9; animation-duration: 14s; animation-delay: 5s;   opacity: 0.6; }
+    .p6  { left: 42%; width: 15px; height: 15px; background: #e67e22; animation-duration: 10s; animation-delay: 3s;   opacity: 0.4; }
+    .p7  { left: 50%; width: 7px;  height: 7px;  background: #f39c12; animation-duration: 9s;  animation-delay: 6s;   opacity: 0.7; }
+    .p8  { left: 58%; width: 11px; height: 11px; background: #3498db; animation-duration: 12s; animation-delay: 0.5s; opacity: 0.5; }
+    .p9  { left: 65%; width: 13px; height: 13px; background: #d35400; animation-duration: 15s; animation-delay: 2.5s; opacity: 0.4; }
+    .p10 { left: 73%; width: 8px;  height: 8px;  background: #f1c40f; animation-duration: 10s; animation-delay: 4.5s; opacity: 0.6; }
+    .p11 { left: 80%; width: 16px; height: 16px; background: #2980b9; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.35; }
+    .p12 { left: 87%; width: 10px; height: 10px; background: #e67e22; animation-duration: 11s; animation-delay: 3.5s; opacity: 0.55; }
+    .p13 { left: 93%; width: 7px;  height: 7px;  background: #3498db; animation-duration: 8s;  animation-delay: 5.5s; opacity: 0.65; }
+    .p14 { left: 15%; width: 10px; height: 10px; background: #f39c12; animation-duration: 12s; animation-delay: 7s;   opacity: 0.5; }
+    .p15 { left: 78%; width: 6px;  height: 6px;  background: #d35400; animation-duration: 9s;  animation-delay: 6.5s; opacity: 0.7; }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.6; }
-  100% { transform: translateY(-105vh) translateX(25px); opacity: 0; }
-}
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-105vh) translateX(25px); opacity: 0; }
+    }
 
     :root {
       --esdm-yellow: #FFEC00;
@@ -306,7 +305,7 @@
       text-align: left !important; 
     }
   
-  th.text-left {
+    th.text-left {
       text-align: center !important;
     }  
     
@@ -506,7 +505,7 @@
         <div class="section-box">
           <div class="form-group">
             <label class="form-label">1. Unit Kerja Eselon I</label>
-            <select name="eselon">
+            <select name="eselonn">
               <option value="">-- Pilih Eselon I --</option>
               <option value="Sekretariat Jenderal">Sekretariat Jenderal</option>
               <option value="Ditjen Migas">Ditjen Migas</option>
@@ -720,11 +719,11 @@
                   <td class="text-left">Bentuk layanan yang paling Anda pilih (boleh pilih lebih dari satu)</td>
                   <td class="text-left">
                     <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling tatap muka individual"> Konseling tatap muka individual</label>
-                            <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via telepon"> Konseling via telepon</label>
-                            <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via video call/online"> Konseling via video call/online</label>
-                            <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via chat tertulis"> Konseling via chat tertulis</label>
-                            <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Kegiatan kelompok/edukasi"> Kegiatan kelompok/edukasi</label>
-                            <label style="display:block;"><input type="checkbox" name="q13[]" value="Aplikasi/gawai mandiri"> Aplikasi/gawai mandiri</label>
+                    <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via telepon"> Konseling via telepon</label>
+                    <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via video call/online"> Konseling via video call/online</label>
+                    <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Konseling via chat tertulis"> Konseling via chat tertulis</label>
+                    <label style="display:block; margin-bottom:4px;"><input type="checkbox" name="q13[]" value="Kegiatan kelompok/edukasi"> Kegiatan kelompok/edukasi</label>
+                    <label style="display:block;"><input type="checkbox" name="q13[]" value="Aplikasi/gawai mandiri"> Aplikasi/gawai mandiri</label>
                   </td>
                 </tr>
                 <tr>
@@ -762,7 +761,7 @@
         <!-- II.4 HAMBATAN PENGGUNAAN LAYANAN -->
         <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">II.4 Hambatan Penggunaan Layanan</p>
-            <p style="font-size: 12.5px; color: #475569; text-align: left; margin-top: 4px; margin-bottom: 12px;">
+          <p style="font-size: 12.5px; color: #475569; text-align: left; margin-top: 4px; margin-bottom: 12px;">
             Sejauh mana Anda setuju dengan pernyataan berikut sebagai hambatan bagi pegawai untuk menggunakan layanan dukungan psikologis? Berikan tanda (&check;) atau isi sesuai kondisi Anda:<br>
             <small><strong>Skala:</strong> 1 = Sangat tidak setuju | 2 = Tidak setuju | 3 = Netral | 4 = Setuju | 5 = Sangat setuju</small>
           </p>
@@ -908,7 +907,7 @@
         <hr class="page-divider">
         <div class="nav-buttons between">
           <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
-        <button type="button" class="btn-next" onclick="if(validatePage()) { nextPage(1); }">Selanjutnya &rarr;</button>
+          <button type="button" class="btn-next" onclick="if(validatePage()) { nextPage(2); }">Selanjutnya &rarr;</button>
         </div>
       </div>
 
@@ -920,8 +919,8 @@
         <!-- III.A SKALA STRES YANG DIRASAKAN (PSS-10) -->
         <div class="section-box">
           <p style="font-size:14px; font-weight:bold; margin-bottom:4px;">III.A Skala Stres yang Dirasakan</p>
-            <p style="font-size: 12.5px; color: #475569; text-align: left; margin-top: 4px; margin-bottom: 12px;">
-          <strong>Petunjuk:</strong> Pertanyaan berikut menanyakan perasaan dan pikiran Anda selama <span style="text-decoration:underline;">1 (Satu) bulan terakhir</span>. Nyatakan seberapa sering Anda merasakan hal berikut. Berikan tanda pada pilihan Anda:<br>
+          <p style="font-size: 12.5px; color: #475569; text-align: left; margin-top: 4px; margin-bottom: 12px;">
+            <strong>Petunjuk:</strong> Pertanyaan berikut menanyakan perasaan dan pikiran Anda selama <span style="text-decoration:underline;">1 (Satu) bulan terakhir</span>. Nyatakan seberapa sering Anda merasakan hal berikut. Berikan tanda pada pilihan Anda:<br>
             <small><strong>Skala:</strong> 0 = Tidak pernah | 1 = Hampir tidak pernah | 2 = Kadang-kadang | 3 = Cukup sering | 4 = Sangat sering</small>
           </p>
           
@@ -932,11 +931,6 @@
                   <th style="width: 40px;">No</th>
                   <th class="text-left">Pernyataan</th>
                   <th style="width: 30px;">0</th>
-                  <style>
-                    /* Custom styling khusus tabel PSS & HSE agar rapi */
-                    .table-responsive th { padding: 8px 4px; text-align: center; }
-                    .table-responsive td { padding: 8px 4px; text-align: center; }
-                  </style>
                   <th style="width: 30px;">1</th>
                   <th style="width: 30px;">2</th>
                   <th style="width: 30px;">3</th>
@@ -1094,7 +1088,7 @@
             </table>
           </div>
 
-          <!-- 8. Modul Konteks ESDM (tambahan spesifik instansi) -->
+          <!-- 8. Modul Konteks ESDM -->
           <p style="font-size:13px; font-weight:bold; margin: 15px 0 5px 0; color:#1E293B;">8. Modul Konteks ESDM (tambahan spesifik instansi)</p>
           <div class="table-responsive">
             <table>
@@ -1118,63 +1112,83 @@
         <hr class="page-divider">
         <div class="nav-buttons between">
           <button type="button" class="btn-prev" onclick="prevPage(3)">&larr; Kembali</button>
-         <button type="button" class="btn-submit" onclick="if(validatePage()) { document.getElementById('surveyForm').submit(); }">Kirim Jawaban</button>
+          <button type="button" class="btn-submit" onclick="if(validatePage()) { document.getElementById('surveyForm').submit(); }">Kirim Jawaban</button>
         </div>
       </div>
 
     </form>
   </div>
 
-  <!-- SCRIPT NAVIGASI UTAMA -->
+  <!-- SCRIPT NAVIGASI & VALIDASI -->
   <script>
-
-function validatePage() {
-  // Ambil semua elemen penting di halaman aktif yang wajib diisi (misal yang punya atribut required)
-  const inputs = document.querySelectorAll('.active-page [required]');
-  let isValid = true;
-  let firstErrorElement = null;
-
-  inputs.forEach(input => {
-    // Hapus tanda merah dulu sebelum dicek ulang
-    input.classList.remove('error-input');
-
-    // Cek apakah input kosong atau untuk radio button belum ada yang dicentang
-    if (!input.value && input.type !== 'radio') {
-      isValid = false;
-      input.classList.add('error-input');
-      if (!firstErrorElement) firstErrorElement = input;
-    } 
-    else if (input.type === 'radio') {
-      // Khusus radio button (pilihan ganda), cek kelompoknya
-      const groupName = input.name;
-      const isGroupChecked = document.querySelector(`input[name="${groupName}"]:checked`);
-      if (!isGroupChecked) {
-        isValid = false;
-        // Beri tanda merah pada kontainer/label di sekitarnya
-        const parentBox = input.closest('.section-box') || input.parentElement;
-        parentBox.classList.add('error-input');
-        if (!firstErrorElement) firstErrorElement = input;
+    // Fungsi Validasi Otomatis Per Halaman & Tanda Merah
+    function validatePage() {
+      let currentStepElement = null;
+      if (document.getElementById('step-1').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-1');
+      } else if (document.getElementById('step-2').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-2');
+      } else if (document.getElementById('step-3').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-3');
       }
+
+      if (!currentStepElement) return true;
+
+      let isValid = true;
+      let firstErrorElement = null;
+
+      // 1. Cek input teks dan select
+      const requiredFields = currentStepElement.querySelectorAll('input[type="text"], select');
+      requiredFields.forEach(field => {
+        field.classList.remove('error-input');
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('error-input');
+          if (!firstErrorElement) firstErrorElement = field;
+        }
+      });
+
+      // 2. Cek kelompok Radio Button
+      const radioGroups = {};
+      currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
+        if (!radioGroups[radio.name]) {
+          radioGroups[radio.name] = [];
+        }
+        radioGroups[radio.name].push(radio);
+      });
+
+      for (let groupName in radioGroups) {
+        const radios = radioGroups[groupName];
+        const sectionBox = radios[0].closest('.section-box');
+        const isChecked = radios.some(radio => radio.checked);
+        
+        if (!isChecked) {
+          isValid = false;
+          if (sectionBox) {
+            sectionBox.classList.add('error-input');
+          }
+          if (!firstErrorElement) {
+            firstErrorElement = sectionBox || radios[0];
+          }
+        } else {
+          if (sectionBox) {
+            sectionBox.classList.remove('error-input');
+          }
+        }
+      }
+
+      if (!isValid) {
+        alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
+        if (firstErrorElement) {
+          firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return false;
+      }
+
+      return true;
     }
-  });
 
-  if (!isValid) {
-    alert('⚠️ Mohon isi semua pertanyaan yang ditandai merah sebelum melanjutkan.');
-    if (firstErrorElement) {
-      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstErrorElement.focus();
-    }
-    return false; // Mencegah pindah halaman
-  }
-
-  return true; // Lanjut ke halaman berikutnya jika sudah lengkap
-}
-    
-
-
-
-    
-    // 1. Efek Scroll Bar Kuning Header
+    // Efek Scroll Bar Kuning Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.header-container');
       if (header) {
@@ -1186,16 +1200,14 @@ function validatePage() {
       }
     });
 
-    // 2. Fungsi Pindah Halaman Selanjutnya (Tanpa Kunci / Bebas Pindah)
+    // Fungsi Pindah Halaman Selanjutnya
     function nextPage(currentStep) {
-      // Sembunyikan halaman saat ini
       const currentEl = document.getElementById('step-' + currentStep);
       if (currentEl) currentEl.style.display = 'none';
 
       const currentDot = document.getElementById('dot-' + currentStep);
       if (currentDot) currentDot.classList.remove('active');
 
-      // Tampilkan halaman berikutnya
       const nextStep = currentStep + 1;
       const nextEl = document.getElementById('step-' + nextStep);
       if (nextEl) nextEl.style.display = 'block';
@@ -1203,20 +1215,17 @@ function validatePage() {
       const nextDot = document.getElementById('dot-' + nextStep);
       if (nextDot) nextDot.classList.add('active');
 
-      // Automatic Scroll Layar ke atas
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 3. Fungsi Kembali ke Halaman Sebelumnya
+    // Fungsi Kembali ke Halaman Sebelumnya
     function prevPage(currentStep) {
-      // Sembunyikan halaman saat ini
       const currentEl = document.getElementById('step-' + currentStep);
       if (currentEl) currentEl.style.display = 'none';
 
       const currentDot = document.getElementById('dot-' + currentStep);
       if (currentDot) currentDot.classList.remove('active');
 
-      // Tampilkan halaman sebelumnya
       const prevStep = currentStep - 1;
       const prevEl = document.getElementById('step-' + prevStep);
       if (prevEl) prevEl.style.display = 'block';
@@ -1224,11 +1233,10 @@ function validatePage() {
       const prevDot = document.getElementById('dot-' + prevStep);
       if (prevDot) prevDot.classList.add('active');
 
-      // Automatic Scroll Layar ke atas
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 4. Fungsi Sinkronisasi Dropdown Prioritas (Otomatis menghilangkan opsi yang sudah dipilih di nomor lain)
+    // Sinkronisasi Dropdown Prioritas
     const serviceList = [
       { id: "1", text: "1. Konseling individual untuk masalah psikologis/emosional" },
       { id: "2", text: "2. Konseling untuk masalah keluarga, pernikahan, dan pengasuhan anak" },
@@ -1248,12 +1256,9 @@ function validatePage() {
 
       selects.forEach((select, index) => {
         const currentValue = select.value;
-        
-        // Kosongkan opsi kecuali placeholder awal
         select.innerHTML = `<option value="">-- Pilih Prioritas ${index + 1} --</option>`;
 
         serviceList.forEach(service => {
-          // Masukkan opsi jika belum dipilih di dropdown lain, atau jika itu adalah nilai yang sedang dipilih dropdown ini sendiri
           if (!selectedValues.includes(service.id) || service.id === currentValue) {
             const option = document.createElement('option');
             option.value = service.id;
@@ -1267,8 +1272,8 @@ function validatePage() {
       });
     }
     
-    //  Kode Penghubung ke Google Sheets (Taruh di bagian paling bawah dalam tag script)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9dCQUTfF4GhqblpGKN2IfEAvkhbpQ4gQjHvADgwaL3kUWGqCXw/exec';
+    // Kode Penghubung ke Google Sheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9dCQUTfF4GhqblpGKN2IfEAvkhbpQ4gQjHvADgwaL3kUWGqCXw/exec';
     const form = document.getElementById('surveyForm');
 
     form.addEventListener('submit', e => {
@@ -1278,14 +1283,10 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9d
       submitBtn.disabled = true;
       submitBtn.textContent = 'Mengirim...';
 
-      // Buat FormData dari form
       const formData = new FormData(form);
 
-      // Ambil semua checkbox q13[] yang dicentang user dan gabungkan dengan koma
       const q13Checked = form.querySelectorAll('input[name="q13[]"]:checked');
       const q13Values = Array.from(q13Checked).map(cb => cb.value);
-      
-      // Masukkan ke formData sebagai 'q13' (tanpa kurung siku)
       formData.set('q13', q13Values.join(', '));
 
       fetch(scriptURL, { method: 'POST', body: formData })
@@ -1301,8 +1302,6 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9d
           submitBtn.textContent = 'Kirim Jawaban';
         });
     });
-    
-    
   </script>
 </body>
 </html>
