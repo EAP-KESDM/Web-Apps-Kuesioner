@@ -9,11 +9,11 @@
       tr.baris-error td {
         background-color: #ffe6e6 !important;
         transition: background-color 0.3s ease;
-        color: #1E293B !important; /* Memastikan teks tetap warna asal */
+        color: #1E293B !important;
         font-weight: normal !important;
       }
 
-      /* Styling untuk menandai elemen form biasa yang error/belum diisi */
+      /* Styling untuk menandai elemen form biasa/non-tabel yang error */
       .error-input {
         border: 2px solid #ef4444 !important;
         background-color: #fef2f2 !important;
@@ -1180,18 +1180,41 @@
         if (!lolosEap) {
           isValid = false;
         }
+
+        // Cek juga baris bernomor di tabel II.4 & II.5 (q17 sampai q24) agar backgroundnya ikut merah jika kosong
+        const daftarBarisLain = ['q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23_hambatan', 'q23_kesiapan', 'q24'];
+        const lolosLain = cekBarisKosong(daftarBarisLain);
+        if (!lolosLain) {
+          isValid = false;
+        }
       }
 
-      // 2. Cek Tabel Matriks di Halaman 3 (pss1 sampai pss10)
+      // 2. Cek Tabel Matriks di Halaman 3 (pss1 sampai pss10 dan HSE d1 sampai e4)
       if (currentStepElement.id === 'step-3') {
         const daftarPss = ['pss1', 'pss2', 'pss3', 'pss4', 'pss5', 'pss6', 'pss7', 'pss8', 'pss9', 'pss10'];
         const lolosPss = cekBarisKosong(daftarPss);
         if (!lolosPss) {
           isValid = false;
         }
+
+        // Cek juga baris HSE di Halaman 3 agar baris yang kosong ikut merah
+        const daftarHse = [
+          'hse_d1', 'hse_d2', 'hse_d3', 
+          'hse_c1', 'hse_c2', 
+          'hse_m1', 'hse_m2', 
+          'hse_p1', 'hse_p2', 
+          'hse_r1', 'hse_r2', 
+          'hse_l1', 'hse_l2', 
+          'hse_g1', 'hse_g2', 
+          'hse_e1', 'hse_e2', 'hse_e3', 'hse_e4'
+        ];
+        const lolosHse = cekBarisKosong(daftarHse);
+        if (!lolosHse) {
+          isValid = false;
+        }
       }
 
-      // 3. Cek input teks dan select BIASA
+      // 3. Cek input teks dan select BIASA (Halaman 1, dsb)
       const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="eap_terbuka"]):not([name="q25_lainnya"]), select');
       requiredFields.forEach(field => {
         field.classList.remove('error-input');
@@ -1214,10 +1237,16 @@
         }
       }
 
-      // 5. Cek kelompok Radio Button standar lainnya
+      // 5. Cek kelompok Radio Button standar di luar tabel (seperti Halaman 1: eselon, kelompokJabatan, dll)
       const radioGroups = {};
       currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-        if (radio.name.startsWith('eap') || radio.name.startsWith('pss')) return;
+        // Abaikan radio yang sudah masuk dalam kategori baris tabel matrix
+        if (
+          radio.name.startsWith('eap') || 
+          radio.name.startsWith('pss') || 
+          radio.name.startsWith('hse_') ||
+          ['q17','q18','q19','q20','q21','q22','q23_hambatan','q23_kesiapan','q24'].includes(radio.name)
+        ) return;
 
         if (!radioGroups[radio.name]) {
           radioGroups[radio.name] = [];
@@ -1248,15 +1277,14 @@
       if (!isValid) {
         alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
         
-        // JIKA ADA BARIS ERROR (MATRIKS), utamakan scroll ke baris error tersebut
+        // UTAMAKAN SCROLL TEPAT KE BARIS KOSONG PERTAMA (TERUTAMA UNTUK NOMOR 2, 24, DSB)
         const barisErrorPertama = currentStepElement.querySelector('.baris-error');
         if (barisErrorPertama) {
           barisErrorPertama.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else if (firstErrorElement) {
-          // JIKA SEMUA KOSONG / ERROR DI INPUT LAIN, scroll perlahan ke atas/awal elemen error
           firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          // JIKA TIDAK ADA ELEMEN SPESIFIK, scroll perlahan ke atas halaman
+          // JIKA SEMUA KOSONG / BELUM DIISI SAMA SEKALI DI HALAMAN ITU, SCROLL PERLAHAN KE ATAS
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         return false;
@@ -1265,7 +1293,7 @@
       return true;
     }
 
-    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Background Merah serta Auto-Scroll
+    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Background Merah serta Auto-Scroll Tepat Sasaran
     function cekBarisKosong(arrayNamaPertanyaan) {
       let semuaTerisi = true;
       let barisErrorPertama = null;
@@ -1277,18 +1305,18 @@
         if (elemenRadio) {
           const barisTr = elemenRadio.closest('tr');
           if (!sudahDiisi) {
-            barisTr.classList.add('baris-error');
+            if (barisTr) {
+              barisTr.classList.add('baris-error');
+            }
             semuaTerisi = false;
-            if (!barisErrorPertama) barisErrorPertama = barisTr; 
+            if (!barisErrorPertama && barisTr) barisErrorPertama = barisTr; 
           } else {
-            barisTr.classList.remove('baris-error');
+            if (barisTr) {
+              barisTr.classList.remove('baris-error');
+            }
           }
         }
       });
-
-      if (!semuaTerisi && barisErrorPertama) {
-        barisErrorPertama.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
 
       return semuaTerisi;
     }
