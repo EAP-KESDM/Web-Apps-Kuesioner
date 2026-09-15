@@ -6,6 +6,17 @@
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
 
+/* Styling untuk menandai elemen yang error/belum diisi */
+.error-input {
+  border: 2px solid #ef4444 !important;
+  background-color: #fef2f2 !important;
+}
+
+.error-label {
+  color: #ef4444;
+  font-weight: bold;
+}
+    
     .section-box p:not(:first-child) {
      text-align: left !important;
     margin-top: 4px;
@@ -609,7 +620,7 @@
 
         <hr class="page-divider">
         <div class="nav-buttons start">
-          <button type="button" class="btn-next" onclick="nextPage(1)">Selanjutnya &rarr;</button>
+          <button type="button" class="btn-next" onclick="if(validatePage()) { nextPage(1); }">Selanjutnya &rarr;</button>
         </div>
       </div>
 
@@ -897,7 +908,7 @@
         <hr class="page-divider">
         <div class="nav-buttons between">
           <button type="button" class="btn-prev" onclick="prevPage(2)">&larr; Kembali</button>
-          <button type="button" class="btn-next" onclick="nextPage(2)">Lanjut &rarr;</button>
+        <button type="button" class="btn-next" onclick="if(validatePage()) { nextPage(1); }">Selanjutnya &rarr;</button>
         </div>
       </div>
 
@@ -1107,7 +1118,7 @@
         <hr class="page-divider">
         <div class="nav-buttons between">
           <button type="button" class="btn-prev" onclick="prevPage(3)">&larr; Kembali</button>
-          <button type="submit" class="btn-submit">Kirim Jawaban</button>
+         <button type="button" class="btn-submit" onclick="if(validatePage()) { document.getElementById('surveyForm').submit(); }">Kirim Jawaban</button>
         </div>
       </div>
 
@@ -1116,6 +1127,53 @@
 
   <!-- SCRIPT NAVIGASI UTAMA -->
   <script>
+
+function validatePage() {
+  // Ambil semua elemen penting di halaman aktif yang wajib diisi (misal yang punya atribut required)
+  const inputs = document.querySelectorAll('.active-page [required]');
+  let isValid = true;
+  let firstErrorElement = null;
+
+  inputs.forEach(input => {
+    // Hapus tanda merah dulu sebelum dicek ulang
+    input.classList.remove('error-input');
+
+    // Cek apakah input kosong atau untuk radio button belum ada yang dicentang
+    if (!input.value && input.type !== 'radio') {
+      isValid = false;
+      input.classList.add('error-input');
+      if (!firstErrorElement) firstErrorElement = input;
+    } 
+    else if (input.type === 'radio') {
+      // Khusus radio button (pilihan ganda), cek kelompoknya
+      const groupName = input.name;
+      const isGroupChecked = document.querySelector(`input[name="${groupName}"]:checked`);
+      if (!isGroupChecked) {
+        isValid = false;
+        // Beri tanda merah pada kontainer/label di sekitarnya
+        const parentBox = input.closest('.section-box') || input.parentElement;
+        parentBox.classList.add('error-input');
+        if (!firstErrorElement) firstErrorElement = input;
+      }
+    }
+  });
+
+  if (!isValid) {
+    alert('⚠️ Mohon isi semua pertanyaan yang ditandai merah sebelum melanjutkan.');
+    if (firstErrorElement) {
+      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrorElement.focus();
+    }
+    return false; // Mencegah pindah halaman
+  }
+
+  return true; // Lanjut ke halaman berikutnya jika sudah lengkap
+}
+    
+
+
+
+    
     // 1. Efek Scroll Bar Kuning Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.header-container');
