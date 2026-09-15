@@ -6,6 +6,21 @@
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
     
+      /* Memberi warna latar merah muda pada baris yang belum dijawab */
+        tr.baris-error td {
+          background-color: #ffe6e6 !important;
+          transition: background-color 0.3s ease;
+        }
+  
+  /* Opsional: Membuat teks pertanyaannya jadi merah agar makin jelas */
+  tr.baris-error td.text-left {
+    color: #cc0000 !important;
+    font-weight: bold;
+  }
+
+
+
+    
     /* Styling untuk menandai elemen yang error/belum diisi */
     .error-input {
       border: 2px solid #ef4444 !important;
@@ -1164,9 +1179,23 @@ function validatePage() {
   } else if (document.getElementById('step-3').style.display !== 'none') {
     currentStepElement = document.getElementById('step-3');
   }
-
   if (!currentStepElement) return true;
 
+// Jika user sedang berada di step-2 (sesuaikan jika tabelnya ada di step lain)
+    if (currentStepElement.id === 'step-2') {
+        // Masukkan semua nama 'name' radio button yang ada di tabel step-2 tersebut
+        const daftarPertanyaan = ['pss1', 'pss2', 'pss3', 'pss4', 'pss5', 'pss6', 'pss7', 'pss8', 'pss9', 'pss10'];
+        
+        // Panggil fungsi cek baris kosong yang sudah kita buat sebelumnya
+        const lolos = cekBarisKosong(daftarPertanyaan);
+        
+        if (!lolos) {
+            alert("Masih ada pertanyaan bernomor 1 sampai 10 yang belum diisi. Silakan cek baris yang berwarna merah.");
+            return false; // Menghentikan langkah agar tidak lanjut
+        }
+    }
+
+  
   let isValid = true;
   let firstErrorElement = null;
 
@@ -1232,6 +1261,33 @@ function validatePage() {
 
   return true;
 }
+
+      function cekBarisKosong(arrayNamaPertanyaan) {
+            let semuaTerisi = true;
+            let barisErrorPertama = null;
+
+        arrayNamaPertanyaan.forEach(nama => {
+          const sudahDiisi = document.querySelector(`input[name="${nama}"]:checked`);
+          const elemenRadio = document.querySelector(`input[name="${nama}"]`);
+          
+        if (elemenRadio) {
+          const barisTr = elemenRadio.closest('tr');
+          if (!sudahDiisi) {
+            barisTr.classList.add('baris-error');
+            semuaTerisi = false;
+            if (!barisErrorPertama) barisErrorPertama = barisTr; 
+          } else {
+            barisTr.classList.remove('baris-error');
+          }
+        }
+      });
+
+      if (!semuaTerisi && barisErrorPertama) {
+        barisErrorPertama.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      return semuaTerisi;
+  }
     
     
     // Efek Scroll Bar Kuning Header
@@ -1357,8 +1413,17 @@ function validatePage() {
           submitBtn.textContent = 'Kirim Jawaban';
         });
     });
-  
-  
+
+// Event listener agar warna merah otomatis hilang saat opsi diklik
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'radio') {
+    const barisTr = e.target.closest('tr');
+    if (barisTr && barisTr.classList.contains('baris-error')) {
+      barisTr.classList.remove('baris-error');
+    }
+  }
+});
+    
   </script>
 </body>
 </html>
