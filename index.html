@@ -1286,7 +1286,8 @@ function validatePage() {
     }
     
     // Kode Penghubung ke Google Sheets
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxRfB3i_93YbaRxDgGD9dCQUTfF4GhqblpGKN2IfEAvkhbpQ4gQjHvADgwaL3kUWGqCXw/exec';
+// Kode Penghubung ke Google Sheets yang disesuaikan
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyuLhcf6e-piCIYsZ_PMGIwgErfnBEZTMmA4FWEr567-Art51oLfQfGX2jC-Xx-MVP1Rg/exec';
     const form = document.getElementById('surveyForm');
 
     form.addEventListener('submit', e => {
@@ -1296,14 +1297,23 @@ function validatePage() {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Mengirim...';
 
+      // Buat FormData dari form
       const formData = new FormData(form);
 
+      // Ambil semua checkbox q13[] yang dicentang user
       const q13Checked = form.querySelectorAll('input[name="q13[]"]:checked');
-      const q13Values = Array.from(q13Checked).map(cb => cb.value);
-      formData.set('q13', q13Values.join(', '));
+      
+      // Hapus dulu data q13[] bawaan form agar bisa kita kirim ulang dengan rapi
+      formData.delete('q13[]');
+      
+      // Masukkan pilihan checkbox satu per satu agar tertangkap oleh Apps Script (e.parameters['q13[]'])
+      q13Checked.forEach(cb => {
+        formData.append('q13[]', cb.value);
+      });
 
       fetch(scriptURL, { method: 'POST', body: formData })
-        .then(response => {
+        .then(response => response.json())
+        .then(result => {
           alert('Terima kasih! Jawaban kuesioner berhasil dikirim.');
           form.reset();
           location.reload();
