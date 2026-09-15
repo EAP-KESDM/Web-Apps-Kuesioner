@@ -5,453 +5,449 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
-    
-      /* Memberi warna latar merah muda pada baris yang belum dijawab */
-        tr.baris-error td {
-          background-color: #ffe6e6 !important;
-          transition: background-color 0.3s ease;
-        }
+      /* Memberi warna latar merah muda pada baris matriks yang belum dijawab */
+      tr.baris-error td {
+        background-color: #ffe6e6 !important;
+        transition: background-color 0.3s ease;
+      }
   
-  /* Opsional: Membuat teks pertanyaannya jadi merah agar makin jelas */
-  tr.baris-error td.text-left {
-    color: #cc0000 !important;
-    font-weight: bold;
-  }
+      /* Membuat teks pertanyaan pada baris error menjadi merah */
+      tr.baris-error td.text-left {
+        color: #cc0000 !important;
+        font-weight: bold;
+      }
 
+      /* Styling untuk menandai elemen form biasa yang error/belum diisi */
+      .error-input {
+        border: 2px solid #ef4444 !important;
+        background-color: #fef2f2 !important;
+      }
 
+      .error-label {
+        color: #ef4444;
+        font-weight: bold;
+      }
+      
+      .section-box p:not(:first-child) {
+        text-align: left !important;
+        margin-top: 4px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+      
+      /* Container Partikel melayang di background */
+      .bg-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
 
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        bottom: -30px;
+        animation: floatUp 12s infinite linear;
+      }
+
+      .p1  { left: 5%;  width: 8px;  height: 8px;  background: #e67e22; animation-duration: 9s;  animation-delay: 0s;   opacity: 0.6; }
+      .p2  { left: 12%; width: 14px; height: 14px; background: #3498db; animation-duration: 13s; animation-delay: 2s;   opacity: 0.4; }
+      .p3  { left: 20%; width: 6px;  height: 6px;  background: #f1c40f; animation-duration: 8s;  animation-delay: 4s;   opacity: 0.7; }
+      .p4  { left: 28%; width: 12px; height: 12px; background: #d35400; animation-duration: 11s; animation-delay: 1s;   opacity: 0.5; }
+      .p5  { left: 35%; width: 9px;  height: 9px;  background: #2980b9; animation-duration: 14s; animation-delay: 5s;   opacity: 0.6; }
+      .p6  { left: 42%; width: 15px; height: 15px; background: #e67e22; animation-duration: 10s; animation-delay: 3s;   opacity: 0.4; }
+      .p7  { left: 50%; width: 7px;  height: 7px;  background: #f39c12; animation-duration: 9s;  animation-delay: 6s;   opacity: 0.7; }
+      .p8  { left: 58%; width: 11px; height: 11px; background: #3498db; animation-duration: 12s; animation-delay: 0.5s; opacity: 0.5; }
+      .p9  { left: 65%; width: 13px; height: 13px; background: #d35400; animation-duration: 15s; animation-delay: 2.5s; opacity: 0.4; }
+      .p10 { left: 73%; width: 8px;  height: 8px;  background: #f1c40f; animation-duration: 10s; animation-delay: 4.5s; opacity: 0.6; }
+      .p11 { left: 80%; width: 16px; height: 16px; background: #2980b9; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.35; }
+      .p12 { left: 87%; width: 10px; height: 10px; background: #e67e22; animation-duration: 11s; animation-delay: 3.5s; opacity: 0.55; }
+      .p13 { left: 93%; width: 7px;  height: 7px;  background: #3498db; animation-duration: 8s;  animation-delay: 5.5s; opacity: 0.65; }
+      .p14 { left: 15%; width: 10px; height: 10px; background: #f39c12; animation-duration: 12s; animation-delay: 7s;   opacity: 0.5; }
+      .p15 { left: 78%; width: 6px;  height: 6px;  background: #d35400; animation-duration: 9s;  animation-delay: 6.5s; opacity: 0.7; }
+
+      @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-105vh) translateX(25px); opacity: 0; }
+      }
+
+      :root {
+        --esdm-yellow: #FFEC00;
+        --esdm-dark-blue: #0F172A;
+        --hero-gradient: linear-gradient(135deg, #1E293B 0%, #334155 40%, #D97706 100%);
+        --card-bg: rgba(255, 255, 255, 0.96);
+        --text-main: #1E293B;
+        --border-color: #E2E8F0;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-main);
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+        background-color: #F1F5F9;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .header-container {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #FFFFFF;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      }
+
+      .top-bar-yellow {
+        background-color: var(--esdm-yellow);
+        height: 36px;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .header-container.scrolled .top-bar-yellow {
+        height: 5px;
+      }
+
+      .site-header {
+        background: #FFFFFF;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 3px solid #D97706;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-esdm {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+      }
+      .header-title {
+        border-left: 2px solid #E2E8F0;
+        padding-left: 12px;
+      }
+      .header-title h1 {
+        margin: 0;
+        font-size: 14px;
+        color: #0F172A;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+      }
+      .header-title p {
+        margin: 0;
+        font-size: 12px;
+        color: #64748B;
+        font-weight: 600;
+      }
+
+      .container {
+        max-width: 750px;
+        margin: 30px auto 40px auto;
+        background: var(--card-bg);
+        backdrop-filter: blur(8px);
+        padding: 24px 20px;
+        border-radius: 18px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        position: relative;
+        z-index: 5;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+      @media (min-width: 640px) {
+        .container { padding: 35px; }
+      }
+
+      .stepper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        position: relative;
+      }
+      .stepper::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--border-color);
+        z-index: 1;
+        transform: translateY(-50%);
+      }
+      .step-item {
+        position: relative;
+        z-index: 2;
+        background: white;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 13px;
+        border: 2px solid var(--border-color);
+        color: #64748B;
+        transition: all 0.3s;
+      }
+      .step-item.active {
+        border-color: #D97706;
+        background: #D97706;
+        color: white;
+        box-shadow: 0 0 12px rgba(217, 119, 6, 0.4);
+      }
+
+      .section-title {
+        font-size: 16px;
+        color: #0F172A;
+        border-left: 4px solid #D97706;
+        padding-left: 10px;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+      }
+
+      .section-box {
+        margin-bottom: 20px;
+        padding: 18px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+      label.form-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 13.5px;
+        color: #334155;
+      }
+
+      input[type="text"], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1.5px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 14px;
+        transition: all 0.2s;
+        background: #F8FAFC;
+      }
+      input[type="text"]:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #D97706;
+        background: #FFF;
+        box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+      }
+
+      .radio-group, .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .radio-item, .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        background: #F8FAFC;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 13.5px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .radio-item:hover, .checkbox-item:hover {
+        background: #FEF3C7;
+        border-color: #FCD34D;
+      }
+      .radio-item input, .checkbox-item input {
+        width: 18px;
+        height: 18px;
+        accent-color: #D97706;
+        flex-shrink: 0;
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        background: white;
+      }
+      th, td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border-color);
+        text-align: center;
+      }
+      th {
+        background-color: #1E293B;
+        color: white;
+        font-weight: 600;
+      }
+      
+      td.text-left, th.text-left { 
+        text-align: left !important; 
+      }
     
-    /* Styling untuk menandai elemen yang error/belum diisi */
-    .error-input {
-      border: 2px solid #ef4444 !important;
-      background-color: #fef2f2 !important;
-    }
+      th.text-left {
+        text-align: center !important;
+      }  
+      
+      td:first-child, th:first-child {
+        text-align: center !important;
+      }
+      
+      td input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #D97706;
+        cursor: pointer;
+      }
 
-    .error-label {
-      color: #ef4444;
-      font-weight: bold;
-    }
-    
-    .section-box p:not(:first-child) {
-      text-align: left !important;
-      margin-top: 4px;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    
-    /* Container Partikel melayang di background */
-    .bg-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
+      .page-divider {
+        border: 0;
+        border-top: 1px solid var(--border-color);
+        margin: 25px 0 20px 0;
+      }
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+      }
+      .nav-buttons.start { justify-content: flex-start; }
+      .nav-buttons.between { justify-content: space-between; }
 
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      bottom: -30px;
-      animation: floatUp 12s infinite linear;
-    }
+      .btn-next, .btn-submit {
+        background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+        color: white;
+        border: none;
+        padding: 13px 26px;
+        font-size: 14.5px;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        transition: all 0.2s;
+        flex: 1;
+        max-width: 220px;
+      }
+      .btn-next:active, .btn-submit:active {
+        transform: scale(0.98);
+      }
+      .btn-prev {
+        background-color: #64748B;
+        color: white;
+        border: none;
+        padding: 13px 20px;
+        font-size: 14px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
 
-    .p1  { left: 5%;  width: 8px;  height: 8px;  background: #e67e22; animation-duration: 9s;  animation-delay: 0s;   opacity: 0.6; }
-    .p2  { left: 12%; width: 14px; height: 14px; background: #3498db; animation-duration: 13s; animation-delay: 2s;   opacity: 0.4; }
-    .p3  { left: 20%; width: 6px;  height: 6px;  background: #f1c40f; animation-duration: 8s;  animation-delay: 4s;   opacity: 0.7; }
-    .p4  { left: 28%; width: 12px; height: 12px; background: #d35400; animation-duration: 11s; animation-delay: 1s;   opacity: 0.5; }
-    .p5  { left: 35%; width: 9px;  height: 9px;  background: #2980b9; animation-duration: 14s; animation-delay: 5s;   opacity: 0.6; }
-    .p6  { left: 42%; width: 15px; height: 15px; background: #e67e22; animation-duration: 10s; animation-delay: 3s;   opacity: 0.4; }
-    .p7  { left: 50%; width: 7px;  height: 7px;  background: #f39c12; animation-duration: 9s;  animation-delay: 6s;   opacity: 0.7; }
-    .p8  { left: 58%; width: 11px; height: 11px; background: #3498db; animation-duration: 12s; animation-delay: 0.5s; opacity: 0.5; }
-    .p9  { left: 65%; width: 13px; height: 13px; background: #d35400; animation-duration: 15s; animation-delay: 2.5s; opacity: 0.4; }
-    .p10 { left: 73%; width: 8px;  height: 8px;  background: #f1c40f; animation-duration: 10s; animation-delay: 4.5s; opacity: 0.6; }
-    .p11 { left: 80%; width: 16px; height: 16px; background: #2980b9; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.35; }
-    .p12 { left: 87%; width: 10px; height: 10px; background: #e67e22; animation-duration: 11s; animation-delay: 3.5s; opacity: 0.55; }
-    .p13 { left: 93%; width: 7px;  height: 7px;  background: #3498db; animation-duration: 8s;  animation-delay: 5.5s; opacity: 0.65; }
-    .p14 { left: 15%; width: 10px; height: 10px; background: #f39c12; animation-duration: 12s; animation-delay: 7s;   opacity: 0.5; }
-    .p15 { left: 78%; width: 6px;  height: 6px;  background: #d35400; animation-duration: 9s;  animation-delay: 6.5s; opacity: 0.7; }
+      .header-banner {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #d35400 100%);
+        color: #ffffff;
+        padding: 30px 40px 50px 40px;
+        text-align: left;
+        border-bottom: 4px solid #e67e22;
+      }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0) translateX(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(-105vh) translateX(25px); opacity: 0; }
-    }
+      .badge-tag {
+        display: inline-block;
+        background-color: rgba(230, 126, 34, 0.25);
+        color: #ffb74d;
+        border: 1px solid rgba(230, 126, 34, 0.5);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        padding: 6px 16px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+      }
 
-    :root {
-      --esdm-yellow: #FFEC00;
-      --esdm-dark-blue: #0F172A;
-      --hero-gradient: linear-gradient(135deg, #1E293B 0%, #334155 40%, #D97706 100%);
-      --card-bg: rgba(255, 255, 255, 0.96);
-      --text-main: #1E293B;
-      --border-color: #E2E8F0;
-    }
+      .main-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+      .sub-title {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #cbd5e1;
+        margin-bottom: 25px;
+      }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: var(--text-main);
-      margin: 0;
-      padding: 0;
-      line-height: 1.5;
-      background-color: #F1F5F9;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
+      .intro-card {
+        margin: 0;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 20px 25px;
+        text-align: left;
+      }
 
-    .header-container {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #FFFFFF;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+      .intro-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffb74d;
+        margin-bottom: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 6px;
+      }
 
-    .top-bar-yellow {
-      background-color: var(--esdm-yellow);
-      height: 36px;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
+      .intro-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #e2e8f0;
+        font-weight: 400;
+      }
 
-    .header-container.scrolled .top-bar-yellow {
-      height: 5px;
-    }
+      .question-label {
+        display: flex !important;
+        align-items: flex-start;
+        gap: 8px;
+      }
 
-    .site-header {
-      background: #FFFFFF;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 3px solid #D97706;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo-esdm {
-      height: 44px;
-      width: auto;
-      object-fit: contain;
-    }
-    .header-title {
-      border-left: 2px solid #E2E8F0;
-      padding-left: 12px;
-    }
-    .header-title h1 {
-      margin: 0;
-      font-size: 14px;
-      color: #0F172A;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-    .header-title p {
-      margin: 0;
-      font-size: 12px;
-      color: #64748B;
-      font-weight: 600;
-    }
+      .q-number {
+        flex-shrink: 0;
+      }
 
-    .container {
-      max-width: 750px;
-      margin: 30px auto 40px auto;
-      background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      padding: 24px 20px;
-      border-radius: 18px;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-      position: relative;
-      z-index: 5;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-    @media (min-width: 640px) {
-      .container { padding: 35px; }
-    }
+      .q-text {
+        flex-grow: 1;
+      }
 
-    .stepper {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
-      position: relative;
-    }
-    .stepper::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--border-color);
-      z-index: 1;
-      transform: translateY(-50%);
-    }
-    .step-item {
-      position: relative;
-      z-index: 2;
-      background: white;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 13px;
-      border: 2px solid var(--border-color);
-      color: #64748B;
-      transition: all 0.3s;
-    }
-    .step-item.active {
-      border-color: #D97706;
-      background: #D97706;
-      color: white;
-      box-shadow: 0 0 12px rgba(217, 119, 6, 0.4);
-    }
-
-    .section-title {
-      font-size: 16px;
-      color: #0F172A;
-      border-left: 4px solid #D97706;
-      padding-left: 10px;
-      margin: 0 0 15px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 700;
-    }
-
-    .section-box {
-      margin-bottom: 20px;
-      padding: 18px;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      background: #FFFFFF;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-    label.form-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      font-size: 13.5px;
-      color: #334155;
-    }
-
-    input[type="text"], select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1.5px solid var(--border-color);
-      border-radius: 10px;
-      font-size: 14px;
-      transition: all 0.2s;
-      background: #F8FAFC;
-    }
-    input[type="text"]:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #D97706;
-      background: #FFF;
-      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
-    }
-
-    .radio-group, .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .radio-item, .checkbox-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 11px 14px;
-      background: #F8FAFC;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      font-size: 13.5px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .radio-item:hover, .checkbox-item:hover {
-      background: #FEF3C7;
-      border-color: #FCD34D;
-    }
-    .radio-item input, .checkbox-item input {
-      width: 18px;
-      height: 18px;
-      accent-color: #D97706;
-      flex-shrink: 0;
-    }
-
-    .table-responsive {
-      overflow-x: auto;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      background: white;
-    }
-    th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border-color);
-      text-align: center;
-    }
-    th {
-      background-color: #1E293B;
-      color: white;
-      font-weight: 600;
-    }
-    
-    td.text-left, th.text-left { 
-      text-align: left !important; 
-    }
-  
-    th.text-left {
-      text-align: center !important;
-    }  
-    
-    td:first-child, th:first-child {
-      text-align: center !important;
-    }
-    
-    td input[type="radio"] {
-      width: 18px;
-      height: 18px;
-      accent-color: #D97706;
-      cursor: pointer;
-    }
-
-    .page-divider {
-      border: 0;
-      border-top: 1px solid var(--border-color);
-      margin: 25px 0 20px 0;
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    .nav-buttons.start { justify-content: flex-start; }
-    .nav-buttons.between { justify-content: space-between; }
-
-    .btn-next, .btn-submit {
-      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      color: white;
-      border: none;
-      padding: 13px 26px;
-      font-size: 14.5px;
-      font-weight: 600;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
-      transition: all 0.2s;
-      flex: 1;
-      max-width: 220px;
-    }
-    .btn-next:active, .btn-submit:active {
-      transform: scale(0.98);
-    }
-    .btn-prev {
-      background-color: #64748B;
-      color: white;
-      border: none;
-      padding: 13px 20px;
-      font-size: 14px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .header-banner {
-      background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #d35400 100%);
-      color: #ffffff;
-      padding: 30px 40px 50px 40px;
-      text-align: left;
-      border-bottom: 4px solid #e67e22;
-    }
-
-    .badge-tag {
-      display: inline-block;
-      background-color: rgba(230, 126, 34, 0.25);
-      color: #ffb74d;
-      border: 1px solid rgba(230, 126, 34, 0.5);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-
-    .main-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-
-    .sub-title {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #cbd5e1;
-      margin-bottom: 25px;
-    }
-
-    .intro-card {
-      margin: 0;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 20px 25px;
-      text-align: left;
-    }
-
-    .intro-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #ffb74d;
-      margin-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 6px;
-    }
-
-    .intro-text {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #e2e8f0;
-      font-weight: 400;
-    }
-
-    .question-label {
-      display: flex !important;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .q-number {
-      flex-shrink: 0;
-    }
-
-    .q-text {
-      flex-grow: 1;
-    }
-/*-----KODE CSS YANG BARU----*/
-.option-item {
+      .option-item {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -469,18 +465,17 @@
         line-height: 1.4;
       }
 
-td label {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  margin-bottom: 6px !important;
-}
+      td label {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-bottom: 6px !important;
+      }
 
-td label input[type="radio"],
-td label input[type="checkbox"] {
-  margin: 0 !important;
-}
-    
+      td label input[type="radio"],
+      td label input[type="checkbox"] {
+        margin: 0 !important;
+      }
   </style>
 </head>
 <body>
@@ -883,7 +878,7 @@ td label input[type="checkbox"] {
                       <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                           <input type="radio" name="q25" value="lainnya" style="flex-shrink: 0;">
-                          <span style="text-decoration: underline; color: #2563EB; font-weight: 500;">Lainnya</span>:
+                          <span>Lainnya</span>:
                         </label>
                         <input type="text" name="q25_lainnya" placeholder="Tuliskan lainnya..." style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 12px; flex: 1; min-width: 150px; background: #fff;">
                       </div>
@@ -1159,7 +1154,7 @@ td label input[type="checkbox"] {
         <hr class="page-divider">
         <div class="nav-buttons between">
           <button type="button" class="btn-prev" onclick="prevPage(3)">&larr; Kembali</button>
-          <button type="submit" class="btn-submit" onclick="return validatePage();">Kirim Jawaban</button>
+          <button type="submit" class="btn-submit">Kirim Jawaban</button>
         </div>
       </div>
 
@@ -1169,107 +1164,113 @@ td label input[type="checkbox"] {
   <!-- SCRIPT NAVIGASI & VALIDASI -->
   <script>
     // Fungsi Validasi Otomatis Per Halaman & Tanda Merah
+    function validatePage() {
+      let currentStepElement = null;
+      if (document.getElementById('step-1').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-1');
+      } else if (document.getElementById('step-2').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-2');
+      } else if (document.getElementById('step-3').style.display !== 'none') {
+        currentStepElement = document.getElementById('step-3');
+      }
+      if (!currentStepElement) return true;
 
-function validatePage() {
-  let currentStepElement = null;
-  if (document.getElementById('step-1').style.display !== 'none') {
-    currentStepElement = document.getElementById('step-1');
-  } else if (document.getElementById('step-2').style.display !== 'none') {
-    currentStepElement = document.getElementById('step-2');
-  } else if (document.getElementById('step-3').style.display !== 'none') {
-    currentStepElement = document.getElementById('step-3');
-  }
-  if (!currentStepElement) return true;
+      let isValid = true;
+      let firstErrorElement = null;
 
-// Jika user sedang berada di step-2 (sesuaikan jika tabelnya ada di step lain)
-    if (currentStepElement.id === 'step-2') {
-        // Masukkan semua nama 'name' radio button yang ada di tabel step-2 tersebut
-        const daftarPertanyaan = ['pss1', 'pss2', 'pss3', 'pss4', 'pss5', 'pss6', 'pss7', 'pss8', 'pss9', 'pss10'];
-        
-        // Panggil fungsi cek baris kosong yang sudah kita buat sebelumnya
-        const lolos = cekBarisKosong(daftarPertanyaan);
-        
-        if (!lolos) {
-            alert("Masih ada pertanyaan bernomor 1 sampai 10 yang belum diisi. Silakan cek baris yang berwarna merah.");
-            return false; // Menghentikan langkah agar tidak lanjut
+      // 1. Cek Tabel Matriks di Halaman 2 (eap1 sampai eap10)
+      if (currentStepElement.id === 'step-2') {
+        const daftarEap = ['eap1', 'eap2', 'eap3', 'eap4', 'eap5', 'eap6', 'eap7', 'eap8', 'eap9', 'eap10'];
+        const lolosEap = cekBarisKosong(daftarEap);
+        if (!lolosEap) {
+          isValid = false;
         }
-    }
-
-  
-  let isValid = true;
-  let firstErrorElement = null;
-
-  // 1. Cek input teks dan select BIASA (Kecuali eap_terbuka dan q25_lainnya yang bersifat opsional)
-  const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="eap_terbuka"]):not([name="q25_lainnya"]), select');
-  requiredFields.forEach(field => {
-    field.classList.remove('error-input');
-    if (!field.value.trim()) {
-      isValid = false;
-      field.classList.add('error-input');
-      if (!firstErrorElement) firstErrorElement = field;
-    }
-  });
-
-  // 1.1 Khusus Cek Input Teks "Lainnya" (q25_lainnya) -> HANYA wajib jika radio "lainnya" dipilih
-  const radioLainnya = currentStepElement.querySelector('input[name="q25"][value="lainnya"]');
-  const inputLainnya = currentStepElement.querySelector('input[name="q25_lainnya"]');
-  if (inputLainnya) {
-    inputLainnya.classList.remove('error-input');
-    if (radioLainnya && radioLainnya.checked && !inputLainnya.value.trim()) {
-      isValid = false;
-      inputLainnya.classList.add('error-input');
-      if (!firstErrorElement) firstErrorElement = inputLainnya;
-    }
-  }
-
-  // 2. Cek kelompok Radio Button
-  const radioGroups = {};
-  currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-    if (!radioGroups[radio.name]) {
-      radioGroups[radio.name] = [];
-    }
-    radioGroups[radio.name].push(radio);
-  });
-
-  for (let groupName in radioGroups) {
-    const radios = radioGroups[groupName];
-    const sectionBox = radios[0].closest('.section-box');
-    const isChecked = radios.some(radio => radio.checked);
-    
-    if (!isChecked) {
-      isValid = false;
-      if (sectionBox) {
-        sectionBox.classList.add('error-input');
       }
-      if (!firstErrorElement) {
-        firstErrorElement = sectionBox || radios[0];
+
+      // 2. Cek Tabel Matriks di Halaman 3 (pss1 sampai pss10)
+      if (currentStepElement.id === 'step-3') {
+        const daftarPss = ['pss1', 'pss2', 'pss3', 'pss4', 'pss5', 'pss6', 'pss7', 'pss8', 'pss9', 'pss10'];
+        const lolosPss = cekBarisKosong(daftarPss);
+        if (!lolosPss) {
+          isValid = false;
+        }
       }
-    } else {
-      if (sectionBox) {
-        sectionBox.classList.remove('error-input');
+
+      // 3. Cek input teks dan select BIASA
+      const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="eap_terbuka"]):not([name="q25_lainnya"]), select');
+      requiredFields.forEach(field => {
+        field.classList.remove('error-input');
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('error-input');
+          if (!firstErrorElement) firstErrorElement = field;
+        }
+      });
+
+      // 4. Khusus Cek Input Teks "Lainnya" (q25_lainnya)
+      const radioLainnya = currentStepElement.querySelector('input[name="q25"][value="lainnya"]');
+      const inputLainnya = currentStepElement.querySelector('input[name="q25_lainnya"]');
+      if (inputLainnya) {
+        inputLainnya.classList.remove('error-input');
+        if (radioLainnya && radioLainnya.checked && !inputLainnya.value.trim()) {
+          isValid = false;
+          inputLainnya.classList.add('error-input');
+          if (!firstErrorElement) firstErrorElement = inputLainnya;
+        }
       }
+
+      // 5. Cek kelompok Radio Button standar lainnya
+      const radioGroups = {};
+      currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
+        // Abaikan radio matrix eap dan pss agar tidak double error dengan cekBarisKosong
+        if (radio.name.startsWith('eap') || radio.name.startsWith('pss')) return;
+
+        if (!radioGroups[radio.name]) {
+          radioGroups[radio.name] = [];
+        }
+        radioGroups[radio.name].push(radio);
+      });
+
+      for (let groupName in radioGroups) {
+        const radios = radioGroups[groupName];
+        const sectionBox = radios[0].closest('.section-box');
+        const isChecked = radios.some(radio => radio.checked);
+        
+        if (!isChecked) {
+          isValid = false;
+          if (sectionBox) {
+            sectionBox.classList.add('error-input');
+          }
+          if (!firstErrorElement) {
+            firstErrorElement = sectionBox || radios[0];
+          }
+        } else {
+          if (sectionBox) {
+            sectionBox.classList.remove('error-input');
+          }
+        }
+      }
+
+      if (!isValid) {
+        alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
+        if (firstErrorElement && !document.querySelector('.baris-error')) {
+          firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return false;
+      }
+
+      return true;
     }
-  }
 
-  if (!isValid) {
-    alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
-    if (firstErrorElement) {
-      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    return false;
-  }
+    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Merah serta Auto-Scroll
+    function cekBarisKosong(arrayNamaPertanyaan) {
+      let semuaTerisi = true;
+      let barisErrorPertama = null;
 
-  return true;
-}
-
-      function cekBarisKosong(arrayNamaPertanyaan) {
-            let semuaTerisi = true;
-            let barisErrorPertama = null;
-
-        arrayNamaPertanyaan.forEach(nama => {
-          const sudahDiisi = document.querySelector(`input[name="${nama}"]:checked`);
-          const elemenRadio = document.querySelector(`input[name="${nama}"]`);
-          
+      arrayNamaPertanyaan.forEach(nama => {
+        const sudahDiisi = document.querySelector(`input[name="${nama}"]:checked`);
+        const elemenRadio = document.querySelector(`input[name="${nama}"]`);
+        
         if (elemenRadio) {
           const barisTr = elemenRadio.closest('tr');
           if (!sudahDiisi) {
@@ -1287,8 +1288,7 @@ function validatePage() {
       }
 
       return semuaTerisi;
-  }
-    
+    }
     
     // Efek Scroll Bar Kuning Header
     window.addEventListener('scroll', function() {
@@ -1375,13 +1375,17 @@ function validatePage() {
     }
     
     // Kode Penghubung ke Google Sheets
-// Kode Penghubung ke Google Sheets yang disesuaikan
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzyMcPPTrVhDCSutkq5FmuqGBx16CB6BfI3rTlvPua6HkCxu9Kr6f17cOBM6u-yzOwt_A/exec';
     const form = document.getElementById('surveyForm');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       
+      // Jalankan validasi halaman terakhir sebelum kirim
+      if (!validatePage()) {
+        return;
+      }
+
       const submitBtn = form.querySelector('.btn-submit');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Mengirim...';
@@ -1414,16 +1418,15 @@ function validatePage() {
         });
     });
 
-// Event listener agar warna merah otomatis hilang saat opsi diklik
-document.addEventListener('change', function(e) {
-  if (e.target.type === 'radio') {
-    const barisTr = e.target.closest('tr');
-    if (barisTr && barisTr.classList.contains('baris-error')) {
-      barisTr.classList.remove('baris-error');
-    }
-  }
-});
-    
+    // Event listener agar warna merah otomatis hilang saat opsi diklik
+    document.addEventListener('change', function(e) {
+      if (e.target.type === 'radio') {
+        const barisTr = e.target.closest('tr');
+        if (barisTr && barisTr.classList.contains('baris-error')) {
+          barisTr.classList.remove('baris-error');
+        }
+      }
+    });
   </script>
 </body>
 </html>
