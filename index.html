@@ -730,11 +730,11 @@
                   <td>14</td>
                   <td class="text-left">Lokasi layanan yang Anda harapkan</td>
                   <td class="text-left">
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q14" value="dalam_kantor"> Di dalam kantor</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q14" value="internal_kesdm"> Di dalam kantor (penyedia internal KESDM)</label>
-                    <label style="display:block; margin-bottom:4px;"><input type="radio" name="q14" value="luar_kantor"> Di luar kantor (penyedia eksternal)</label>
-                    <label style="display:block;"><input type="radio" name="q14" value="online"> Online/dari mana saja</label>
-                  </td>
+                      <label style="display:flex; align-items:center; gap:12px; margin-bottom:8px;"><input type="radio" name="q14" value="dalam_kantor"> Di dalam kantor</label>
+                      <label style="display:flex; align-items:center; gap:12px; margin-bottom:8px;"><input type="radio" name="q14" value="internal_kesdm"> Di dalam kantor (penyedia internal KESDM)</label>
+                      <label style="display:flex; align-items:center; gap:12px; margin-bottom:8px;"><input type="radio" name="q14" value="luar_kantor"> Di luar kantor (penyedia eksternal)</label>
+                      <label style="display:flex; align-items:center; gap:12px;"><input type="radio" name="q14" value="online"> Online/dari mana saja</label>
+                    </td>
                 </tr>
                 <tr>
                   <td>15</td>
@@ -1122,72 +1122,85 @@
   <!-- SCRIPT NAVIGASI & VALIDASI -->
   <script>
     // Fungsi Validasi Otomatis Per Halaman & Tanda Merah
-    function validatePage() {
-      let currentStepElement = null;
-      if (document.getElementById('step-1').style.display !== 'none') {
-        currentStepElement = document.getElementById('step-1');
-      } else if (document.getElementById('step-2').style.display !== 'none') {
-        currentStepElement = document.getElementById('step-2');
-      } else if (document.getElementById('step-3').style.display !== 'none') {
-        currentStepElement = document.getElementById('step-3');
-      }
+function validatePage() {
+  let currentStepElement = null;
+  if (document.getElementById('step-1').style.display !== 'none') {
+    currentStepElement = document.getElementById('step-1');
+  } else if (document.getElementById('step-2').style.display !== 'none') {
+    currentStepElement = document.getElementById('step-2');
+  } else if (document.getElementById('step-3').style.display !== 'none') {
+    currentStepElement = document.getElementById('step-3');
+  }
 
-      if (!currentStepElement) return true;
+  if (!currentStepElement) return true;
 
-      let isValid = true;
-      let firstErrorElement = null;
+  let isValid = true;
+  let firstErrorElement = null;
 
-      // 1. Cek input teks dan select
-      const requiredFields = currentStepElement.querySelectorAll('input[type="text"], select');
-      requiredFields.forEach(field => {
-        field.classList.remove('error-input');
-        if (!field.value.trim()) {
-          isValid = false;
-          field.classList.add('error-input');
-          if (!firstErrorElement) firstErrorElement = field;
-        }
-      });
-
-      // 2. Cek kelompok Radio Button
-      const radioGroups = {};
-      currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-        if (!radioGroups[radio.name]) {
-          radioGroups[radio.name] = [];
-        }
-        radioGroups[radio.name].push(radio);
-      });
-
-      for (let groupName in radioGroups) {
-        const radios = radioGroups[groupName];
-        const sectionBox = radios[0].closest('.section-box');
-        const isChecked = radios.some(radio => radio.checked);
-        
-        if (!isChecked) {
-          isValid = false;
-          if (sectionBox) {
-            sectionBox.classList.add('error-input');
-          }
-          if (!firstErrorElement) {
-            firstErrorElement = sectionBox || radios[0];
-          }
-        } else {
-          if (sectionBox) {
-            sectionBox.classList.remove('error-input');
-          }
-        }
-      }
-
-      if (!isValid) {
-        alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
-        if (firstErrorElement) {
-          firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return false;
-      }
-
-      return true;
+  // 1. Cek input teks dan select BIASA (Kecuali input teks "Lainnya" khusus q25_lainnya)
+  const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="q25_lainnya"]), select');
+  requiredFields.forEach(field => {
+    field.classList.remove('error-input');
+    if (!field.value.trim()) {
+      isValid = false;
+      field.classList.add('error-input');
+      if (!firstErrorElement) firstErrorElement = field;
     }
+  });
 
+  // 1.1 Khusus Cek Input Teks "Lainnya" (q25_lainnya) -> HANYA wajib jika radio "lainnya" dipilih
+  const radioLainnya = currentStepElement.querySelector('input[name="q25"][value="lainnya"]');
+  const inputLainnya = currentStepElement.querySelector('input[name="q25_lainnya"]');
+  if (inputLainnya) {
+    inputLainnya.classList.remove('error-input');
+    if (radioLainnya && radioLainnya.checked && !inputLainnya.value.trim()) {
+      isValid = false;
+      inputLainnya.classList.add('error-input');
+      if (!firstErrorElement) firstErrorElement = inputLainnya;
+    }
+  }
+
+  // 2. Cek kelompok Radio Button
+  const radioGroups = {};
+  currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
+    if (!radioGroups[radio.name]) {
+      radioGroups[radio.name] = [];
+    }
+    radioGroups[radio.name].push(radio);
+  });
+
+  for (let groupName in radioGroups) {
+    const radios = radioGroups[groupName];
+    const sectionBox = radios[0].closest('.section-box');
+    const isChecked = radios.some(radio => radio.checked);
+    
+    if (!isChecked) {
+      isValid = false;
+      if (sectionBox) {
+        sectionBox.classList.add('error-input');
+      }
+      if (!firstErrorElement) {
+        firstErrorElement = sectionBox || radios[0];
+      }
+    } else {
+      if (sectionBox) {
+        sectionBox.classList.remove('error-input');
+      }
+    }
+  }
+
+  if (!isValid) {
+    alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
+    if (firstErrorElement) {
+      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return false;
+  }
+
+  return true;
+}
+
+    
     // Efek Scroll Bar Kuning Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.header-container');
