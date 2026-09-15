@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
+    
     /* Styling untuk menandai elemen yang error/belum diisi */
     .error-input {
       border: 2px solid #ef4444 !important;
@@ -434,6 +435,37 @@
     .q-text {
       flex-grow: 1;
     }
+/*-----KODE CSS YANG BARU----*/
+.option-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      
+      .option-item input[type="radio"],
+      .option-item input[type="checkbox"] {
+        margin: 0;
+      }
+      
+      .option-item label {
+        margin: 0;
+        cursor: pointer;
+        line-height: 1.4;
+      }
+
+td label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 6px !important;
+}
+
+td label input[type="radio"],
+td label input[type="checkbox"] {
+  margin: 0 !important;
+}
+    
   </style>
 </head>
 <body>
