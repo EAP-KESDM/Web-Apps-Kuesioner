@@ -347,7 +347,7 @@
       .nav-buttons.start { justify-content: flex-start; }
       .nav-buttons.between { justify-content: space-between; }
 
-      .btn-next, .btn-submit, .btn-reset {
+      .btn-next, .btn-submit {
         background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
         color: white;
         border: none;
@@ -361,7 +361,7 @@
         flex: 1;
         max-width: 220px;
       }
-      .btn-next:active, .btn-submit:active, .btn-reset:active {
+      .btn-next:active, .btn-submit:active {
         transform: scale(0.98);
       }
       .btn-prev {
@@ -498,7 +498,7 @@
     </div>
   </header>
 
-  <!-- HERO BANNER (KEMBALI BERSIH SEPERTI GAMBAR 2) -->
+  <!-- HERO BANNER (GAMBAR 2 TETAP BERSIH) -->
   <div class="header-banner">
     <span class="badge-tag">KUESIONER PENELITIAN</span>
     <h1 class="main-title">Kebutuhan Layanan Employee Assistance Program dan Stres Kerja Pegawai</h1>
@@ -1161,12 +1161,12 @@
         </div>
       </div>
 
-      <!-- ================= HALAMAN 4: HALAMAN PENUTUP (SUCCESS PAGE DENGAN KUTIPAN) ================= -->
-      <div class="page-step" id="step-4" style="display: none; text-align: center; padding: 20px 10px;">
-        <div style="font-size: 54px; margin-bottom: 10px;">🎉</div>
+      <!-- ================= HALAMAN 4: HALAMAN PENUTUP (TANPA TOMBOL ISI KUESIONER BARU) ================= -->
+      <div class="page-step" id="step-4" style="display: none; text-align: center; padding: 30px 10px;">
+        <div style="font-size: 64px; margin-bottom: 15px;">🎉</div>
         <h2 style="color: #0F172A; font-size: 22px; font-weight: 800; margin-bottom: 10px;">Terima Kasih Atas Partisipasi Anda!</h2>
         
-        <p style="color: #475569; font-size: 14px; max-width: 520px; margin: 0 auto 20px auto; line-height: 1.6;">
+        <p style="color: #475569; font-size: 14.5px; max-width: 520px; margin: 0 auto 20px auto; line-height: 1.6;">
           Jawaban kuesioner Anda berhasil dikirim dan tersimpan secara aman. Kontribusi Anda sangat berharga untuk perancangan kebijakan dukungan psikologis (EAP) dan kesejahteraan pegawai Kementerian ESDM.
         </p>
 
@@ -1180,11 +1180,9 @@
           </p>
         </div>
 
-        <div style="background: #F1F5F9; border: 1px solid var(--border-color); padding: 12px; border-radius: 10px; max-width: 400px; margin: 0 auto 25px auto; font-size: 13px; color: #475569;">
+        <div style="background: #F1F5F9; border: 1px solid var(--border-color); padding: 14px; border-radius: 10px; max-width: 400px; margin: 0 auto; font-size: 13px; color: #475569;">
           🔒 <em>Seluruh data dijamin kerahasiaannya dan hanya digunakan untuk keperluan riset institusi.</em>
         </div>
-
-        <button type="button" class="btn-reset" onclick="location.reload()">Isi Kuesioner Baru</button>
       </div>
 
     </form>
