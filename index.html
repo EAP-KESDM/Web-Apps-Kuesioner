@@ -1301,17 +1301,16 @@ function validatePage() {
       // Buat FormData dari form
       const formData = new FormData(form);
 
-      // Ambil semua checkbox q13[] yang dicentang user
+      // Ambil semua checkbox q13 yang dicentang user lalu gabungkan dengan koma
       const q13Checked = form.querySelectorAll('input[name="q13[]"]:checked');
+      const q13Values = Array.from(q13Checked).map(cb => cb.value);
       
-      // Hapus dulu data q13[] bawaan form agar bisa kita kirim ulang dengan rapi
+      // Bersihkan dan set data q13 agar masuk sebagai teks gabungan
       formData.delete('q13[]');
-      
-      // Masukkan pilihan checkbox satu per satu agar tertangkap oleh Apps Script (e.parameters['q13[]'])
-      q13Checked.forEach(cb => {
-        formData.append('q13[]', cb.value);
-      });
+      formData.delete('q13');
+      formData.set('q13', q13Values.join(', '));
 
+      // Kirim data ke Google Apps Script
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => response.json())
         .then(result => {
@@ -1326,6 +1325,8 @@ function validatePage() {
           submitBtn.textContent = 'Kirim Jawaban';
         });
     });
+  
+  
   </script>
 </body>
 </html>
