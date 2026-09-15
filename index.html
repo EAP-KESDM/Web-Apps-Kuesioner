@@ -900,7 +900,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr id="row-q26_1">
+                <tr id="row-q26_priority">
                   <td>27</td>
                   <td class="text-left">Tiga kebutuhan layanan yang menurut Anda paling prioritas untuk pegawai Kementerian ESDM (pilih dari butir 1–10):</td>
                   <td class="text-left">
@@ -1243,15 +1243,17 @@
           }
         });
 
-        // II.2, II.3, II.5 (q11 sampai q16 dan q23_kesiapan sampai q24)
-        const daftarBarisTabel2 = ['q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q23_kesiapan', 'q24'];
+        // II.2, II.3, II.5 (q11 sampai q16 dan q23_kesiapan, q24, q25)
+        const daftarBarisTabel2 = ['q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q23_kesiapan', 'q24', 'q25'];
         daftarBarisTabel2.forEach(name => {
-          // Tangani khusus q13 yang berupa checkbox array
           let checked = false;
           let radioOrCheck = null;
           if (name === 'q13') {
             radioOrCheck = currentStepElement.querySelector('input[name="q13[]"]');
             checked = currentStepElement.querySelector('input[name="q13[]"]:checked');
+          } else if (name === 'q25') {
+            radioOrCheck = currentStepElement.querySelector('input[name="q25"]');
+            checked = currentStepElement.querySelector('input[name="q25"]:checked');
           } else {
             radioOrCheck = currentStepElement.querySelector(`input[name="${name}"]`);
             checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
@@ -1297,6 +1299,24 @@
             const rowTr = inputLainnya.closest('tr');
             if (rowTr) rowTr.classList.add('baris-error');
             if (!firstErrorTarget) firstErrorTarget = rowTr || inputLainnya;
+          }
+        }
+
+        // KHUSUS VALIDASI NOMOR 27 (3 Kotak Dropdown Prioritas harus terisi SEMUA)
+        const p1 = document.getElementById('priority-1').value;
+        const p2 = document.getElementById('priority-2').value;
+        const p3 = document.getElementById('priority-3').value;
+        const rowPriority = document.getElementById('row-q26_priority');
+
+        if (!p1 || !p2 || !p3) {
+          isValid = false;
+          if (rowPriority) {
+            rowPriority.classList.add('baris-error');
+            if (!firstErrorTarget) firstErrorTarget = rowPriority;
+          }
+        } else {
+          if (rowPriority) {
+            rowPriority.classList.remove('baris-error');
           }
         }
       }
@@ -1403,7 +1423,7 @@
       if (prevEl) prevEl.style.display = 'block';
 
       const prevDot = document.getElementById('dot-' + prevStep);
-      if (prevDot) prevDot.classList.remove('active');
+      if (prevDot) prevDot.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1442,6 +1462,15 @@
           }
         });
       });
+
+      // Otomatis hilangkan warna merah baris 27 jika ke-3 dropdown sudah terisi
+      const p1 = document.getElementById('priority-1').value;
+      const p2 = document.getElementById('priority-2').value;
+      const p3 = document.getElementById('priority-3').value;
+      const rowPriority = document.getElementById('row-q26_priority');
+      if (p1 && p2 && p3) {
+        if (rowPriority) rowPriority.classList.remove('baris-error');
+      }
     }
     
     // Kode Penghubung ke Google Sheets
@@ -1494,7 +1523,7 @@
       }
     });
 
-    // Hilangkan error box saat dropdown diubah
+    // Hilangkan error box saat input teks diubah
     document.addEventListener('input', function(e) {
       if (e.target.tagName === 'SELECT' || e.target.type === 'text') {
         e.target.classList.remove('error-input');
