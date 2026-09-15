@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
-      /* Memberi warna latar merah muda pada baris matriks yang belum dijawab */
+      /* HANYA BACKGROUND YANG MERAH, TEKS TETAP NORMAL (HITAM) */
       tr.baris-error td {
         background-color: #ffe6e6 !important;
         transition: background-color 0.3s ease;
-      }
-  
-      /* Membuat teks pertanyaan pada baris error menjadi merah */
-      tr.baris-error td.text-left {
-        color: #cc0000 !important;
-        font-weight: bold;
+        color: #1E293B !important; /* Memastikan teks tetap warna asal */
+        font-weight: normal !important;
       }
 
       /* Styling untuk menandai elemen form biasa yang error/belum diisi */
@@ -1163,7 +1159,6 @@
 
   <!-- SCRIPT NAVIGASI & VALIDASI -->
   <script>
-    // Fungsi Validasi Otomatis Per Halaman & Tanda Merah
     function validatePage() {
       let currentStepElement = null;
       if (document.getElementById('step-1').style.display !== 'none') {
@@ -1222,7 +1217,6 @@
       // 5. Cek kelompok Radio Button standar lainnya
       const radioGroups = {};
       currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-        // Abaikan radio matrix eap dan pss agar tidak double error dengan cekBarisKosong
         if (radio.name.startsWith('eap') || radio.name.startsWith('pss')) return;
 
         if (!radioGroups[radio.name]) {
@@ -1253,8 +1247,17 @@
 
       if (!isValid) {
         alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
-        if (firstErrorElement && !document.querySelector('.baris-error')) {
+        
+        // JIKA ADA BARIS ERROR (MATRIKS), utamakan scroll ke baris error tersebut
+        const barisErrorPertama = currentStepElement.querySelector('.baris-error');
+        if (barisErrorPertama) {
+          barisErrorPertama.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (firstErrorElement) {
+          // JIKA SEMUA KOSONG / ERROR DI INPUT LAIN, scroll perlahan ke atas/awal elemen error
           firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          // JIKA TIDAK ADA ELEMEN SPESIFIK, scroll perlahan ke atas halaman
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         return false;
       }
@@ -1262,7 +1265,7 @@
       return true;
     }
 
-    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Merah serta Auto-Scroll
+    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Background Merah serta Auto-Scroll
     function cekBarisKosong(arrayNamaPertanyaan) {
       let semuaTerisi = true;
       let barisErrorPertama = null;
@@ -1333,7 +1336,7 @@
       if (prevEl) prevEl.style.display = 'block';
 
       const prevDot = document.getElementById('dot-' + prevStep);
-      if (prevDot) prevDot.classList.add('active');
+      if (prevDot) prevDot.classList.remove('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1381,7 +1384,6 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       
-      // Jalankan validasi halaman terakhir sebelum kirim
       if (!validatePage()) {
         return;
       }
@@ -1390,19 +1392,15 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Mengirim...';
 
-      // Buat FormData dari form
       const formData = new FormData(form);
 
-      // Ambil semua checkbox q13 yang dicentang user lalu gabungkan dengan koma
       const q13Checked = form.querySelectorAll('input[name="q13[]"]:checked');
       const q13Values = Array.from(q13Checked).map(cb => cb.value);
       
-      // Bersihkan dan set data q13 agar masuk sebagai teks gabungan
       formData.delete('q13[]');
       formData.delete('q13');
       formData.set('q13', q13Values.join(', '));
 
-      // Kirim data ke Google Apps Script
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => response.json())
         .then(result => {
@@ -1418,7 +1416,7 @@
         });
     });
 
-    // Event listener agar warna merah otomatis hilang saat opsi diklik
+    // Event listener agar warna latar merah otomatis hilang saat opsi diklik
     document.addEventListener('change', function(e) {
       if (e.target.type === 'radio') {
         const barisTr = e.target.closest('tr');
