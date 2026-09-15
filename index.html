@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kuesioner EAP & Stres Kerja KESDM</title>
   <style>
-      /* HANYA BACKGROUND YANG MERAH, TEKS TETAP NORMAL (HITAM) */
+      /* BACKGROUND BARIS TABEL YANG KOSONG MENJADI MERAH MUDA */
       tr.baris-error td {
         background-color: #ffe6e6 !important;
         transition: background-color 0.3s ease;
@@ -13,15 +13,16 @@
         font-weight: normal !important;
       }
 
-      /* Styling untuk menandai elemen form biasa/non-tabel yang error */
-      .error-input {
+      /* BACKGROUND KOTAK SECTION BIASA YANG KOSONG (UNTUK HALAMAN 1) */
+      .section-box.error-box {
         border: 2px solid #ef4444 !important;
         background-color: #fef2f2 !important;
       }
 
-      .error-label {
-        color: #ef4444;
-        font-weight: bold;
+      /* Styling untuk menandai elemen form biasa yang error */
+      .error-input {
+        border: 2px solid #ef4444 !important;
+        background-color: #fef2f2 !important;
       }
       
       .section-box p:not(:first-child) {
@@ -540,7 +541,7 @@
       <div class="page-step" id="step-1">
         <h3 class="section-title">BAGIAN I — KARAKTERISTIK RESPONDEN</h3>
         
-        <div class="section-box">
+        <div class="section-box" id="box-eselon">
           <div class="form-group">
             <label class="form-label">1. Unit Kerja Eselon I</label>
             <select name="eselon">
@@ -559,7 +560,9 @@
               <option value="Lainnya">Lainnya</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-kelompokJabatan">
           <div class="form-group">
             <label class="form-label">2. Kelompok Jabatan</label>
             <div class="radio-group">
@@ -568,12 +571,16 @@
               <label class="radio-item"><input type="radio" name="kelompokJabatan" value="Pelaksana"> Pelaksana</label>
             </div>
           </div>
+        </div>
 
+        <div class="section-box" id="box-jabatan">
           <div class="form-group">
             <label class="form-label">3. Jabatan Spesifik</label>
             <input type="text" name="jabatan" placeholder="Tuliskan nama jabatan Anda">
           </div>
+        </div>
 
+        <div class="section-box" id="box-jenisKelamin">
           <div class="form-group">
             <label class="form-label">4. Jenis Kelamin</label>
             <div class="radio-group">
@@ -581,7 +588,9 @@
               <label class="radio-item"><input type="radio" name="jenisKelamin" value="Perempuan"> Perempuan</label>
             </div>
           </div>
+        </div>
 
+        <div class="section-box" id="box-usia">
           <div class="form-group">
             <label class="form-label">5. Usia</label>
             <select name="usia">
@@ -593,7 +602,9 @@
               <option value="> 55 Tahun">> 55 Tahun</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-masaKerja">
           <div class="form-group">
             <label class="form-label">6. Masa Kerja Total</label>
             <select name="masaKerja">
@@ -603,7 +614,9 @@
               <option value="> 20 Tahun">> 20 Tahun</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-pendidikan">
           <div class="form-group">
             <label class="form-label">7. Pendidikan Terakhir</label>
             <select name="pendidikan" id="pendidikan">
@@ -620,7 +633,9 @@
               <option value="S3">S3</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-lokasi">
           <div class="form-group">
             <label class="form-label">8. Lokasi Penugasan Dominan (1 Tahun Terakhir)</label>
             <select name="lokasi">
@@ -631,7 +646,9 @@
               <option value="Kombinasi Kantor dan Lapangan">Kombinasi Kantor dan Lapangan</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-frekuensi">
           <div class="form-group">
             <label class="form-label">9. Rata-rata Frekuensi Penugasan Lapangan</label>
             <select name="frekuensi">
@@ -642,7 +659,9 @@
               <option value=">12 kali/tahun">>12 kali/tahun</option>
             </select>
           </div>
+        </div>
 
+        <div class="section-box" id="box-insiden">
           <div class="form-group">
             <label class="form-label question-label">
               <span class="q-number">10.</span>
@@ -716,7 +735,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr id="row-q11">
                   <td>11</td>
                   <td class="text-left">Apakah Anda mengetahui bahwa instansi menyediakan layanan dukungan psikologis/kesehatan mental bagi pegawai?</td>
                   <td class="text-left">
@@ -725,7 +744,7 @@
                     <label style="display:block;"><input type="radio" name="q11" value="tidak_tahu"> Tidak mengetahui</label>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q12">
                   <td>12</td>
                   <td class="text-left">Pernahkah Anda menggunakan layanan konseling/dukungan psikologis yang disediakan instansi atau pihak eksternal?</td>
                   <td class="text-left">
@@ -752,7 +771,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr id="row-q13">
                   <td>13</td>
                   <td class="text-left">Bentuk layanan yang paling Anda pilih (boleh pilih lebih dari satu)</td>
                   <td class="text-left">
@@ -764,7 +783,7 @@
                     <label style="display:block;"><input type="checkbox" name="q13[]" value="Aplikasi/gawai mandiri"> Aplikasi/gawai mandiri</label>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q14">
                   <td>14</td>
                   <td class="text-left">Lokasi layanan yang Anda harapkan</td>
                   <td class="text-left">
@@ -774,7 +793,7 @@
                       <label style="display:flex; align-items:center; gap:12px;"><input type="radio" name="q14" value="online"> Online/dari mana saja</label>
                     </td>
                 </tr>
-                <tr>
+                <tr id="row-q15">
                   <td>15</td>
                   <td class="text-left">Waktu layanan yang Anda harapkan</td>
                   <td class="text-left">
@@ -783,7 +802,7 @@
                     <label style="display:block;"><input type="radio" name="q15" value="24_jam"> Tersedia 24 jam</label>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q16">
                   <td>16</td>
                   <td class="text-left">Kesediaan layanan bagi anggota keluarga</td>
                   <td class="text-left">
@@ -839,7 +858,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr id="row-q23_kesiapan">
                   <td>24</td>
                   <td class="text-left">Jika layanan EAP tersedia dengan jaminan kerahasiaan, seberapa besar kemungkinan Anda menggunakannya?</td>
                   <td class="text-left">
@@ -849,7 +868,7 @@
                     <label style="display:block;"><input type="radio" name="q23_kesiapan" value="tidak_mungkin"> Tidak mungkin</label>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q24">
                   <td>25</td>
                   <td class="text-left">Jika layanan EAP tersedia, apakah Anda bersedia merekomendasikannya kepada rekan kerja?</td>
                   <td class="text-left">
@@ -858,7 +877,7 @@
                     <label style="display:block;"><input type="radio" name="q24" value="tidak"> Tidak</label>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q25">
                   <td>26</td>
                   <td class="text-left">Jika layanan EAP tersedia, skema pembayaran seperti apa yang disarankan?</td>
                   <td class="text-left">
@@ -881,7 +900,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <tr id="row-q26_1">
                   <td>27</td>
                   <td class="text-left">Tiga kebutuhan layanan yang menurut Anda paling prioritas untuk pegawai Kementerian ESDM (pilih dari butir 1–10):</td>
                   <td class="text-left">
@@ -1171,33 +1190,135 @@
       if (!currentStepElement) return true;
 
       let isValid = true;
-      let firstErrorElement = null;
+      let firstErrorTarget = null; // Menyimpan elemen persis yang kosong untuk disorot
 
-      // 1. Cek Tabel Matriks di Halaman 2 (eap1 sampai eap10)
+      // ================= VALIDASI HALAMAN 1 =================
+      if (currentStepElement.id === 'step-1') {
+        const fieldsStep1 = ['eselon', 'kelompokJabatan', 'jabatan', 'jenisKelamin', 'usia', 'masaKerja', 'pendidikan', 'lokasi', 'frekuensi', 'insiden'];
+        
+        fieldsStep1.forEach(name => {
+          const inputOrSelect = currentStepElement.querySelector(`[name="${name}"]`);
+          const boxEl = document.getElementById('box-' + name) || (inputOrSelect ? inputOrSelect.closest('.section-box') : null);
+          
+          if (inputOrSelect && inputOrSelect.type === 'radio') {
+            const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+            if (!checked) {
+              isValid = false;
+              if (boxEl) {
+                boxEl.classList.add('error-box');
+                if (!firstErrorTarget) firstErrorTarget = boxEl;
+              }
+            } else {
+              if (boxEl) boxEl.classList.remove('error-box');
+            }
+          } else {
+            if (inputOrSelect) {
+              inputOrSelect.classList.remove('error-input');
+              if (!inputOrSelect.value.trim()) {
+                isValid = false;
+                inputOrSelect.classList.add('error-input');
+                if (!firstErrorTarget) firstErrorTarget = inputOrSelect;
+              }
+            }
+          }
+        });
+      }
+
+      // ================= VALIDASI HALAMAN 2 =================
       if (currentStepElement.id === 'step-2') {
+        // II.1 (eap1 - eap10)
         const daftarEap = ['eap1', 'eap2', 'eap3', 'eap4', 'eap5', 'eap6', 'eap7', 'eap8', 'eap9', 'eap10'];
-        const lolosEap = cekBarisKosong(daftarEap);
-        if (!lolosEap) {
-          isValid = false;
-        }
+        daftarEap.forEach(name => {
+          const radio = currentStepElement.querySelector(`input[name="${name}"]`);
+          const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          if (radio) {
+            const rowTr = radio.closest('tr');
+            if (!checked) {
+              isValid = false;
+              if (rowTr) rowTr.classList.add('baris-error');
+              if (!firstErrorTarget && rowTr) firstErrorTarget = rowTr;
+            } else {
+              if (rowTr) rowTr.classList.remove('baris-error');
+            }
+          }
+        });
 
-        // Cek juga baris bernomor di tabel II.4 & II.5 (q17 sampai q24) agar backgroundnya ikut merah jika kosong
-        const daftarBarisLain = ['q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23_hambatan', 'q23_kesiapan', 'q24'];
-        const lolosLain = cekBarisKosong(daftarBarisLain);
-        if (!lolosLain) {
-          isValid = false;
+        // II.2, II.3, II.5 (q11 sampai q16 dan q23_kesiapan sampai q24)
+        const daftarBarisTabel2 = ['q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q23_kesiapan', 'q24'];
+        daftarBarisTabel2.forEach(name => {
+          // Tangani khusus q13 yang berupa checkbox array
+          let checked = false;
+          let radioOrCheck = null;
+          if (name === 'q13') {
+            radioOrCheck = currentStepElement.querySelector('input[name="q13[]"]');
+            checked = currentStepElement.querySelector('input[name="q13[]"]:checked');
+          } else {
+            radioOrCheck = currentStepElement.querySelector(`input[name="${name}"]`);
+            checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          }
+
+          if (radioOrCheck) {
+            const rowTr = radioOrCheck.closest('tr');
+            if (!checked) {
+              isValid = false;
+              if (rowTr) rowTr.classList.add('baris-error');
+              if (!firstErrorTarget && rowTr) firstErrorTarget = rowTr;
+            } else {
+              if (rowTr) rowTr.classList.remove('baris-error');
+            }
+          }
+        });
+
+        // II.4 Hambatan (q17 - q23_hambatan)
+        const daftarHambatan = ['q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23_hambatan'];
+        daftarHambatan.forEach(name => {
+          const radio = currentStepElement.querySelector(`input[name="${name}"]`);
+          const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          if (radio) {
+            const rowTr = radio.closest('tr');
+            if (!checked) {
+              isValid = false;
+              if (rowTr) rowTr.classList.add('baris-error');
+              if (!firstErrorTarget && rowTr) firstErrorTarget = rowTr;
+            } else {
+              if (rowTr) rowTr.classList.remove('baris-error');
+            }
+          }
+        });
+
+        // Cek input teks q25_lainnya jika opsi "lainnya" dipilih
+        const radioLainnya = currentStepElement.querySelector('input[name="q25"][value="lainnya"]');
+        const inputLainnya = currentStepElement.querySelector('input[name="q25_lainnya"]');
+        if (inputLainnya) {
+          inputLainnya.classList.remove('error-input');
+          if (radioLainnya && radioLainnya.checked && !inputLainnya.value.trim()) {
+            isValid = false;
+            inputLainnya.classList.add('error-input');
+            const rowTr = inputLainnya.closest('tr');
+            if (rowTr) rowTr.classList.add('baris-error');
+            if (!firstErrorTarget) firstErrorTarget = rowTr || inputLainnya;
+          }
         }
       }
 
-      // 2. Cek Tabel Matriks di Halaman 3 (pss1 sampai pss10 dan HSE d1 sampai e4)
+      // ================= VALIDASI HALAMAN 3 =================
       if (currentStepElement.id === 'step-3') {
         const daftarPss = ['pss1', 'pss2', 'pss3', 'pss4', 'pss5', 'pss6', 'pss7', 'pss8', 'pss9', 'pss10'];
-        const lolosPss = cekBarisKosong(daftarPss);
-        if (!lolosPss) {
-          isValid = false;
-        }
+        daftarPss.forEach(name => {
+          const radio = currentStepElement.querySelector(`input[name="${name}"]`);
+          const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          if (radio) {
+            const rowTr = radio.closest('tr');
+            if (!checked) {
+              isValid = false;
+              if (rowTr) rowTr.classList.add('baris-error');
+              if (!firstErrorTarget && rowTr) firstErrorTarget = rowTr;
+            } else {
+              if (rowTr) rowTr.classList.remove('baris-error');
+            }
+          }
+        });
 
-        // Cek juga baris HSE di Halaman 3 agar baris yang kosong ikut merah
         const daftarHse = [
           'hse_d1', 'hse_d2', 'hse_d3', 
           'hse_c1', 'hse_c2', 
@@ -1208,117 +1329,35 @@
           'hse_g1', 'hse_g2', 
           'hse_e1', 'hse_e2', 'hse_e3', 'hse_e4'
         ];
-        const lolosHse = cekBarisKosong(daftarHse);
-        if (!lolosHse) {
-          isValid = false;
-        }
+        daftarHse.forEach(name => {
+          const radio = currentStepElement.querySelector(`input[name="${name}"]`);
+          const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          if (radio) {
+            const rowTr = radio.closest('tr');
+            if (!checked) {
+              isValid = false;
+              if (rowTr) rowTr.classList.add('baris-error');
+              if (!firstErrorTarget && rowTr) firstErrorTarget = rowTr;
+            } else {
+              if (rowTr) rowTr.classList.remove('baris-error');
+            }
+          }
+        });
       }
 
-      // 3. Cek input teks dan select BIASA (Halaman 1, dsb)
-      const requiredFields = currentStepElement.querySelectorAll('input[type="text"]:not([name="eap_terbuka"]):not([name="q25_lainnya"]), select');
-      requiredFields.forEach(field => {
-        field.classList.remove('error-input');
-        if (!field.value.trim()) {
-          isValid = false;
-          field.classList.add('error-input');
-          if (!firstErrorElement) firstErrorElement = field;
-        }
-      });
-
-      // 4. Khusus Cek Input Teks "Lainnya" (q25_lainnya)
-      const radioLainnya = currentStepElement.querySelector('input[name="q25"][value="lainnya"]');
-      const inputLainnya = currentStepElement.querySelector('input[name="q25_lainnya"]');
-      if (inputLainnya) {
-        inputLainnya.classList.remove('error-input');
-        if (radioLainnya && radioLainnya.checked && !inputLainnya.value.trim()) {
-          isValid = false;
-          inputLainnya.classList.add('error-input');
-          if (!firstErrorElement) firstErrorElement = inputLainnya;
-        }
-      }
-
-      // 5. Cek kelompok Radio Button standar di luar tabel (seperti Halaman 1: eselon, kelompokJabatan, dll)
-      const radioGroups = {};
-      currentStepElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-        // Abaikan radio yang sudah masuk dalam kategori baris tabel matrix
-        if (
-          radio.name.startsWith('eap') || 
-          radio.name.startsWith('pss') || 
-          radio.name.startsWith('hse_') ||
-          ['q17','q18','q19','q20','q21','q22','q23_hambatan','q23_kesiapan','q24'].includes(radio.name)
-        ) return;
-
-        if (!radioGroups[radio.name]) {
-          radioGroups[radio.name] = [];
-        }
-        radioGroups[radio.name].push(radio);
-      });
-
-      for (let groupName in radioGroups) {
-        const radios = radioGroups[groupName];
-        const sectionBox = radios[0].closest('.section-box');
-        const isChecked = radios.some(radio => radio.checked);
-        
-        if (!isChecked) {
-          isValid = false;
-          if (sectionBox) {
-            sectionBox.classList.add('error-input');
-          }
-          if (!firstErrorElement) {
-            firstErrorElement = sectionBox || radios[0];
-          }
-        } else {
-          if (sectionBox) {
-            sectionBox.classList.remove('error-input');
-          }
-        }
-      }
-
+      // Jika ada yang belum diisi
       if (!isValid) {
         alert('⚠️ Mohon lengkapi semua pertanyaan yang belum diisi (bagian yang kosong ditandai kotak merah).');
         
-        // UTAMAKAN SCROLL TEPAT KE BARIS KOSONG PERTAMA (TERUTAMA UNTUK NOMOR 2, 24, DSB)
-        const barisErrorPertama = currentStepElement.querySelector('.baris-error');
-        if (barisErrorPertama) {
-          barisErrorPertama.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else if (firstErrorElement) {
-          firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (firstErrorTarget) {
+          firstErrorTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          // JIKA SEMUA KOSONG / BELUM DIISI SAMA SEKALI DI HALAMAN ITU, SCROLL PERLAHAN KE ATAS
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         return false;
       }
 
       return true;
-    }
-
-    // Fungsi Pendeteksi Baris Kosong & Pemberi Warna Background Merah serta Auto-Scroll Tepat Sasaran
-    function cekBarisKosong(arrayNamaPertanyaan) {
-      let semuaTerisi = true;
-      let barisErrorPertama = null;
-
-      arrayNamaPertanyaan.forEach(nama => {
-        const sudahDiisi = document.querySelector(`input[name="${nama}"]:checked`);
-        const elemenRadio = document.querySelector(`input[name="${nama}"]`);
-        
-        if (elemenRadio) {
-          const barisTr = elemenRadio.closest('tr');
-          if (!sudahDiisi) {
-            if (barisTr) {
-              barisTr.classList.add('baris-error');
-            }
-            semuaTerisi = false;
-            if (!barisErrorPertama && barisTr) barisErrorPertama = barisTr; 
-          } else {
-            if (barisTr) {
-              barisTr.classList.remove('baris-error');
-            }
-          }
-        }
-      });
-
-      return semuaTerisi;
     }
     
     // Efek Scroll Bar Kuning Header
@@ -1446,11 +1485,21 @@
 
     // Event listener agar warna latar merah otomatis hilang saat opsi diklik
     document.addEventListener('change', function(e) {
-      if (e.target.type === 'radio') {
+      if (e.target.type === 'radio' || e.target.type === 'checkbox') {
         const barisTr = e.target.closest('tr');
-        if (barisTr && barisTr.classList.contains('baris-error')) {
-          barisTr.classList.remove('baris-error');
-        }
+        if (barisTr) barisTr.classList.remove('baris-error');
+
+        const boxEl = e.target.closest('.section-box');
+        if (boxEl) boxEl.classList.remove('error-box');
+      }
+    });
+
+    // Hilangkan error box saat dropdown diubah
+    document.addEventListener('input', function(e) {
+      if (e.target.tagName === 'SELECT' || e.target.type === 'text') {
+        e.target.classList.remove('error-input');
+        const boxEl = e.target.closest('.section-box');
+        if (boxEl) boxEl.classList.remove('error-box');
       }
     });
   </script>
