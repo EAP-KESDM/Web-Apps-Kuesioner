@@ -410,14 +410,45 @@
         margin-bottom: 25px;
       }
 
+      /* Styling Kotak Kutipan & Pengantar */
       .intro-card {
-        margin: 0;
+        margin-bottom: 20px;
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 12px;
         padding: 20px 25px;
         text-align: left;
+      }
+
+      .quote-box {
+        margin: 0;
+        background: rgba(217, 119, 6, 0.15);
+        backdrop-filter: blur(8px);
+        border-left: 4px solid #ffb74d;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 12px 12px 0;
+        padding: 18px 22px;
+        text-align: left;
+        margin-bottom: 20px;
+      }
+      
+      .quote-text {
+        font-size: 0.95rem;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+
+      .quote-author {
+        font-size: 0.85rem;
+        color: #ffb74d;
+        font-weight: 600;
+        text-align: right;
+        margin: 0;
       }
 
       .intro-title {
@@ -504,19 +535,30 @@
     <h1 class="main-title">Kebutuhan Layanan Employee Assistance Program dan Stres Kerja Pegawai</h1>
     <h2 class="sub-title">Kementerian Energi dan Sumber Daya Mineral</h2>
 
+    <!-- KOTAK KUTIPAN MOTIVASI -->
+    <div class="quote-box">
+      <p class="quote-text">
+        &ldquo;Sebagian besar hal penting di dunia ini dicapai oleh orang-orang yang terus berusaha ketika tampaknya tidak ada harapan sama sekali.&rdquo;
+      </p>
+      <p class="quote-author">— Dale Carnegie</p>
+    </div>
+
     <div class="intro-card">
       <div class="intro-header">
         <h3 class="intro-title">📋 Lembar Pengantar dan Persetujuan</h3>
       </div>
+      <p class="intro-text" style="margin-bottom: 12px;">
+        Di balik setiap tugas dan tantangan pekerjaan, ketangguhan Bapak/Ibu adalah kekuatan utama instansi ini. Suara Anda hari ini sangat berarti untuk perbaikan layanan dukungan psikologis (EAP) ke depan.
+      </p>
       <p class="intro-text">
-        Kuesioner ini disusun untuk mengidentifikasi kebutuhan layanan dukungan psikologis (<em>Employee Assistance Program/EAP</em>) dan tingkat stres kerja pegawai Kementerian ESDM. Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan. Dengan mengisi kuesioner ini, Bapak/Ibu menyatakan persetujuan untuk berpartisipasi secara sukarela. Tidak ada jawaban benar atau salah. Mohon diisi secara jujur sesuai pengalaman.
+        Kuesioner ini disusun untuk mengidentifikasi kebutuhan layanan dukungan psikologis (<em>Employee Assistance Program/EAP</em>) dan tingkat stres kerja pegawai Kementerian ESDM. Seluruh jawaban bersifat anonim dan rahasia; data hanya digunakan untuk kepentingan penelitian dan perancangan kebijakan. Dengan mengisi kuesioner ini, Bapak/Ibu menyatakan persetujuan untuk berpartisipasi secara sukarela. Teruslah melangkah, dan salam sehat selalu.
       </p>
     </div>
   </div>
 
   <div class="container">
     
-    <!-- STEPPER (1 - 2 - 3 - 4 Selesai) -->
+    <!-- STEPPER (1 - 2 - 3) -->
     <div class="stepper" id="mainStepper">
       <div class="step-item active" id="dot-1">1</div>
       <div class="step-item" id="dot-2">2</div>
@@ -1500,23 +1542,17 @@
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => response.json())
         .then(result => {
-          // SEMBUNYIKAN HALAMAN 3 DAN ALIHKAN KE HALAMAN PENUTUP (STEP 4)
           document.getElementById('step-3').style.display = 'none';
           document.getElementById('dot-3').classList.remove('active');
           document.getElementById('dot-3').classList.add('completed');
           
-          // Tampilkan Halaman Penutup
           document.getElementById('step-4').style.display = 'block';
-          
-          // Sembunyikan stepper di atas agar tampil bersih
           document.getElementById('mainStepper').style.display = 'none';
 
           window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(error => {
           console.error('Error!', error.message);
-          // Walaupun jaringan offline/error sementara pada script web app, kita tetap arahkan ke halaman penutup atau beritahu
-          // (Opsional: Jika ingin aman total dari kendala CORS Google Apps Script, baris di bawah ini bisa menangani transisi sukses)
           document.getElementById('step-3').style.display = 'none';
           document.getElementById('dot-3').classList.remove('active');
           document.getElementById('dot-3').classList.add('completed');
